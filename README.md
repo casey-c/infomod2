@@ -1,4 +1,7 @@
 # infomod2
-The unawaited sequel to infomod
+The unawaited sequel to Info Mod. 
 
-wip
+*Coming Soon*
+
+![Teaser](github/teaser.png)
+

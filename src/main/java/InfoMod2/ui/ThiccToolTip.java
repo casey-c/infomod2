@@ -8,13 +8,21 @@ public class ThiccToolTip {
     private DynamicTextureBox box = new DynamicTextureBox("InfoMod2/tooltip/")
             .withColors(ExtraColors.TOOL_TIP_OUTER_BEVEL, ExtraColors.TOOL_TIP_INNER_BEVEL, ExtraColors.TOOL_TIP_BASE);
 
+    float left, bottom, width, height;
+
+    public ThiccToolTip(float left, float bottom, float width, float height) {
+        this.left = left;
+        this.bottom = bottom;
+        this.width = width;
+        this.height = height;
+    }
+
     protected void renderBackground(SpriteBatch sb) {
-        box.render(sb, 1383, 691, 400, 300);
+        //box.render(sb, 1383, 691, 400, 300);
+        box.render(sb, left, bottom, width, height);
     }
 
-    protected void renderForeground(SpriteBatch sb) {
-
-    }
+    protected void renderForeground(SpriteBatch sb) { }
 
     public void render(SpriteBatch sb) {
         renderBackground(sb);

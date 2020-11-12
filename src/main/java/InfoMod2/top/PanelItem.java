@@ -1,5 +1,6 @@
 package InfoMod2.top;
 
+import InfoMod2.ui.PotionChanceTip;
 import InfoMod2.ui.ThiccToolTip;
 import basemod.ClickableUIElement;
 import basemod.TopPanelItem;
@@ -18,7 +19,8 @@ public class PanelItem extends TopPanelItem {
     private boolean currentlyHovering = false;
 
     private static final Texture tex = new Texture("InfoMod2/panel.png");
-    private ThiccToolTip toolTip = new ThiccToolTip();
+    //private ThiccToolTip toolTip = new ThiccToolTip();
+    private PotionChanceTip potionChanceTip = new PotionChanceTip();
 
     public PanelItem() {
         super(tex, "ojb_InfoMod2_panel");
@@ -59,7 +61,7 @@ public class PanelItem extends TopPanelItem {
         super.render(sb);
 
         if (currentlyHovering)
-            toolTip.render(sb);
+            potionChanceTip.render(sb);
     }
 
     protected void onHover() {

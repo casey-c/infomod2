@@ -1,5 +1,6 @@
 package InfoMod2.patches;
 
+import InfoMod2.ui.MapTip;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -45,7 +46,8 @@ public class ToolTipPatches {
             // Show my custom map tool tip
             if (!mapButtonDisabled && __instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
                 // TODO: actually use the new map tool tip instead
-                TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, "Test", "hello world");
+                //TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, "Test", "hello world");
+                MapTip.renderCustomMapTip(__sb);
             }
         }
 

@@ -1,5 +1,6 @@
 package InfoMod2.patches;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
@@ -31,8 +32,20 @@ public class ToolTipPatches {
         public static void Postfix(TopPanel __instance, SpriteBatch __sb) {
             HIDE_TIPS = false;
 
-            if (__instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
+            // Force show the settings tool tip
+
+            //private boolean settingsButtonDisabled = true;
+            boolean settingsButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "settingsButtonDisabled");
+            boolean mapButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "mapButtonDisabled");
+
+            if (!settingsButtonDisabled && __instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
                 TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, TopPanel.LABEL[0] + " (" + InputActionSet.cancel.getKeyString() + ")", TopPanel.MSG[0]);
+            }
+
+            // Show my custom map tool tip
+            if (!mapButtonDisabled && __instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
+                // TODO: actually use the new map tool tip instead
+                TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, "Test", "hello world");
             }
         }
 

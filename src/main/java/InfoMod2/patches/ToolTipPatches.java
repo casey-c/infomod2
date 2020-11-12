@@ -1,5 +1,6 @@
 package InfoMod2.patches;
 
+import InfoMod2.ui.DeckTip;
 import InfoMod2.ui.MapTip;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -38,6 +39,7 @@ public class ToolTipPatches {
             //private boolean settingsButtonDisabled = true;
             boolean settingsButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "settingsButtonDisabled");
             boolean mapButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "mapButtonDisabled");
+            boolean deckButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "deckButtonDisabled");
 
             if (!settingsButtonDisabled && __instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
                 TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, TopPanel.LABEL[0] + " (" + InputActionSet.cancel.getKeyString() + ")", TopPanel.MSG[0]);
@@ -45,9 +47,12 @@ public class ToolTipPatches {
 
             // Show my custom map tool tip
             if (!mapButtonDisabled && __instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                // TODO: actually use the new map tool tip instead
-                //TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, "Test", "hello world");
                 MapTip.renderCustomMapTip(__sb);
+            }
+
+            // Show my custom deck tool tip
+            if (!deckButtonDisabled && __instance.deckHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
+                DeckTip.renderCustomMapTip(__sb);
             }
         }
 

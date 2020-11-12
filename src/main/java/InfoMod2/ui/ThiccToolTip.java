@@ -3,6 +3,7 @@ package InfoMod2.ui;
 import InfoMod2.utils.DynamicTextureBox;
 import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 
 public class ThiccToolTip {
     private DynamicTextureBox box = new DynamicTextureBox("InfoMod2/tooltip/")
@@ -10,11 +11,14 @@ public class ThiccToolTip {
 
     float left, bottom, width, height;
 
-    public ThiccToolTip(float left, float bottom, float width, float height) {
+    public ThiccToolTip(float left, float width, float height) {
         this.left = left;
-        this.bottom = bottom;
         this.width = width;
         this.height = height;
+
+        // TODO: compute
+        this.bottom = (float) Settings.HEIGHT - 89.0f * Settings.scale - height * Settings.scale;
+        //this.bottom = bottom;
     }
 
     protected void renderBackground(SpriteBatch sb) {

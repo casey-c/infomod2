@@ -2,16 +2,20 @@ package InfoMod2.ui;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class MapTip extends ThiccToolTip {
-
-    public MapTip() {
+public class DeckTip extends ThiccToolTip {
+    public DeckTip() {
         super(1469, 400, 345);
     }
 
-    private static MapTip instance;
+    @Override
+    protected void renderForeground(SpriteBatch sb) {
+
+    }
+
+    private static DeckTip instance;
     public static void renderCustomMapTip(SpriteBatch sb) {
         if (instance == null) {
-            instance = new MapTip();
+            instance = new DeckTip();
         }
 
         instance.render(sb);

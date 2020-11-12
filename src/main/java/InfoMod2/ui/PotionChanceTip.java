@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class PotionChanceTip extends ThiccToolTip {
     public PotionChanceTip() {
-        super(1383, 691, 400, 300);
+        super(1383, 400, 300);
         //box.render(sb, 1383, 691, 400, 300);
     }
 

@@ -2,6 +2,7 @@ package InfoMod2.top;
 
 import InfoMod2.ui.PotionChanceTip;
 import InfoMod2.ui.ThiccToolTip;
+import InfoMod2.ui.TitledToolTip;
 import basemod.ClickableUIElement;
 import basemod.TopPanelItem;
 import com.badlogic.gdx.graphics.Color;
@@ -11,7 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 
-public class PanelItem extends TopPanelItem {
+public class PotionPanelItem extends TopPanelItem {
 //    private static final float WIDTH = 64.0F;
 //    private static final float HEIGHT = 64.0F;
 //    private String ID;
@@ -20,9 +21,12 @@ public class PanelItem extends TopPanelItem {
 
     private static final Texture tex = new Texture("InfoMod2/panel.png");
     //private ThiccToolTip toolTip = new ThiccToolTip();
-    private PotionChanceTip potionChanceTip = new PotionChanceTip();
+    //private PotionChanceTip potionChanceTip = new PotionChanceTip();
 
-    public PanelItem() {
+    //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Multiline line", "test lorem ipsum").anchoredAtTop(1383);
+    TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Single line test").anchoredAtTop(1383);
+
+    public PotionPanelItem() {
         super(tex, "ojb_InfoMod2_panel");
 
         // Basically ignore the constructor above and just set the ClickableUIElement (parent of TopPanelItem) details for real

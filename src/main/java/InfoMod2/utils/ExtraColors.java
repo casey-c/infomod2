@@ -11,4 +11,6 @@ public class ExtraColors {
     public static final Color TEXT_LIGHT_GREEN = new Color(0.804f, 0.925f, 0.698f, 1.0f);
     public static final Color TEXT_BLUE_GREEN = new Color(0.573f, 0.882f, 0.729f, 1.0f);
     public static final Color TEXT_LIGHT_BLUE = new Color(0.424f, 0.682f, 0.851f, 1.0f);
+
+    public static final Color DIVIDER_COLOR = new Color(1f, 1f, 1f, 0.2f);
 }

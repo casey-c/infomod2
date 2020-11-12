@@ -1,0 +1,10 @@
+{
+  "modid": "ojb_infomod2",
+  "name": "ojb's Info Mod: The sequel",
+  "author_list": ["ojb"],
+  "description": "Displays helpful information",
+  "version": "0.0.1",
+  "sts_version": "06-22-2020",
+  "mts_version": "2.6.0",
+  "dependencies": ["basemod"]
+}

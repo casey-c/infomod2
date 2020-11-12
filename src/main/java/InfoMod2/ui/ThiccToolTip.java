@@ -9,7 +9,7 @@ public class ThiccToolTip {
     private DynamicTextureBox box = new DynamicTextureBox("InfoMod2/tooltip/")
             .withColors(ExtraColors.TOOL_TIP_OUTER_BEVEL, ExtraColors.TOOL_TIP_INNER_BEVEL, ExtraColors.TOOL_TIP_BASE);
 
-    float left, bottom, width, height;
+    protected float left, bottom, width, height;
 
     public ThiccToolTip(float left, float width, float height) {
         this.left = left;

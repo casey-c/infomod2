@@ -4,22 +4,38 @@ import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 public class PotionChanceTip extends ThiccToolTip {
     public PotionChanceTip() {
-        super(1383, 400, 300);
+        super(1383, 400, 347);
         //box.render(sb, 1383, 691, 400, 300);
     }
 
     @Override
     protected void renderForeground(SpriteBatch sb) {
         //FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Test", 1450, 800, Settings.CREAM_COLOR);
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Seeing at least one potion after", (left + 56) * Settings.scale, (bottom + 250) * Settings.scale, ExtraColors.TEXT_CREAM );
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "multiple fights:", (left + 130) * Settings.scale, (bottom + 222) * Settings.scale, ExtraColors.TEXT_CREAM );
+        float title1left = (left + 55) * Settings.scale;
+        float title1bottom = (bottom + 287) * Settings.scale;
 
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "2 Fights: 70.0%", (left + 120) * Settings.scale, (bottom + 155) * Settings.scale, ExtraColors.TEXT_LIGHT_GREEN );
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "3 Fights: 88.0%", (left + 120) * Settings.scale, (bottom + 123) * Settings.scale, ExtraColors.TEXT_LIGHT_GREEN );
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "4 Fights: 96.4%", (left + 120) * Settings.scale, (bottom + 91) * Settings.scale, ExtraColors.TEXT_BLUE_GREEN );
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "5 Fights: 99.3%", (left + 120) * Settings.scale, (bottom + 59) * Settings.scale, ExtraColors.TEXT_LIGHT_BLUE );
+        float title2left = (left + 132) * Settings.scale;
+        float title2bottom = (bottom + 259) * Settings.scale;
+
+        float detailsLeft = (left + 120) * Settings.scale;
+
+        float fiveBottom = (bottom + 41);
+        float vertSpacing = 47;
+
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Seeing at least one potion after", title1left, title1bottom, ExtraColors.TEXT_CREAM );
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "multiple fights:", title2left, title2bottom, ExtraColors.TEXT_CREAM );
+
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "2 Fights: 70.0%", detailsLeft, (fiveBottom + 3 * vertSpacing) * Settings.scale, ExtraColors.TEXT_LIGHT_GREEN );
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "3 Fights: 88.0%", detailsLeft, (fiveBottom + 2 * vertSpacing) * Settings.scale, ExtraColors.TEXT_LIGHT_GREEN );
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "4 Fights: 96.4%", detailsLeft, (fiveBottom + vertSpacing) * Settings.scale, ExtraColors.TEXT_BLUE_GREEN );
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "5 Fights: 99.3%", detailsLeft, (fiveBottom) * Settings.scale, ExtraColors.TEXT_LIGHT_BLUE );
+
+        // Divider
+        sb.setColor(ExtraColors.DIVIDER_COLOR);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + 37) * Settings.scale, (bottom + 222) * Settings.scale, 327 * Settings.scale, 3 * Settings.scale);
     }
 }

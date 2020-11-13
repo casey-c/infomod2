@@ -1,8 +1,10 @@
 package InfoMod2.top;
 
 import InfoMod2.ui.PotionChanceTip;
+import InfoMod2.ui.PotionChanceTip2;
 import InfoMod2.ui.ThiccToolTip;
 import InfoMod2.ui.TitledToolTip;
+import InfoMod2.utils.ExtraColors;
 import basemod.ClickableUIElement;
 import basemod.TopPanelItem;
 import com.badlogic.gdx.graphics.Color;
@@ -10,7 +12,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 public class PotionPanelItem extends TopPanelItem {
 //    private static final float WIDTH = 64.0F;
@@ -19,12 +23,13 @@ public class PotionPanelItem extends TopPanelItem {
 
     private boolean currentlyHovering = false;
 
-    private static final Texture tex = new Texture("InfoMod2/panel.png");
+    private static final Texture tex = new Texture("InfoMod2/panel_v4.png");
     //private ThiccToolTip toolTip = new ThiccToolTip();
     //private PotionChanceTip potionChanceTip = new PotionChanceTip();
 
     //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Multiline line", "test lorem ipsum").anchoredAtTop(1383);
-    TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Single line test").anchoredAtTop(1383);
+    //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Single line test").anchoredAtTop(1383);
+    private PotionChanceTip2 potionChanceTip;
 
     public PotionPanelItem() {
         super(tex, "ojb_InfoMod2_panel");
@@ -36,33 +41,27 @@ public class PotionPanelItem extends TopPanelItem {
         this.hb_h = tex.getHeight() * Settings.scale;
 
         this.image = tex;
-//        this.x = x * Settings.scale;
-//        this.y = y * Settings.scale;
-//        if (y < 0.0F) {
-//            this.y += (float)Settings.HEIGHT;
-//        }
-
-//        this.hb_w = hb_w * Settings.scale;
-//        this.hb_h = hb_h * Settings.scale;
         this.hitbox = new Hitbox(this.x, this.y, this.hb_w, this.hb_h);
-        //this.clickable = true;
-    }
 
-//    public Texture getImage() {
-//        return this.image;
-//    }
-//
-//    public Hitbox getHitbox() {
-//        return this.hitbox;
-//    }
-//
-//    public String getID() {
-//        return this.ID;
-//    }
+        // Set up the tool tip
+        potionChanceTip = new PotionChanceTip2(400, 360, "Chance to see at least one", "potion after multiple fights:").anchoredAtTop(1383);
+    }
 
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
+
+        float textLeft = (x + 68) * Settings.scale;
+        float textBottom = (y + 21) * Settings.scale;
+
+        FontHelper.renderFontLeftDownAligned(sb,
+                FontHelper.topPanelAmountFont,
+                "40%",
+                textLeft,
+                textBottom,
+                //ExtraColors.rainbowColor()
+                Settings.CREAM_COLOR
+        );
 
         if (currentlyHovering)
             potionChanceTip.render(sb);

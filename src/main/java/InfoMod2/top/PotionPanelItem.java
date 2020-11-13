@@ -1,10 +1,8 @@
 package InfoMod2.top;
 
-import InfoMod2.ui.PotionChanceTip;
-import InfoMod2.ui.PotionChanceTip2;
-import InfoMod2.ui.ThiccToolTip;
-import InfoMod2.ui.TitledToolTip;
+import InfoMod2.ui.*;
 import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.KeyHelper;
 import basemod.ClickableUIElement;
 import basemod.TopPanelItem;
 import com.badlogic.gdx.graphics.Color;
@@ -87,5 +85,11 @@ public class PotionPanelItem extends TopPanelItem {
     @Override
     protected void onClick() {
         CardCrawlGame.sound.play("DECK_OPEN");
+
+        // Debug
+        if (KeyHelper.isShiftPressed())
+            MapTips.resetBossTip();
+        else
+            MapTips.updateBossTip("Champ");
     }
 }

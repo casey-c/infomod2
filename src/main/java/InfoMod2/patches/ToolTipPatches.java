@@ -1,7 +1,8 @@
 package InfoMod2.patches;
 
 import InfoMod2.ui.DeckTip;
-import InfoMod2.ui.MapTip;
+import InfoMod2.ui.EventChanceTip;
+import InfoMod2.ui.MapTips;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -47,7 +48,7 @@ public class ToolTipPatches {
 
             // Show my custom map tool tip
             if (!mapButtonDisabled && __instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                MapTip.renderCustomMapTip(__sb);
+                MapTips.renderCustomMapTips(__sb);
             }
 
             // Show my custom deck tool tip

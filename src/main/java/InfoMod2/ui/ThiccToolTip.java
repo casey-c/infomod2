@@ -17,7 +17,8 @@ public class ThiccToolTip {
         this.height = height;
 
         // TODO: compute
-        this.bottom = (float) Settings.HEIGHT - 89.0f * Settings.scale - height * Settings.scale;
+        //this.bottom = (float) Settings.HEIGHT - 89.0f * Settings.scale - height * Settings.scale;
+        this.bottom = 1080.0f - 89.0f - height;
         //this.bottom = bottom;
     }
 

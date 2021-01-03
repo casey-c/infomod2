@@ -27,33 +27,33 @@ public class ToolTipPatches {
         private static final float TIP_Y = (float)Settings.HEIGHT - 120.0f * Settings.scale;
 
         @SpirePrefixPatch
-        public static void Prefix(TopPanel __instance, SpriteBatch __sb) {
+        public static void Prefix(TopPanel _instance, SpriteBatch _sb) {
             HIDE_TIPS = true;
         }
 
         @SpirePostfixPatch
-        public static void Postfix(TopPanel __instance, SpriteBatch __sb) {
+        public static void Postfix(TopPanel instance, SpriteBatch sb) {
             HIDE_TIPS = false;
 
             // Force show the settings tool tip
 
             //private boolean settingsButtonDisabled = true;
-            boolean settingsButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "settingsButtonDisabled");
-            boolean mapButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "mapButtonDisabled");
-            boolean deckButtonDisabled = (boolean) ReflectionHacks.getPrivate(__instance, TopPanel.class, "deckButtonDisabled");
+            boolean settingsButtonDisabled = (boolean) ReflectionHacks.getPrivate(instance, TopPanel.class, "settingsButtonDisabled");
+            boolean mapButtonDisabled = (boolean) ReflectionHacks.getPrivate(instance, TopPanel.class, "mapButtonDisabled");
+            boolean deckButtonDisabled = (boolean) ReflectionHacks.getPrivate(instance, TopPanel.class, "deckButtonDisabled");
 
-            if (!settingsButtonDisabled && __instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
+            if (!settingsButtonDisabled && instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
                 TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, TopPanel.LABEL[0] + " (" + InputActionSet.cancel.getKeyString() + ")", TopPanel.MSG[0]);
             }
 
             // Show my custom map tool tip
-            if (!mapButtonDisabled && __instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                MapTips.renderCustomMapTips(__sb);
+            if (!mapButtonDisabled && instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
+                MapTips.renderCustomMapTips(sb);
             }
 
             // Show my custom deck tool tip
-            if (!deckButtonDisabled && __instance.deckHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                DeckTip.renderCustomMapTip(__sb);
+            if (!deckButtonDisabled && instance.deckHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
+                DeckTip.renderCustomMapTip(sb);
             }
         }
 

@@ -42,24 +42,24 @@ public class DynamicTextureBox {
     // Rendered in order OUTER BEVEL -> INNER BEVEL -> BASE (on top, last)
     public void renderCorner(SpriteBatch sb, float left, float bottom, float rot, boolean flipX, boolean flipY) {
         sb.setColor(outerBevelColor);
-        sb.draw(TEX_CORNER_OUTER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET, CENTER_OFFSET, CORNER_SIZE * Settings.scale, CORNER_SIZE * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
+        sb.draw(TEX_CORNER_OUTER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET * Settings.scale, CENTER_OFFSET * Settings.scale, CORNER_SIZE * Settings.scale, CORNER_SIZE * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
 
         sb.setColor(innerBevelColor);
-        sb.draw(TEX_CORNER_INNER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET, CENTER_OFFSET, CORNER_SIZE * Settings.scale, CORNER_SIZE * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
+        sb.draw(TEX_CORNER_INNER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET * Settings.scale, CENTER_OFFSET * Settings.scale, CORNER_SIZE * Settings.scale, CORNER_SIZE * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
 
         sb.setColor(baseColor);
-        sb.draw(TEX_CORNER_BASE, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET, CENTER_OFFSET, CORNER_SIZE * Settings.scale, CORNER_SIZE * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
+        sb.draw(TEX_CORNER_BASE, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET * Settings.scale, CENTER_OFFSET * Settings.scale, CORNER_SIZE * Settings.scale, CORNER_SIZE * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
     }
 
     public void renderEdge(SpriteBatch sb, float left, float bottom, float width, float height, float rot, boolean flipX, boolean flipY) {
         sb.setColor(outerBevelColor);
-        sb.draw(TEX_EDGE_OUTER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET, CENTER_OFFSET, width * Settings.scale, height * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
+        sb.draw(TEX_EDGE_OUTER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET * Settings.scale, CENTER_OFFSET * Settings.scale, width * Settings.scale, height * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
 
         sb.setColor(innerBevelColor);
-        sb.draw(TEX_EDGE_INNER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET, CENTER_OFFSET, width * Settings.scale, height * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
+        sb.draw(TEX_EDGE_INNER_BEVEL, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET * Settings.scale, CENTER_OFFSET * Settings.scale, width * Settings.scale, height * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
 
         sb.setColor(baseColor);
-        sb.draw(TEX_EDGE_BASE, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET, CENTER_OFFSET, width * Settings.scale, height * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
+        sb.draw(TEX_EDGE_BASE, left * Settings.scale, bottom * Settings.scale, CENTER_OFFSET * Settings.scale, CENTER_OFFSET * Settings.scale, width * Settings.scale, height * Settings.scale, 1, 1, rot, 0, 0, CORNER_SIZE, CORNER_SIZE, flipX, flipY);
     }
 
     // TODO: probably should cache some of this because it doesn't really need to do all these calculations per frame

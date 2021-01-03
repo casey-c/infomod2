@@ -4,7 +4,7 @@
   "author_list": ["ojb"],
   "description": "Displays helpful information",
   "version": "0.0.1",
-  "sts_version": "06-22-2020",
-  "mts_version": "2.6.0",
+  "sts_version": "12-22-2020",
+  "mts_version": "3.18.2",
   "dependencies": ["basemod"]
 }

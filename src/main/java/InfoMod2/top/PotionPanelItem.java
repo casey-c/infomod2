@@ -49,8 +49,10 @@ public class PotionPanelItem extends TopPanelItem {
     public void render(SpriteBatch sb) {
         super.render(sb);
 
-        float textLeft = (x + 68) * Settings.scale;
-        float textBottom = (y + 21) * Settings.scale;
+        //float textLeft = (x + 68) * Settings.scale;
+        //float textBottom = (y + 21) * Settings.scale;
+        float textLeft = x + 68 * Settings.scale;
+        float textBottom = y + 21 * Settings.scale;
 
         FontHelper.renderFontLeftDownAligned(sb,
                 FontHelper.topPanelAmountFont,

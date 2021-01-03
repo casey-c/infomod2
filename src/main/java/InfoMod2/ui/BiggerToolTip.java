@@ -30,8 +30,10 @@ public class BiggerToolTip<T extends BiggerToolTip<T>> {
     }
 
     public T anchoredAtTop(float left) {
+        System.out.println("BTT: anchored at top - settings.height is " + Settings.HEIGHT);
         this.left = left;
-        this.bottom = (float) Settings.HEIGHT - 89.0f * Settings.scale - height * Settings.scale;
+        //this.bottom = (float) Settings.HEIGHT - 89.0f - height;
+        this.bottom = 1080.0f - 89.0f - height;
         return (T)this;
     }
 

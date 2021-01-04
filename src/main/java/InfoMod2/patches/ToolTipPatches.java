@@ -3,6 +3,10 @@ package InfoMod2.patches;
 import InfoMod2.ui.DeckTip;
 import InfoMod2.ui.EventChanceTip;
 import InfoMod2.ui.MapTips;
+import InfoMod2.ui.screens.EventDetailScreen;
+import InfoMod2.utils.RightClickWatcher;
+import InfoMod2.utils.ScreenHelper;
+import InfoMod2.utils.SoundHelper;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -35,12 +39,14 @@ public class ToolTipPatches {
         public static void Postfix(TopPanel instance, SpriteBatch sb) {
             HIDE_TIPS = false;
 
-            // Force show the settings tool tip
+            // Don't render tips if a screen is up
+            if (ScreenHelper.isScreenUp())
+                return;
 
-            //private boolean settingsButtonDisabled = true;
-            boolean settingsButtonDisabled = (boolean) ReflectionHacks.getPrivate(instance, TopPanel.class, "settingsButtonDisabled");
-            boolean mapButtonDisabled = (boolean) ReflectionHacks.getPrivate(instance, TopPanel.class, "mapButtonDisabled");
-            boolean deckButtonDisabled = (boolean) ReflectionHacks.getPrivate(instance, TopPanel.class, "deckButtonDisabled");
+            boolean settingsButtonDisabled = ReflectionHacks.getPrivate(instance, TopPanel.class, "settingsButtonDisabled");
+            boolean mapButtonDisabled = ReflectionHacks.getPrivate(instance, TopPanel.class, "mapButtonDisabled");
+            boolean deckButtonDisabled = ReflectionHacks.getPrivate(instance, TopPanel.class, "deckButtonDisabled");
+
 
             if (!settingsButtonDisabled && instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
                 TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, TopPanel.LABEL[0] + " (" + InputActionSet.cancel.getKeyString() + ")", TopPanel.MSG[0]);
@@ -67,6 +73,31 @@ public class ToolTipPatches {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(float _x, float _y, String _header, String _body) {
             return (HIDE_TIPS) ? SpireReturn.Return(null) : SpireReturn.Continue();
+        }
+    }
+
+    // Add callbacks to right clicking the TopPanel items
+    @SpirePatch(
+            clz = TopPanel.class,
+            method = SpirePatch.CONSTRUCTOR
+    )
+    public static class RightClickableTipsPatch {
+        @SpirePostfixPatch
+        public static void Postfix(TopPanel tp) {
+            RightClickWatcher.clearAll();
+
+            RightClickWatcher.watch(tp.mapHb,  () -> {
+                ScreenHelper.openCustomScreen(new EventDetailScreen());
+            });
+        }
+    }
+
+    // Update the right click watcher whenever the TopPanel is updated
+    @SpirePatch( clz = TopPanel.class, method = "update" )
+    public static class UpdateTopPanelPatch {
+        @SpirePostfixPatch
+        public static void Postfix(TopPanel tp) {
+            RightClickWatcher.update();
         }
     }
 

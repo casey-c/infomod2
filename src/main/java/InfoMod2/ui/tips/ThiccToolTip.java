@@ -1,4 +1,4 @@
-package InfoMod2.ui;
+package InfoMod2.ui.tips;
 
 import InfoMod2.utils.DynamicTextureBox;
 import InfoMod2.utils.ExtraColors;

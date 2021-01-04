@@ -1,5 +1,6 @@
 package InfoMod2.ui;
 
+import InfoMod2.ui.tips.ThiccToolTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DeckTip extends ThiccToolTip {

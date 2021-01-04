@@ -15,6 +15,8 @@ public class ExtraColors {
 
     public static final Color DIVIDER_COLOR = new Color(1f, 1f, 1f, 0.2f);
 
+    public static final Color SCREEN_DIM = new Color(0f, 0f, 0f, 0.8f);
+
     public static Color rainbowColor() {
         float r = (MathUtils.cosDeg((float) (System.currentTimeMillis() / 10L % 360L)) + 1.25F) / 2.3F;
         float g = (MathUtils.cosDeg((float)((System.currentTimeMillis() + 1000L) / 10L % 360L)) + 1.25F) / 2.3F;

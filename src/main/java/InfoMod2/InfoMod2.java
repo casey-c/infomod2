@@ -1,12 +1,16 @@
 package InfoMod2;
 
 import InfoMod2.top.PotionPanelItem;
+import InfoMod2.utils.ScreenHelper;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.PostRenderSubscriber;
+import basemod.interfaces.RenderSubscriber;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 @SpireInitializer
-public class InfoMod2 implements PostInitializeSubscriber {
+public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
     public static void initialize() { new InfoMod2(); }
     public InfoMod2() {
         BaseMod.subscribe(this);
@@ -19,5 +23,11 @@ public class InfoMod2 implements PostInitializeSubscriber {
         System.out.println("InfoMod2 reporting for duty");
         potionPanelItem = new PotionPanelItem();
         BaseMod.addTopPanelItem(potionPanelItem);
+    }
+
+    @Override
+    public void receiveRender(SpriteBatch sb) {
+        if (ScreenHelper.isScreenUp())
+            ScreenHelper.render(sb);
     }
 }

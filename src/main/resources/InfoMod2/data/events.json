@@ -1,0 +1,57 @@
+{
+  "act1": [
+    {
+      "id": "The Cleric",
+      "name": "The Cleric",
+      "minFloor": 1,
+      "maxFloor": 15,
+      "requirements": [
+        {
+          "type": "MIN_GOLD",
+          "val": 35
+        }
+      ],
+      "choices": [
+        {
+          "name": "Heal",
+          "effects": [
+            {
+              "text": "Lose 35 Gold.",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Heal 25% Max HP",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Purify",
+          "effects": [
+            {
+              "text": "Lose $ Gold (Required).",
+              "type": "ASC_SCALED",
+              "scaling": [
+                {
+                  "asc": 0,
+                  "val": 50
+                },
+                {
+                  "asc": 15,
+                  "val": 75
+                }
+              ]
+            },
+            {
+              "text": "Remove a card.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "act2": [],
+  "act3": [],
+  "shrines": []
+}

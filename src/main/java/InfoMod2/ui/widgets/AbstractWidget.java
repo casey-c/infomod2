@@ -30,8 +30,10 @@ e.g.
 
   There are builder methods for constructing a widget. In general, a decent pattern is to construct a widget first,
   giving it enough details to figure out how wide/tall it should be (i.e. it sets its own getPreferredContentWidth()
-  and getPreferredContentHeight() functions). After this information is known, it can be placed into layouts that will
-  handle the annoying UI work of setting the (x,y) coordinates appropriately.
+  and getPreferredContentHeight() functions) and any other widget specific details that it may want to set at
+  construction. Once this information is computed / known, it is time for the widget to be "finalized", i.e. the last
+  step of a builder pattern, by calling the anchoredAt() function. Normally, this anchoring step will be performed /
+  updated by some sort of layout manager to automate the tedious process of placing a widget.
 
  */
 
@@ -46,6 +48,27 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
     public abstract float getPreferredContentWidth();
     public abstract float getPreferredContentHeight();
 
+    // --------------------------------------------------------------------------------
+    // Some basic builder methods. (Widgets will probably add some of their own)
+    // --------------------------------------------------------------------------------
+
+    public void setMargins(float all) { this.marginLeft = this.marginRight = this.marginTop = this.marginBottom = all; }
+    public T withMargins(float all) {
+        this.setMargins(all);
+        return (T)this;
+    }
+
+    public void setMargins(float horizontal, float vertical) {
+        this.marginLeft = this.marginRight = horizontal;
+        this.marginBottom = this.marginTop = vertical;
+    }
+    public T withMargins(float horizontal, float vertical) {
+        this.setMargins(horizontal, vertical);
+        return (T)this;
+    }
+
+    // --------------------------------------------------------------------------------
+    // The final step of the pseudo-builder pattern. Required for rendering.
     // --------------------------------------------------------------------------------
 
     public T anchoredAt(float x, float y, AnchorPosition anchorPosition) {

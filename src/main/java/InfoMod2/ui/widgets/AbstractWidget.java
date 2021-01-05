@@ -38,10 +38,7 @@ e.g.
  */
 
 public abstract class AbstractWidget<T extends AbstractWidget<T>> {
-    private float marginLeft = 10;
-    private float marginRight = 10;
-    private float marginTop = 10;
-    private float marginBottom = 10;
+    private float marginLeft, marginRight, marginTop, marginBottom;
 
     private float x, y;
 
@@ -91,8 +88,18 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
     public float getContentBottom() { return y + marginBottom; }
     public float getContentTop() { return y + getPreferredContentHeight() + marginBottom + marginTop; }
 
+    public float getContentCenterX() { return x + marginLeft + 0.5f * getPreferredContentWidth(); }
+    public float getContentCenterY() { return y + marginBottom + 0.5f * getPreferredContentHeight(); }
+
     // --------------------------------------------------------------------------------
 
     public abstract void render(SpriteBatch sb);
     public void update() {}
+
+    // --------------------------------------------------------------------------------
+    // Usually for hitboxes, but can be used to enable/disable computations required each frame - these should recurse
+    // down the hierarchy when appropriate
+
+    public void show() {}
+    public void hide() {}
 }

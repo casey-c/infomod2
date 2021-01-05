@@ -16,18 +16,23 @@ public class ScreenHelper {
     }
 
     public static void openCustomScreen(IScreen screen) {
-        if (!screenUp)
-            SoundHelper.screenOpenSound();
+        // TODO: smarter logic to close existing screens / allow multiple up at once? idk - something better than this
+        if (screenUp) currentScreen.hide();
+        else SoundHelper.screenOpenSound();
 
         screenUp = true;
         currentScreen = screen;
+        currentScreen.show();
     }
 
     public static void closeAllCustomScreens() {
-        if (screenUp)
+        if (screenUp) {
             SoundHelper.screenCloseSound();
+            currentScreen.hide();
+            currentScreen = null;
 
-        screenUp = false;
+            screenUp = false;
+        }
     }
 
     public static void update() {

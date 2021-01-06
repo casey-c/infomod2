@@ -1,0 +1,465 @@
+{
+  "act1": [
+    {
+      "name": "Big Fish",
+      "id": "Big Fish",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Banana",
+          "effects": [
+            {
+              "text": "Heal for 1/3 of max HP.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Donut",
+          "effects": [
+            {
+              "text": "Gain 5 max HP.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Box",
+          "effects": [
+            {
+              "text": "Become Cursed: Regret",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Obtain a random relic.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Golden Idol",
+      "id": "Golden Idol",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Take",
+          "effects": [
+            {
+              "text": "Obtain Golden Idol (Relic). Choose one:",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Outrun: Become Cursed (Injury).",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Smash: Take $% max HP as damage.",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 25
+                },
+                {
+                  "asc": 15,
+                  "val": 35
+                }
+              ]
+            },
+            {
+              "text": "Hide: Lose $% of max HP.",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 8
+                },
+                {
+                  "asc": 15,
+                  "val": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mushrooms",
+      "id": "Mushrooms",
+      "min_floor": 7,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Stomp",
+          "effects": [
+            {
+              "text": "Enter combat with x3 Fungi Beast. Upon victory, obtain Odd Mushroom (Relic), 20-30 gold, and normal rewards.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Eat",
+          "effects": [
+            {
+              "text": "Heal for 25% of max HP.",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Become Cursed: Parasite.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Living Wall",
+      "id": "Living Wall",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Forget",
+          "effects": [
+            {
+              "text": "Remove a card.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Change",
+          "effects": [
+            {
+              "text": "Transform a card.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Grow",
+          "effects": [
+            {
+              "text": "Upgrade a card. (Requires upgradeable card)",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scrap Ooze",
+      "id": "Scrap Ooze",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Reach Inside",
+          "effects": [
+            {
+              "text": "25 + (10 * X)% chance to obtain a random relic.",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Take $ + X damage.",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 3
+                },
+                {
+                  "asc": 15,
+                  "val": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Ends the event.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ],
+      "notes": "X starts at 0 and increases by 1 each time Reach Inside is used. Can be repeated until a relic is obtained."
+    },
+    {
+      "name": "Shining Light",
+      "id": "Shining Light",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Enter",
+          "effects": [
+            {
+              "text": "Upgrade 2 random cards.",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Take $% of max HP as damage.",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 20
+                },
+                {
+                  "asc": 15,
+                  "val": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Cleric",
+      "id": "The Cleric",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_GOLD",
+          "val": 35
+        }
+      ],
+      "choices": [
+        {
+          "name": "Heal",
+          "effects": [
+            {
+              "text": "Lose 35 gold (Required minimum).",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Heal for 1/4 of max HP.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Purify",
+          "effects": [
+            {
+              "text": "Lose $ gold (Required minimum).",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 50
+                },
+                {
+                  "asc": 15,
+                  "val": 75
+                }
+              ]
+            },
+            {
+              "text": "Remove a card.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Ssssserpent",
+      "id": "Liars Game",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Agree",
+          "effects": [
+            {
+              "text": "Gain $ gold.",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 175
+                },
+                {
+                  "asc": 15,
+                  "val": 150
+                }
+              ]
+            },
+            {
+              "text": "Become Cursed: Doubt.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Disagree",
+          "effects": [
+            {
+              "text": "Nothing happens.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "World of Goop",
+      "id": "World of Goop",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Gather Gold",
+          "effects": [
+            {
+              "text": "Gain 75 gold.",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Lose 11 HP.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Leave It",
+          "effects": [
+            {
+              "text": "Lose",
+              "type": "REGULAR"
+            },
+            {
+              "text": "$",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 20
+                },
+                {
+                  "asc": 15,
+                  "val": 35
+                }
+              ]
+            },
+            {
+              "text": "-",
+              "type": "REGULAR"
+            },
+            {
+              "text": "$",
+              "type": "ASC_SCALED",
+              "asc_scaling": [
+                {
+                  "asc": 0,
+                  "val": 50
+                },
+                {
+                  "asc": 15,
+                  "val": 75
+                }
+              ]
+            },
+            {
+              "text": "gold.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ],
+      "notes": "Gold loss is random and capped to your current gold."
+    },
+    {
+      "name": "Wing Statue",
+      "id": "Golden Wing",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [],
+      "choices": [
+        {
+          "name": "Pray",
+          "effects": [
+            {
+              "text": "Remove a card.",
+              "type": "REGULAR"
+            },
+            {
+              "text": "Lose 7 HP.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Destroy",
+          "effects": [
+            {
+              "text": "Gain 50 - 80 gold.",
+              "type": "REGULAR"
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens.",
+              "type": "REGULAR"
+            }
+          ]
+        }
+      ],
+      "notes": "Destroy requires an attack that deals at least 10 damage."
+    }
+  ],
+  "act2": [],
+  "act3": [],
+  "shrines": []
+}

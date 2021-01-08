@@ -19,15 +19,23 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
     protected static final Color fontColor = Settings.CREAM_COLOR;
 
     public HoverableLabel(String text) {
+        setText(text);
+    }
+
+    public void setText(String text) {
         this.text = text;
 
         // These are in resolution scaled coordinates already (NOT necessarily in our 1080p basis)
         this.textWidth = FontHelper.getWidth(font, text, 1.0f);
         this.textHeight = FontHelper.getHeight(font, text, 1.0f);
 
-        // Hitbox will use the already scaled versions for its dimensions
-        // TODO: extra padding to make easy to click? (currently margins are 0, but could add some later maybe)
-        hb = new Hitbox(this.textWidth, this.textHeight);
+        if (hb != null) {
+            hb.width = textWidth;
+            hb.height = textHeight;
+        }
+        else {
+            hb = new Hitbox(textWidth, textHeight);
+        }
     }
 
     // Note that we are "fixing" the scaling back into our 1080p basis, since tW and tH are prescaled by FontHelper.
@@ -36,11 +44,18 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
 
     // --------------------------------------------------------------------------------
 
-    @Override
-    public void render(SpriteBatch sb) {
+    protected void renderText(SpriteBatch sb) {
         Color debugColor = hb.hovered ? Color.GREEN : fontColor;
         FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft(), getContentBottom(), debugColor);
+    }
 
+    // Subclasses can override this for more useful behavior
+    protected void renderHover(SpriteBatch sb) { }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        renderText(sb);
+        renderHover(sb);
         hb.render(sb);
     }
 

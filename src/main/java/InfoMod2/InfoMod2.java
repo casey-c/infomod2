@@ -1,5 +1,6 @@
 package InfoMod2;
 
+import InfoMod2.data.EventDatabase;
 import InfoMod2.top.PotionPanelItem;
 import InfoMod2.utils.ScreenHelper;
 import basemod.BaseMod;
@@ -23,6 +24,9 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
         System.out.println("InfoMod2 reporting for duty");
         potionPanelItem = new PotionPanelItem();
         BaseMod.addTopPanelItem(potionPanelItem);
+
+        // Load event database from json
+        EventDatabase.load("/InfoMod2/data/act1_all_but_dead_adv.json");
     }
 
     @Override

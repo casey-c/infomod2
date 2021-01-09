@@ -38,6 +38,15 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
         }
     }
 
+    // --------------------------------------------------------------------------------
+
+    // Helper: returns the width that the label would take up in 1080p space
+    public static float getPredictedWidth(String text) {
+        return FontHelper.getWidth(font, text, 1.0f) / Settings.scale;
+    }
+
+    // --------------------------------------------------------------------------------
+
     // Note that we are "fixing" the scaling back into our 1080p basis, since tW and tH are prescaled by FontHelper.
     @Override public float getPreferredContentWidth() { return textWidth / Settings.scale; }
     @Override public float getPreferredContentHeight() { return textHeight / Settings.scale; }

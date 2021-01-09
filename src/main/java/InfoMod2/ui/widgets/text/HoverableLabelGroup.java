@@ -6,12 +6,15 @@ import InfoMod2.ui.widgets.AnchorPosition;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     private final float maxWidth;
     private float labelHeight;
     private final LinkedList<HoverableEventLabel> labels = new LinkedList<>();
+    private final Set<MultiHitboxEventLabel> labelConnections = new HashSet<>();
 
     // TODO: probably should not make these hardcoded but based on the font instead.
     private static final float ROW_HEIGHT = 40.0f; // spacing between labels on the Y axis (includes font height)
@@ -66,7 +69,9 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
                 full = full + ",";
             }
 
-            MultiHitboxEventLabel connected = new MultiHitboxEventLabel();
+            MultiHitboxEventLabel connected = new MultiHitboxEventLabel(detail);
+            labelConnections.add(connected);
+
             for (String word : full.split(" ")) {
                 words.add(new WordHelper(id, detail, connected, word));
             }
@@ -248,6 +253,13 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     public void render(SpriteBatch sb) {
         for (HoverableEventLabel label : labels)
             label.render(sb);
+    }
+
+    public void renderHovers(SpriteBatch sb) {
+        for (MultiHitboxEventLabel connection : labelConnections)
+            connection.renderHover(sb);
+//        for (HoverableEventLabel label : labels)
+//            label.renderHover(sb);
     }
 
     @Override

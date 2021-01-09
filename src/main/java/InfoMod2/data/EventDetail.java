@@ -29,4 +29,8 @@ public class EventDetail {
 
     // Getters
     public String getName() { return name; }
+
+    public String getFloorString() {
+        return "Floors " + min_floor + " - " + max_floor + ". ";
+    }
 }

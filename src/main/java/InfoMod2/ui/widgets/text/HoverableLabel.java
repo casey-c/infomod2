@@ -59,12 +59,12 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
     }
 
     // Subclasses can override this for more useful behavior
-    protected void renderHover(SpriteBatch sb) { }
+    public void renderHover(SpriteBatch sb) { }
 
     @Override
     public void render(SpriteBatch sb) {
         renderText(sb);
-        renderHover(sb);
+        //renderHover(sb);
         hb.render(sb);
     }
 

@@ -23,4 +23,13 @@ public class ExtraColors {
         float b = (MathUtils.cosDeg((float)((System.currentTimeMillis() + 2000L) / 10L % 360L)) + 1.25F) / 2.3F;
         return new Color(r, g, b, 1.0f);
     }
+
+    public static final Color DEBUG_COLOR = new Color(0.6f, 0.4f, 0.0f, 0.9f);
+
+    public static final Color EVENT_TOOLTIP_BASE = new Color(0.118f, 0.125f, 0.145f, 1.0f);
+    public static final Color EVENT_TOOLTIP_TRIM = new Color(0.267f, 0.275f, 0.361f, 1.0f);
+    public static final Color EVENT_TOOLTIP_TITLE_TEXT = new Color(0.780f, 0.859f, 0.925f, 1.0f);
+
+    public static final Color EVENT_TOOLTIP_REQ_FAILED = new Color(0.796f, 0.267f, 0.357f, 1.0f);
+    public static final Color EVENT_TOOLTIP_REQ_SUCCESS = new Color(0.380f, 0.663f, 0.463f, 1.0f);
 }

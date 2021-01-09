@@ -70,6 +70,7 @@ public class EventDetailScreen implements IScreen {
 
         //label.render(sb);
         act1.render(sb);
+        act1.renderHovers(sb);
     }
 
     @Override

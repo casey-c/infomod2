@@ -9,29 +9,34 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
-    private float maxWidth;
+    private final float maxWidth;
     private float labelHeight;
-    private LinkedList<HoverableEventLabel> labels = new LinkedList<>();
+    private final LinkedList<HoverableEventLabel> labels = new LinkedList<>();
 
-    public HoverableLabelGroup(float maxWidth) {
-        this.maxWidth = maxWidth;
-    }
-
-    // TODO: probably should not make these hardcoded but experimental, oh well
+    // TODO: probably should not make these hardcoded but based on the font instead.
     private static final float ROW_HEIGHT = 40.0f; // spacing between labels on the Y axis (includes font height)
 
     private static final float GAP_BETWEEN_WORDS_OF_SAME_LABEL = 4.0f; // spacing between words in the same label on the X axis
     private static final float GAP_BETWEEN_LABELS = 4.0f; // additional spacing between labels on the X axis
 
-    // Call after anchoredAt()
+    // --------------------------------------------------------------------------------
 
+    public HoverableLabelGroup(float maxWidth) {
+        this.maxWidth = maxWidth;
+    }
+
+    // --------------------------------------------------------------------------------
+    // Layout algorithm
+    // --------------------------------------------------------------------------------
+
+    // A simple helper struct for building the layout correctly
     private static class WordHelper {
-        private int wordID;
-        private EventDetail detail;
-        private MultiHitboxEventLabel connected;
+        private final int wordID;
+        private final EventDetail detail;
+        private final MultiHitboxEventLabel connected;
 
-        private String word;
-        private float width;
+        private final String word;
+        private final float width;
 
         private WordHelper(int wordID, EventDetail detail, MultiHitboxEventLabel connected, String word) {
             this.wordID = wordID;
@@ -208,6 +213,7 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
         this.labelHeight = getContentTop() - currY;
     }
 
+    // Call after anchoredAt()
     public HoverableLabelGroup withItems(Collection<EventDetail> details) {
         // Split all the events up into their individual words in the initial word helper form
         LinkedList<WordHelper> words = getAllWords(details);
@@ -223,6 +229,8 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
 
         return this;
     }
+
+    // --------------------------------------------------------------------------------
 
     @Override
     public float getPreferredContentWidth() {

@@ -7,7 +7,7 @@
       "maxFloor": 15,
       "requirements": [
         {
-          "type": "MIN_GOLD",
+          "type": "AT_LEAST_X_GOLD",
           "val": 35
         }
       ],

@@ -44,25 +44,16 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
         }
     }
 
-    public HoverableLabelGroup withItems(Collection<EventDetail> details) {
-
-//        System.out.println("-------------------------------");
-//        System.out.println("Starting x: " + currX);
-//        System.out.println("Starting y: " + currY);
-//        System.out.println("Max width: " + maxWidth);
-//        System.out.println("-------------------------------");
-
-
-        // TODO: need to make hitboxes for the spaces between words in a label (it's weird to go in the center and "miss")
-        // Construct all the hoverable labels from the events
+    // Takes the events, e.g.: "Big Fish", "The Cleric", ... and turns them into a list of just their words.
+    // E.g.: output = ["Big", "Fish", "The", "Cleric", ...]
+    // This output is in the form of the WordHelper struct, which essentially helps save the extra meta data lost from
+    // splitting the words into many items, in order to recombine them later as the final UI label.
+    private LinkedList<WordHelper> getAllWords(Collection<EventDetail> details) {
         int totalLabels = details.size();
         int currIndex = 0;
 
         LinkedList<WordHelper> words = new LinkedList<>();
 
-        // Preprocess
-        System.out.println("----------------");
-        System.out.println("Preprocessing...");
         int id = 0;
         for (EventDetail detail : details) {
             String full = detail.getName();
@@ -70,34 +61,33 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
                 full = full + ",";
             }
 
-            System.out.println("Full detail: " + full + " | id: " + id);
-
             MultiHitboxEventLabel connected = new MultiHitboxEventLabel();
             for (String word : full.split(" ")) {
-                System.out.println("Adding word " + word);
                 words.add(new WordHelper(id, detail, connected, word));
             }
 
             id++;
         }
-        System.out.println("=====================");
 
+        return words;
+    }
 
-        // Greedily put the words into lines
-
+    // Take the individual words (with metadata): ["Big", "Fish", "The", "Cleric", ...]
+    // and puts them into lines no wider than the max width of the label group.
+    // example output (where the second part of "The Cleric" won't fit on the first line):
+    // [
+    //   ["Big", "Fish", "The"]
+    //   ["Cleric"]
+    // ]
+    private LinkedList<LinkedList<WordHelper>> getWordHelperLines(LinkedList<WordHelper> words) {
         LinkedList<LinkedList<WordHelper>> lines = new LinkedList<>();
         LinkedList<WordHelper> currLine = new LinkedList<>();
-        LinkedList<Float> lineWidths = new LinkedList<>();
         lines.add(currLine);
 
         float currLineWidth = 0.0f;
         int lastID = 0;
 
         for (WordHelper wordHelper : words) {
-            System.out.println("Trying to add word " + wordHelper.word + " with width " + wordHelper.width);
-            System.out.println("Current line width: " + currLineWidth);
-            System.out.println("Last id: " + lastID + " | word id: " + wordHelper.wordID);
-
             float spacing = 0.0f;
             if (!currLine.isEmpty()) {
                 spacing += GAP_BETWEEN_WORDS_OF_SAME_LABEL;
@@ -106,14 +96,9 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
                     spacing += GAP_BETWEEN_LABELS;
             }
 
-            System.out.println("Spacing: " + spacing);
 
-            System.out.println("The result of (clw + spacing + ww) = " + (currLineWidth + spacing + wordHelper.width) + " [max width is " + maxWidth + "]");
             if (currLineWidth + spacing + wordHelper.width > maxWidth) {
-                System.out.println("Need to start a new line");
                 // Need to start a new line
-                lineWidths.add(currLineWidth);
-
                 currLine = new LinkedList<>();
                 lines.add(currLine);
 
@@ -121,40 +106,30 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
                 currLineWidth = wordHelper.width;
             }
             else {
-                System.out.println("Fits on this line");
                 // Fits on this line
                 currLine.add(wordHelper);
                 currLineWidth += spacing + wordHelper.width;
             }
         }
 
-        lineWidths.add(currLineWidth);
+        return lines;
+    }
 
-        // DEBUG
-        System.out.println("There are " + lines.size() + " lines");
-        for (LinkedList<WordHelper> line : lines) {
-            System.out.println("\tLine with size " + line.size());
-        }
-
-        System.out.println("There are " + lineWidths.size() + " lineWidths");
-        for (float lineWidth : lineWidths) {
-            System.out.println("\tLine with width " + lineWidth);
-        }
-
-        System.out.println("The words are: ");
-        for (LinkedList<WordHelper> line : lines) {
-            for (WordHelper word : line) {
-                System.out.print(word.word + "    ");
-            }
-            System.out.println();
-        }
-
-        System.out.println("Combining step: ");
-        // Combine all the words with the same ID on a line into one final label
+    // This step will recombine the split up words that lie on the same line into one combined string.
+    // e.g. if the input was:
+    // [
+    //   ["Big", "Fish", "The"]
+    //   ["Cleric"]
+    // ]
+    // Since "Big" and "Fish" originate from the same EventDetail object, we can combine them as:
+    // [
+    //   ["Big Fish", "The"]
+    //   ["Cleric"]
+    // ]
+    private LinkedList<LinkedList<WordHelper>> combineWordsOfSameLabel(LinkedList<LinkedList<WordHelper>> lines) {
         LinkedList<LinkedList<WordHelper>> finalCombinedWordLines = new LinkedList<>();
 
         for (LinkedList<WordHelper> line : lines) {
-            System.out.println("Line--------");
             int currID = -1;
 
             LinkedList<WordHelper> finalCombinedWords = new LinkedList<>();
@@ -166,11 +141,9 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
             MultiHitboxEventLabel currConnected = null;
 
             for (WordHelper wordHelper : line) {
-                if (currID == -1) {
+                if (currID == -1)
                     currID = wordHelper.wordID;
-                }
 
-                System.out.println("\tThe word we're looking at is: '" + wordHelper.word + "' with ID " + wordHelper.wordID);
                 // Can add this to the existing word we're building
                 if (wordHelper.wordID == currID) {
                     wordsToCombine.add(wordHelper.word);
@@ -181,7 +154,6 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
                 else {
                     // Finish the previous word
                     String finalCombined = String.join(" ", wordsToCombine);
-                    System.out.println("Finished a word: " + finalCombined);
                     finalCombinedWords.add(new WordHelper(currID, currDetail, currConnected, finalCombined));
 
                     // Start the next one
@@ -195,51 +167,18 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
 
             // Don't forget the final word on the line
             String finalCombined = String.join(" ", wordsToCombine);
-            System.out.println("Finished a word: " + finalCombined);
             finalCombinedWords.add(new WordHelper(currID, currDetail, currConnected, finalCombined));
         }
 
-        // Debug final output
-        System.out.println("Total lines: " + finalCombinedWordLines.size());
-        for (LinkedList<WordHelper> line : finalCombinedWordLines) {
-            System.out.println("Words on line: " + line.size());
-        }
+        return finalCombinedWordLines;
+    }
 
-        System.out.println("Final results: ");
-        for (LinkedList<WordHelper> line : finalCombinedWordLines) {
-            for (WordHelper wh : line) {
-                System.out.print(wh.word + " [" + wh.wordID + "] ");
-            }
-            System.out.println();
-        }
-
-
-            /*
-            // originally inside for (detail)
-            for (String word : full.split(" ")) {
-                HoverableEventLabel label = new HoverableEventLabel(word, detail, connected);
-                float labelWidth = label.getPreferredContentWidth();
-                System.out.println("Adding word " + word + " with width " + labelWidth);
-
-                // Start a new row
-                if (currX + labelWidth - INTERNAL_SPACING > getContentLeft() + maxWidth) {
-                    currX = getContentLeft();
-                    currY -= ROW_HEIGHT;
-                }
-
-                // Set the label position and remember it
-                label.anchoredAt(currX, currY, AnchorPosition.LEFT_TOP);
-                labels.add(label);
-
-                // Update the position for the next label
-                currX += labelWidth + INTERNAL_SPACING;
-            }
-
-            currX += HORIZONTAL_SPACING;
-             */
-
-        // Make the actual labels
-        float currX = getContentLeft();
+    // The final step is to take our WordHelpers and make them into the actual HoverableEventLabel UI objects. This is
+    // the reason why we've stored all the extra metadata in the WordHelper when doing all the preprocessing, since we
+    // want the final labels to be linked together when they are the same event, even if they are two separate labels
+    // with a line break in between.
+    private void makeTheLabels(LinkedList<LinkedList<WordHelper>> finalCombinedWordLines) {
+        float currX;
         float currY = getContentTop();
 
         for (LinkedList<WordHelper> line : finalCombinedWordLines) {
@@ -248,9 +187,6 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
             int prevID = -1;
 
             for (WordHelper wh : line) {
-//                if (prevID == -1)
-//                    prevID = wh.wordID;
-
                 HoverableEventLabel label = new HoverableEventLabel(wh.word, wh.detail, wh.connected);
 
                 label.anchoredAt(currX, currY, AnchorPosition.LEFT_TOP);
@@ -268,9 +204,22 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
             currY -= ROW_HEIGHT;
         }
 
-
         // Remember the height of the labels
         this.labelHeight = getContentTop() - currY;
+    }
+
+    public HoverableLabelGroup withItems(Collection<EventDetail> details) {
+        // Split all the events up into their individual words in the initial word helper form
+        LinkedList<WordHelper> words = getAllWords(details);
+
+        // Use the raw words to place them into lines (capped at maxWidth)
+        LinkedList<LinkedList<WordHelper>> lines = getWordHelperLines(words);
+
+        // Combine all the words resulting from the same event src into one potential label on each line
+        LinkedList<LinkedList<WordHelper>> finalCombinedWordLines = combineWordsOfSameLabel(lines);
+
+        // Make the actual labels
+        makeTheLabels(finalCombinedWordLines);
 
         return this;
     }

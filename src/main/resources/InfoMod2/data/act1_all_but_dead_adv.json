@@ -377,7 +377,7 @@
               "type": "REGULAR"
             },
             {
-              "text": "$",
+              "text": " $ ",
               "type": "ASC_SCALED",
               "asc_scaling": [
                 {
@@ -395,7 +395,7 @@
               "type": "REGULAR"
             },
             {
-              "text": "$",
+              "text": " $ ",
               "type": "ASC_SCALED",
               "asc_scaling": [
                 {

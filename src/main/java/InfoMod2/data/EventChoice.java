@@ -11,4 +11,7 @@ public class EventChoice {
 
     @SerializedName("effects") @Expose
     private List<EventEffect> effects;
+
+    public String getName() { return "[" + name + "]"; }
+    public List<EventEffect> getEffects() { return effects; }
 }

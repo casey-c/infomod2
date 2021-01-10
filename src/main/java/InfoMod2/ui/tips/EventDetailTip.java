@@ -1,6 +1,8 @@
 package InfoMod2.ui.tips;
 
+import InfoMod2.data.EventChoice;
 import InfoMod2.data.EventDetail;
+import InfoMod2.data.EventEffect;
 import InfoMod2.data.EventIntegerRequirement;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
@@ -11,10 +13,10 @@ import InfoMod2.utils.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,8 +27,10 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private SimpleLabel titleLabel;
     private LinkedList<SimpleLabel> reqLabels = new LinkedList<>();
 
+    private List<AbstractWidget> choiceNameLabels = new LinkedList<>();
+    private ArrayList<LinkedList<SimpleLabel>> choiceEffectLabels = new ArrayList<>();
+
     private static final float REQ_LABEL_SPACING = 10.0f;
-    private LinkedList<Float> reqLabelPositionOffsets = new LinkedList<>();
 
     public EventDetailTip(EventDetail detail) {
         setDetail(detail);
@@ -42,21 +46,30 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     // TODO: can probably just keep these details around instead of remaking them. We'll see if this needs optimizing
     public void updateDetails() {
         reqLabels.clear();
+        choiceNameLabels.clear();
+        choiceEffectLabels.clear();
 
+        // Floors: x - y
         reqLabels.add(new SimpleLabel(detail.getFloorString(), detail.getFloorNumStringTextColor(), ExtraFonts.smallItalicFont()));
 
+        // Other requirements (e.g. requires 35 gold)
         for (EventIntegerRequirement req : detail.getRequirements()) {
             reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
         }
 
-        // Cache the label positions for later
-        reqLabelPositionOffsets.clear();
+        // Choices
+        for (EventChoice choice : detail.getChoices()) {
+            choiceNameLabels.add(new SimpleLabel(choice.getName(), Color.GRAY));
 
-        float currX = 0.0f;
+            List<EventEffect> effects = choice.getEffects();
 
-        for (SimpleLabel label : reqLabels) {
-            reqLabelPositionOffsets.push(currX);
+            LinkedList<SimpleLabel> effectList = new LinkedList<>();
+            choiceEffectLabels.add(effectList);
 
+            for (EventEffect effect : effects) {
+                String effectText = effect.getText();
+                effectList.add(new SimpleLabel(effectText, Color.BLUE));
+            }
         }
     }
 
@@ -104,19 +117,32 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         sb.setColor(ExtraColors.DIVIDER_COLOR);
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.scale, dividerBottom * Settings.scale, (w - (2 * DIVIDER_OFFSET)) * Settings.scale, 3.0f);
 
-        //float bottom = InputHelper.mY - h - 50.0f;
+        // Choices
+        float maxChoiceNameWidth = AbstractWidget.getMaximumPreferredWidgetWidth(choiceNameLabels);
 
+        System.out.println("---------------------------------------------");
+        System.out.println("MAX CHOICE NAME WIDTH: " + maxChoiceNameWidth);
+        System.out.println("---------------------------------------------");
 
+        float currY = dividerBottom - 32.0f;
+        int index = 0;
+        for (AbstractWidget label : choiceNameLabels) {
+            label.anchoredAt(textLeft, currY, AnchorPosition.LEFT_BOTTOM);
+            label.render(sb);
 
-//        textureBox.render(sb, left, bottom, w, h);
-//
-//        float textLeft = left + 23.0f;
-//
-//        float titleBottom = bottom + 162.0f;
-//        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, detail.getName(), textLeft * Settings.scale, titleBottom * Settings.scale, ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
-//
-//        // TODO: do it for all requirements dynamically and set the colors appropriately
-//        float requirementsBottom = titleBottom - LINE_HEIGHT;
-//        FontHelper.renderFontLeftDownAligned(sb, ExtraFonts.smallItalicFont(), detail.getFloorString(), textLeft * Settings.scale, requirementsBottom * Settings.scale, ExtraColors.EVENT_TOOLTIP_REQ_FAILED);
+            // Render effects of this choice
+            LinkedList<SimpleLabel> effects = choiceEffectLabels.get(index++);
+
+            currX = textLeft + maxChoiceNameWidth + 15.0f;
+            for (SimpleLabel effect : effects) {
+                effect.anchoredAt(currX, currY, AnchorPosition.LEFT_BOTTOM);
+                effect.render(sb);
+
+                currX += effect.getPreferredContentWidth() + 10.0f;
+            }
+
+            currY -= LINE_HEIGHT;
+        }
+
     }
 }

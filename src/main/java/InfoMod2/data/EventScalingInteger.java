@@ -9,4 +9,7 @@ public class EventScalingInteger {
 
     @SerializedName("val") @Expose
     private int val;
+
+    public int getMinAsc() { return min_asc; }
+    public int getVal() { return val; }
 }

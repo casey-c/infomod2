@@ -2,6 +2,8 @@ package InfoMod2.ui.widgets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.List;
+
 /*
 
   Widgets can define the width/height of their content area dynamically - there is built in margin code to make padding
@@ -102,4 +104,33 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
 
     public void show() {}
     public void hide() {}
+
+    // --------------------------------------------------------------------------------
+    // Misc helpers
+
+    public static float getMinimumPreferredWidgetWidth(List<AbstractWidget> widgets) {
+        float minWidth = 1000000.0f;
+
+        for (AbstractWidget widget : widgets) {
+            float width = widget.getPreferredContentWidth();
+
+            if (width < minWidth)
+                minWidth = width;
+        }
+
+        return minWidth;
+    }
+
+    public static float getMaximumPreferredWidgetWidth(List<AbstractWidget> widgets) {
+        float maxWidth = -1.0f;
+
+        for (AbstractWidget widget : widgets) {
+            float width = widget.getPreferredContentWidth();
+
+            if (width > maxWidth)
+                maxWidth = width;
+        }
+
+        return maxWidth;
+    }
 }

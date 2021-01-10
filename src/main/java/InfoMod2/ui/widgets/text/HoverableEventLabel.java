@@ -2,6 +2,7 @@ package InfoMod2.ui.widgets.text;
 
 import InfoMod2.data.EventDetail;
 import InfoMod2.ui.tips.EventDetailTip;
+import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,9 +19,21 @@ public class HoverableEventLabel extends HoverableLabel {
         connected.add(this);
     }
 
+    public Color getTextColor() {
+        Color textColor;
+        if (connected.anyHovered()) {
+            // TODO: something better (probably a lighter version of the non hovered?)
+            textColor = Color.GREEN;
+        }
+        else {
+            textColor = (detail.isEventPossible()) ? Settings.CREAM_COLOR : ExtraColors.EVENT_INACTIVE;
+        }
+
+        return textColor;
+    }
+
     @Override
     protected void renderText(SpriteBatch sb) {
-        Color debugColor = connected.anyHovered() ? Color.GREEN : fontColor;
-        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft(), getContentBottom(), debugColor);
+        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft(), getContentBottom(), getTextColor());
     }
 }

@@ -13,7 +13,10 @@ public class ExtraColors {
     public static final Color TEXT_BLUE_GREEN = new Color(0.573f, 0.882f, 0.729f, 1.0f);
     public static final Color TEXT_LIGHT_BLUE = new Color(0.424f, 0.682f, 0.851f, 1.0f);
 
-    public static final Color DIVIDER_COLOR = new Color(1f, 1f, 1f, 0.2f);
+    // TODO
+    public static final Color TEXT_BORDER_COLOR = new Color(0.0f, 0.0f, 0.0f, 0.2f);
+
+    public static final Color DIVIDER_COLOR = new Color(1f, 1f, 1f, 0.15f);
 
     public static final Color SCREEN_DIM = new Color(0f, 0f, 0f, 0.8f);
 
@@ -32,4 +35,6 @@ public class ExtraColors {
 
     public static final Color EVENT_TOOLTIP_REQ_FAILED = new Color(0.796f, 0.267f, 0.357f, 1.0f);
     public static final Color EVENT_TOOLTIP_REQ_SUCCESS = new Color(0.380f, 0.663f, 0.463f, 1.0f);
+
+    public static final Color EVENT_INACTIVE = new Color(0.502f, 0.502f, 0.502f, 1.0f);
 }

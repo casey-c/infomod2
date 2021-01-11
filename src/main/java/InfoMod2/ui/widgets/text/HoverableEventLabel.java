@@ -23,10 +23,11 @@ public class HoverableEventLabel extends HoverableLabel {
         Color textColor;
         if (connected.anyHovered()) {
             // TODO: something better (probably a lighter version of the non hovered?)
-            textColor = Color.GREEN;
+            //textColor = Color.GREEN;
+            textColor = (detail.isEventPossible()) ? Color.GREEN : Color.RED;
         }
         else {
-            textColor = (detail.isEventPossible()) ? Settings.CREAM_COLOR : ExtraColors.EVENT_INACTIVE;
+            textColor = (detail.isEventPossible()) ? ExtraColors.EVENT_ACTIVE : ExtraColors.EVENT_INACTIVE;
         }
 
         return textColor;

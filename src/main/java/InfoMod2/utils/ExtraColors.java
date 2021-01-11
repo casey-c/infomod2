@@ -27,7 +27,8 @@ public class ExtraColors {
         return new Color(r, g, b, 1.0f);
     }
 
-    public static final Color DEBUG_COLOR = new Color(0.6f, 0.4f, 0.0f, 0.9f);
+    public static final Color DEBUG_COLOR = new Color(0.6f, 0.4f, 0.0f, 0.8f);
+    public static final Color DEBUG_COLOR_2 = new Color(0.3f, 0.5f, 0.3f, 0.8f);
 
     public static final Color EVENT_TOOLTIP_BASE = new Color(0.118f, 0.125f, 0.145f, 1.0f);
     public static final Color EVENT_TOOLTIP_TRIM = new Color(0.267f, 0.275f, 0.361f, 1.0f);
@@ -36,5 +37,10 @@ public class ExtraColors {
     public static final Color EVENT_TOOLTIP_REQ_FAILED = new Color(0.796f, 0.267f, 0.357f, 1.0f);
     public static final Color EVENT_TOOLTIP_REQ_SUCCESS = new Color(0.380f, 0.663f, 0.463f, 1.0f);
 
-    public static final Color EVENT_INACTIVE = new Color(0.502f, 0.502f, 0.502f, 1.0f);
+    //public static final Color EVENT_INACTIVE = new Color(0.502f, 0.502f, 0.502f, 1.0f);
+
+    public static final Color EVENT_ACTIVE = new Color(0.659f, 0.667f, 0.627f, 1.0f);
+    public static final Color EVENT_INACTIVE = new Color(0.329f, 0.188f, 0.216f, 1.0f);
+
+    public static final Color TEXT_EVENT_DESC = new Color(0.431f, 0.455f, 0.471f, 1.0f);
 }

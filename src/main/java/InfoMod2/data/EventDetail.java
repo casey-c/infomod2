@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class EventDetail {

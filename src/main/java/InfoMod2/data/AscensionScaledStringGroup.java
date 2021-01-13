@@ -8,6 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import java.util.List;
 
 public class AscensionScaledStringGroup {
+    // This is for simple pattern matching on the input string (basically, it's an arbitrary identifier letting us
+    // pick out places inside the text to replace with other text based on ascension level)
+    // E.g., we can have a string like "Lose X gold" have a replaces of "X" which will replace the character X with the
+    // proper values for each ascension level; for example, our final output might be "Lose 35 gold." on low ascensions,
+    // but for ascensions past 15 it might be "Lose 50 gold.". This is a reasonably simple solution to accomplish this.
     @SerializedName("replaces") @Expose
     private String replaces;
 
@@ -15,14 +20,14 @@ public class AscensionScaledStringGroup {
     private List<AscensionScaledString> values;
 
     public String replacingInputWithAscensionScaled(String input) {
-        if (!CardCrawlGame.isInARun())
+        if (!CardCrawlGame.isInARun() || values == null)
             return input;
 
         int currAscLevel = AbstractDungeon.ascensionLevel;
 
-        // Find the AscensionScaledString with the lowest valid ascension level
+        // Find the AscensionScaledString with the highest valid ascension level
         // e.g. if the values are for ascension levels [0, 5, 17], and curr = a6, then
-        // we want 5.
+        // we want the value for 5.
 
         int max = 0;
         String text = "";

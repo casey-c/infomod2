@@ -2,14 +2,12 @@ package InfoMod2.ui.screens;
 
 import InfoMod2.data.EventDatabase;
 import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.ui.widgets.text.HoverableLabel;
 import InfoMod2.ui.widgets.text.HoverableLabelGroup;
 import InfoMod2.utils.ExtraColors;
 import InfoMod2.utils.ScreenHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.esotericsoftware.spine.EventData;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -20,15 +18,12 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 public class EventDetailScreen implements IScreen {
     private static final Texture TEX_BG = new Texture("InfoMod2/screens/events.png");
 
-    // TODO: actual HoverableLabelList widget, layouts, etc. - not raw widgets on this screen (just testing for now)
-    //private HoverableLabel label;
     private HoverableLabelGroup act1;
 
     public EventDetailScreen() {
-        //label = new HoverableLabel("Hello World").anchoredAt(408f, 705f, AnchorPosition.LEFT_BOTTOM);
-        act1 = new HoverableLabelGroup(500.0f).anchoredAt(407.0f, 765.0f, AnchorPosition.LEFT_TOP).withItems(
-                EventDatabase.act1_events.values()
-        );
+        act1 = new HoverableLabelGroup(500.0f)
+                .anchoredAt(407.0f, 765.0f, AnchorPosition.LEFT_TOP)
+                .withItems( EventDatabase.act1_events.values() );
     }
 
     // --------------------------------------------------------------------------------
@@ -38,7 +33,6 @@ public class EventDetailScreen implements IScreen {
     @Override
     public void update() {
         // Update all child widgets
-        //label.update();
         act1.update();
 
         // Let this screen close itself

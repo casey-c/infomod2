@@ -1,7 +1,6 @@
 package InfoMod2.ui.widgets.events;
 
 import InfoMod2.data.EventChoice;
-import InfoMod2.data.EventDetail;
 import InfoMod2.data.EventEffect;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
@@ -11,10 +10,6 @@ import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
     private SimpleLabel choiceNameLabel;

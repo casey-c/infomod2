@@ -3,7 +3,9 @@ package InfoMod2.ui.widgets.text;
 import InfoMod2.data.EventDetail;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
+import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -216,6 +218,11 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
 
         // Remember the height of the labels
         this.labelHeight = getContentTop() - currY;
+
+        // A bit hacky, but we need to recompute the (x,y) bottom left corner position with the now known height
+        // (the extra offset is basically arbitrary/experimental lol - i didn't do enough close inspection to figure out why it's needed)
+        // TODO: do a closer inspection
+        this.anchoredAt(getContentLeft(), currY + 12.0f, AnchorPosition.LEFT_BOTTOM);
     }
 
     // Call after anchoredAt()
@@ -253,6 +260,10 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     public void render(SpriteBatch sb) {
         for (HoverableEventLabel label : labels)
             label.render(sb);
+
+        // TODO: remove debug
+//        sb.setColor(ExtraColors.DEBUG_COLOR);
+//        sb.draw(ImageMaster.WHITE_SQUARE_IMG, getContentLeft(), getContentBottom(), getPreferredContentWidth(), getPreferredContentHeight());
     }
 
     public void renderHovers(SpriteBatch sb) {

@@ -27,8 +27,8 @@ public class ExtraColors {
         return new Color(r, g, b, 1.0f);
     }
 
-    public static final Color DEBUG_COLOR = new Color(0.6f, 0.4f, 0.0f, 0.8f);
-    public static final Color DEBUG_COLOR_2 = new Color(0.3f, 0.5f, 0.3f, 0.8f);
+    public static final Color DEBUG_COLOR = new Color(0.6f, 0.4f, 0.0f, 0.6f);
+    public static final Color DEBUG_COLOR_2 = new Color(0.3f, 0.5f, 0.3f, 0.6f);
 
     public static final Color EVENT_TOOLTIP_BASE = new Color(0.118f, 0.125f, 0.145f, 1.0f);
     public static final Color EVENT_TOOLTIP_TRIM = new Color(0.267f, 0.275f, 0.361f, 1.0f);
@@ -43,4 +43,18 @@ public class ExtraColors {
     public static final Color EVENT_INACTIVE = new Color(0.329f, 0.188f, 0.216f, 1.0f);
 
     public static final Color TEXT_EVENT_DESC = new Color(0.431f, 0.455f, 0.471f, 1.0f);
+
+    // --------------------------------------------------------------------------------
+    // Event screen color scheme (WIP)
+    // --------------------------------------------------------------------------------
+
+    public static final Color EVENT_SCREEN_CARD_TITLE = new Color(0.667f, 0.522f, 0.173f, 1.0f);
+
+    public static final Color EVENT_SCREEN_CARD_ACTIVE = new Color(0.706f, 0.702f, 0.706f, 1.0f);
+    public static final Color EVENT_SCREEN_CARD_ACTIVE_HOVER = new Color(0.231f, 0.420f, 0.235f, 1.0f);
+
+    public static final Color EVENT_SCREEN_CARD_INACTIVE = new Color(0.243f, 0.251f, 0.282f, 1.0f);
+    public static final Color EVENT_SCREEN_CARD_INACTIVE_HOVER = new Color(0.255f, 0.169f, 0.220f, 1.0f);
+
+    // --------------------------------------------------------------------------------
 }

@@ -22,12 +22,12 @@ public class HoverableEventLabel extends HoverableLabel {
     public Color getTextColor() {
         Color textColor;
         if (connected.anyHovered()) {
-            // TODO: something better (probably a lighter version of the non hovered?)
-            //textColor = Color.GREEN;
-            textColor = (detail.isEventPossible()) ? Color.GREEN : Color.RED;
+            //textColor = (detail.isEventPossible()) ? Color.GREEN : Color.RED;
+            textColor = (detail.isEventPossible()) ? ExtraColors.EVENT_SCREEN_CARD_ACTIVE_HOVER : ExtraColors.EVENT_SCREEN_CARD_INACTIVE_HOVER;
         }
         else {
-            textColor = (detail.isEventPossible()) ? ExtraColors.EVENT_ACTIVE : ExtraColors.EVENT_INACTIVE;
+            //textColor = (detail.isEventPossible()) ? ExtraColors.EVENT_ACTIVE : ExtraColors.EVENT_INACTIVE;
+            textColor = (detail.isEventPossible()) ? ExtraColors.EVENT_SCREEN_CARD_ACTIVE : ExtraColors.EVENT_SCREEN_CARD_INACTIVE;
         }
 
         return textColor;

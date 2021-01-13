@@ -6,6 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -145,5 +146,116 @@ public class ExtraFonts {
         }
 
         return font;
+    }
+
+    // --------------------------------------------------------------------------------
+    // Slightly reworked base game code
+
+    // TODO: for Bestiary (a past mod of mine), I actually customized this entirely to remove crashes with trailing #
+    //  and to support a larger range of custom characters. Because this project is only interested in a better
+    //  FontHelper.getSmartHeight() [for now, at least], I'm leaving this as is.
+    private static Color identifyColor(String word) {
+        if (word.length() > 0 && word.charAt(0) == '#') {
+            switch(word.charAt(1)) {
+                case 'b':
+                    return Settings.BLUE_TEXT_COLOR;
+                case 'g':
+                    return Settings.GREEN_TEXT_COLOR;
+                case 'p':
+                    return Settings.PURPLE_COLOR;
+                case 'r':
+                    return Settings.RED_TEXT_COLOR;
+                case 'y':
+                    return Settings.GOLD_COLOR;
+                default:
+                    return Color.WHITE;
+            }
+        } else {
+            return Color.WHITE;
+        }
+    }
+
+    // A helper struct to store a bit more detail that the base game getSmartHeight ignores.
+    // This actually converts back into 1080p space here, since I'll have to do that everywhere anyway
+    public static class BetterBlockDetails {
+        public float fullBlockWidth;
+        public float fullBlockHeight;
+
+        public BetterBlockDetails() {}
+
+        public BetterBlockDetails(float w, float h) {
+            this.fullBlockWidth = w / Settings.scale;
+            this.fullBlockHeight = h / Settings.scale;
+        }
+    }
+
+    public static BetterBlockDetails getSmartSize(BitmapFont font, String msg, float lineWidth, float lineSpacing) {
+        if (msg == null) {
+            return new BetterBlockDetails();
+        } else if (Settings.lineBreakViaCharacter) {
+            //return -getHeightForCharLineBreak(font, msg, lineWidth, lineSpacing);
+            return new BetterBlockDetails();
+        } else {
+            float curWidth = 0.0F;
+            float curHeight = 0.0F;
+
+            GlyphLayout layout = FontHelper.layout;
+
+            layout.setText(font, " ");
+            float spaceWidth = layout.width;
+            String[] var4 = msg.split(" ");
+            int var5 = var4.length;
+
+            // keep track of this now
+            float maxWidth = 0.0f;
+
+            for(int var6 = 0; var6 < var5; ++var6) {
+                String word = var4[var6];
+                if (word.equals("NL")) {
+
+                    if (curWidth > maxWidth)
+                        maxWidth = curWidth;
+
+                    curWidth = 0.0F;
+                    curHeight -= lineSpacing;
+                } else if (word.equals("TAB")) {
+                    curWidth += spaceWidth * 5.0F;
+                } else {
+                    // My stuff ignores the "orbs" which are basically inline images (e.g. the energy icon with #e)
+                    //orb = identifyOrb(word);
+                    //if (orb == null) {
+                    if (!identifyColor(word).equals(Color.WHITE)) {
+                        word = word.substring(2, word.length());
+                    }
+
+                    layout.setText(font, word);
+                    if (curWidth + layout.width > lineWidth) {
+                        curHeight -= lineSpacing;
+
+                        if (curWidth > maxWidth)
+                            maxWidth = curWidth;
+
+                        curWidth = layout.width + spaceWidth;
+                    } else {
+                        curWidth += layout.width + spaceWidth;
+                    }
+//                    } else if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth) {
+//                        curHeight -= lineSpacing;
+//                        curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
+//                    } else {
+//                        curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
+//                    }
+                }
+            }
+
+            if (curWidth > maxWidth)
+                maxWidth = curWidth;
+
+            // Figure out total height based on how far curHeight went down from start (since it's an offset originally)
+            // Basically, account for the final row as well by taking one more linespacing out and then negate it all
+            float totalHeight = -(curHeight - lineSpacing);
+
+            return new BetterBlockDetails(maxWidth, totalHeight);
+        }
     }
 }

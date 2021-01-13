@@ -160,7 +160,8 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.scale, dividerBottom * Settings.scale, (w - (2 * DIVIDER_OFFSET)) * Settings.scale, 3.0f);
 
         // Choice cards
-        float currY = dividerBottom - 16.0f;
+        //float currY = dividerBottom - 16.0f;
+        float currY = dividerBottom - 22.0f;
         //System.out.println("\n\n==============================");
         //System.out.println("Choice start: currY = " + currY);
 

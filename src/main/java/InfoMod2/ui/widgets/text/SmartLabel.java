@@ -1,6 +1,7 @@
 package InfoMod2.ui.widgets.text;
 
 import InfoMod2.ui.widgets.AbstractWidget;
+import InfoMod2.utils.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -53,11 +54,15 @@ public class SmartLabel extends AbstractWidget<SmartLabel> {
         // it turns out i've had a misunderstanding about this process for literal months. RIP
 
         // Fixed versions (because I want the width/height of the entire block, not the last line/offsets):
-        this.textHeight = lineSpacing - (FontHelper.getSmartHeight(font, text, lineWidth, lineSpacing) / Settings.scale);
-        float smartWidth = FontHelper.getSmartWidth(font, text, lineWidth, lineSpacing) / Settings.scale;
+        //this.textHeight = lineSpacing - (FontHelper.getSmartHeight(font, text, lineWidth, lineSpacing) / Settings.scale);
+        ExtraFonts.BetterBlockDetails size = ExtraFonts.getSmartSize(font, text, lineWidth, lineSpacing);
+        this.textWidth = size.fullBlockWidth;
+        this.textHeight = size.fullBlockHeight;
 
-        // Check if at least one row went up to the line width
-        this.textWidth = (textHeight > lineSpacing) ? lineWidth : smartWidth;
+//        float smartWidth = FontHelper.getSmartWidth(font, text, lineWidth, lineSpacing) / Settings.scale;
+//
+//        // Check if at least one row went up to the line width
+//        this.textWidth = (textHeight > lineSpacing) ? lineWidth : smartWidth;
 
 
 

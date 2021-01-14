@@ -17,14 +17,23 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 public class EventDetailScreen implements IScreen {
     private static final Texture TEX_BG = new Texture("InfoMod2/screens/events.png");
 
-    private EventGroupCard act1;
+    private EventGroupCard act1, act2;
+
+    private static final float ACT_CARD_SPACING = 32.0f;
 
     public EventDetailScreen() {
 //        act1 = new HoverableLabelGroup(500.0f)
 //                .anchoredAt(407.0f, 765.0f, AnchorPosition.LEFT_TOP)
 //                .withItems( EventDatabase.act1_events.values() );
 
-        act1 = new EventGroupCard(407.0f, 788.0f, "Act I", EventDatabase.act1_events.values());
+        // TODO: do something fancier to center it automatically?
+        float left = 407.0f;
+        float topAct1 = 788.0f;
+
+        act1 = new EventGroupCard(left, topAct1, "Act I", EventDatabase.act1_events.values());
+
+        float topAct2 = topAct1 - act1.getPreferredContentHeight() - ACT_CARD_SPACING;
+        act2 = new EventGroupCard(left, topAct2, "Act II", EventDatabase.act2_events.values());
     }
 
     // --------------------------------------------------------------------------------
@@ -35,6 +44,7 @@ public class EventDetailScreen implements IScreen {
     public void update() {
         // Update all child widgets
         act1.update();
+        act2.update();
 
         // Let this screen close itself
         if (InputHelper.isMouseDown_R) {
@@ -63,9 +73,11 @@ public class EventDetailScreen implements IScreen {
     public void renderForeground(SpriteBatch sb) {
         FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Events", 928.0f * Settings.scale, 885.0f * Settings.scale, Settings.CREAM_COLOR);
 
-        //label.render(sb);
         act1.render(sb);
+        act2.render(sb);
+
         act1.renderHovers(sb);
+        act2.renderHovers(sb);
     }
 
     @Override
@@ -82,11 +94,13 @@ public class EventDetailScreen implements IScreen {
 
         // Show all child widgets
         act1.show();
+        act2.show();
     }
 
     @Override
     public void hide() {
         // Hide all child widgets
         act1.hide();
+        act2.hide();
     }
 }

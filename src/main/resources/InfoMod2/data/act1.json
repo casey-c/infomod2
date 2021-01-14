@@ -91,7 +91,7 @@
           ]
         }
       ],
-      "notes": "X is the number of times you've clicked [Search / Continue] without entering into a fight, starting at 0. Search rewards are not repeated."
+      "notes": "X is the number of times you've clicked [Search / Continue] without entering into a fight, starting at 0. Search rewards are not repeated. Relics that affect elite fights will work in this fight (except Black Star)."
     },
     {
       "name": "Golden Idol",

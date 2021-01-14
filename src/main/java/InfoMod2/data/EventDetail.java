@@ -81,4 +81,8 @@ public class EventDetail {
         return !(notes == null || notes.equals(""));
     }
 
+    public boolean hasRequirements() {
+        return requirements != null;
+    }
+
 }

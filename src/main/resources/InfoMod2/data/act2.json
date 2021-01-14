@@ -2,34 +2,419 @@
   "type": "ACT_2",
   "events": [
     {
-      "name": "The Cleric",
-      "id": "The Cleric",
-      "min_floor": 1,
-      "max_floor": 14,
-      "requirements": [
-        {
-          "type": "AT_LEAST_X_GOLD",
-          "val": 35
-        }
-      ],
-      "notes": "Both Heal and Purify require the full cost to be paid in order to be used.",
+      "name": "Ancient Writing",
+      "id": "Back to Basics",
+      "min_floor": 19,
+      "max_floor": 31,
       "choices": [
         {
-          "name": "Heal",
+          "name": "Elegance",
           "effects": [
             {
-              "text": "Lose 35 gold."
-            },
-            {
-              "text": "Heal for 1/4 of max HP."
+              "text": "Remove a card from your deck."
             }
           ]
         },
         {
-          "name": "Purify",
+          "name": "Simplicity",
           "effects": [
             {
-              "text": "Lose X gold.",
+              "text": "Upgrade all Strikes and defends."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Augmenter",
+      "id": "Drug Dealer",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "[Become Test Subject] requires at least 2 cards in deck.",
+      "choices": [
+        {
+          "name": "Test J.A.X.",
+          "effects": [
+            {
+              "text": "Obtain J.A.X. (card)"
+            }
+          ]
+        },
+        {
+          "name": "Become Test Subject",
+          "effects": [
+            {
+              "text": "Transform 2 cards."
+            }
+          ]
+        },
+        {
+          "name": "Ingest Mutagens",
+          "effects": [
+            {
+              "text": "Obtain Mutagenic Strength (relic)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Council of Ghosts",
+      "id": "Ghosts",
+      "min_floor": 19,
+      "max_floor": 31,
+      "choices": [
+        {
+          "name": "Accept",
+          "effects": [
+            {
+              "text": "Obtain X copies of Apparition (card).",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "5"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Refuse",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cursed Tome",
+      "id": "Cursed Tome",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "Clicking [Read] requires 3 clicks and removes [Leave] once started. [Stop] and [Take] both require the full 3 clicks of [Read] to become available.",
+      "choices": [
+        {
+          "name": "Read / Continue (x3)",
+          "effects": [
+            {
+              "text": "First continue: Lose 1 HP."
+            },
+            {
+              "text": "Second continue: Lose 2 HP."
+            },
+            {
+              "text": "Third continue: Lose 3 HP."
+            },
+            {
+              "text": "Leads to [Stop] and [Take]."
+            }
+          ]
+        },
+        {
+          "name": "Leave (Before Reading)",
+          "effects": [
+            {
+              "text": "Ends the event (no rewards)."
+            }
+          ]
+        },
+        {
+          "name": "Stop",
+          "effects": [
+            {
+              "text": "Lose 3 HP."
+            },
+            {
+              "text": "Ends the Event."
+            }
+          ]
+        },
+        {
+          "name": "Take",
+          "effects": [
+            {
+              "text": "Lose X HP.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "10"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "15"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Obtain a random relic from: Necronomicon, Nilry's Codex, and Enchiridion."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Forgotten Altar",
+      "id": "Forgotten Altar",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "[Offer] requires having the Golden Idol relic (from an Act I event).",
+      "choices": [
+        {
+          "name": "Offer: Golden Idol",
+          "effects": [
+            {
+              "text": "Lose Golden Idol."
+            },
+            {
+              "text": "Obtain Bloody Idol (relic)."
+            }
+          ]
+        },
+        {
+          "name": "Sacrifice",
+          "effects": [
+            {
+              "text": "Take X% of max HP as damage.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "25"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "35"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Gain 5 max HP."
+            }
+          ]
+        },
+        {
+          "name": "Desecrate",
+          "effects": [
+            {
+              "text": "Become Cursed: Decay."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Masked Bandits",
+      "id": "Masked Bandits",
+      "min_floor": 19,
+      "max_floor": 31,
+      "choices": [
+        {
+          "name": "Pay",
+          "effects": [
+            {
+              "text": "Lose all gold."
+            },
+            {
+              "text": "End the event."
+            }
+          ]
+        },
+        {
+          "name": "Fight",
+          "effects": [
+            {
+              "text": "Enter combat with Pointy, Romeo, and Bear."
+            },
+            {
+              "text": "Upon victory, obtain Red Mask (relic), 25 - 35 gold, and normal combat rewards."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Old Beggar",
+      "id": "Beggar",
+      "min_floor": 19,
+      "max_floor": 31,
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_GOLD",
+          "val": 75
+        }
+      ],
+      "notes": "[Offer Gold] requires the full 75 gold cost.",
+      "choices": [
+        {
+          "name": "Offer Gold",
+          "effects": [
+            {
+              "text": "Lose 75 gold."
+            },
+            {
+              "text": "Remove a card from your deck."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pleading Vagrant",
+      "id": "Addict",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "[Offer Gold] requires the full 85 gold cost.",
+      "choices": [
+        {
+          "name": "Offer Gold",
+          "effects": [
+            {
+              "text": "Lose 85 gold."
+            },
+            {
+              "text": "Obtain a random relic."
+            }
+          ]
+        },
+        {
+          "name": "Rob",
+          "effects": [
+            {
+              "text": "Obtain a random relic."
+            },
+            {
+              "text": "Become Cursed: Shame."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Colosseum",
+      "id": "Colosseum",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "[COWARDICE] and [VICTORY] become available after winning the first fight. Relics that affect elite fights will work in the Taskmaster / Nob fight (except Black Star).",
+      "choices": [
+        {
+          "name": "Continue / Fight (Mandatory)",
+          "effects": [
+            {
+              "text": "Fight Blue Slaver and Red Slaver."
+            },
+            {
+              "text": "Win the fight to continue the event."
+            }
+          ]
+        },
+        {
+          "name": "COWARDICE",
+          "effects": [
+            {
+              "text": "Ends the event."
+            }
+          ]
+        },
+        {
+          "name": "VICTORY",
+          "effects": [
+            {
+              "text": "Fight Taskmaster and Gremlin Nob."
+            },
+            {
+              "text": "Upon victory, obtain a random uncommon relic, a random rare relic, 100 gold, and normal combat rewards."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Library",
+      "id": "The Library",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "The rarities of the cards will be affected by the current rare chance upon entering the floor, but that chance will not be updated by seeing any commons or rares inside the library. This means that entering the library with high rare chance can result in seeing a lot of rare cards at once.",
+      "choices": [
+        {
+          "name": "Read",
+          "effects": [
+            {
+              "text": "Choose 1 of 20 different, randomly chosen, unupgraded cards to add to your deck."
+            }
+          ]
+        },
+        {
+          "name": "Sleep",
+          "effects": [
+            {
+              "text": "Heal for X% of max HP.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "33"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "20"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Mausoleum",
+      "id": "The Mausoleum",
+      "min_floor": 19,
+      "max_floor": 31,
+      "choices": [
+        {
+          "name": "Open Coffin",
+          "effects": [
+            {
+              "text": "X% to be Cursed: Writhe.",
               "asc_scaling": [
                 {
                   "replaces": "X",
@@ -40,19 +425,106 @@
                     },
                     {
                       "asc": 15,
-                      "text": "75"
+                      "text": "100"
                     }
                   ]
                 }
               ]
             },
             {
-              "text": "Remove a card."
+              "text": "Obtain a random relic."
             }
           ]
         },
         {
           "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Nest",
+      "id": "Nest",
+      "min_floor": 19,
+      "max_floor": 31,
+      "choices": [
+        {
+          "name": "Smash and Grab",
+          "effects": [
+            {
+              "text": "Gain X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "99"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "50"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Stay in Line",
+          "effects": [
+            {
+              "text": "Take 6 damage."
+            },
+            {
+              "text": "Obtain Ritual Dagger (card)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vampires",
+      "id": "Vampires",
+      "min_floor": 19,
+      "max_floor": 31,
+      "notes": "[Lose Blood Vial] requires having the Blood Vial relic to be available.",
+      "choices": [
+        {
+          "name": "Accept",
+          "effects": [
+            {
+              "text": "Lose 30% of max HP."
+            },
+            {
+              "text": "Remove all Strikes."
+            },
+            {
+              "text": "Gain 5 copies of Bite (card)."
+            }
+          ]
+        },
+        {
+          "name": "Lose Blood Vial",
+          "effects": [
+            {
+              "text": "Lose Blood Vial (relic)."
+            },
+            {
+              "text": "Remove all Strikes."
+            },
+            {
+              "text": "Gain 5 copies of Bite (card)."
+            }
+          ]
+        },
+        {
+          "name": "Refuse",
           "effects": [
             {
               "text": "Nothing happens."

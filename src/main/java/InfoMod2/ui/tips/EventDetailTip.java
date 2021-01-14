@@ -14,7 +14,6 @@ import InfoMod2.utils.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
@@ -31,9 +30,6 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private List<EventChoiceCard> choiceCards = new LinkedList<>();
 
     private SmartLabel notesLabel;
-
-//    private List<AbstractWidget> choiceNameLabels = new LinkedList<>();
-//    private ArrayList<LinkedList<SmartLabel>> choiceEffectLabels = new ArrayList<>();
 
     private float tooltipWidth;
     private float totalHeightChoiceCards;
@@ -55,15 +51,14 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     // TODO: can probably just keep these details around instead of remaking them. We'll see if this needs optimizing
     public void updateDetails() {
         reqLabels.clear();
-//        choiceNameLabels.clear();
-//        choiceEffectLabels.clear();
 
         // Floors: x - y
         reqLabels.add(new SimpleLabel(detail.getFloorString(), detail.getFloorNumStringTextColor(), ExtraFonts.smallItalicFont()));
 
         // Other requirements (e.g. requires 35 gold)
-        for (EventIntegerRequirement req : detail.getRequirements()) {
-            reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
+        if (detail.hasRequirements()) {
+            for (EventIntegerRequirement req : detail.getRequirements())
+                reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
         }
 
         // Choices
@@ -95,16 +90,11 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         if (reqLabelTotalWidth > maxWidth)
             maxWidth = reqLabelTotalWidth;
 
-        System.out.println("Looking at choice cards (starting at maxwidth of " + maxWidth + ")");
         for (EventChoiceCard card : choiceCards) {
             float w = card.getPreferredContentWidth();
-            System.out.println("Card name width: " + card.getNameWidth());
-            System.out.println("Card pref width: " + card.getPreferredContentWidth());
             if (w > maxWidth)
                 maxWidth = w;
         }
-
-        System.out.println("Final max width: " + maxWidth);
 
         this.tooltipWidth = maxWidth;
 
@@ -131,9 +121,6 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     @Override
     public void render(SpriteBatch sb) {
-        // TODO: dynamic size
-        //float w = 372;
-        //float h = 208;
         float w = tooltipWidth + 46.0f;
 
         float left = InputHelper.mX + 40.0f;
@@ -176,19 +163,13 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.scale, dividerBottom * Settings.scale, (w - (2 * DIVIDER_OFFSET)) * Settings.scale, 3.0f);
 
         // Choice cards
-        //float currY = dividerBottom - 16.0f;
         float currY = dividerBottom - 22.0f;
-        //System.out.println("\n\n==============================");
-        //System.out.println("Choice start: currY = " + currY);
 
         for (EventChoiceCard choiceCard : choiceCards) {
             choiceCard.anchoredAt(textLeft, currY, AnchorPosition.LEFT_TOP);
             choiceCard.render(sb);
 
-            //System.out.println("Choice pref content height is " + choiceCard.getPreferredContentHeight());
-
             currY -= (choiceCard.getPreferredContentHeight() + 10.0f);
-            //System.out.println("New currY: " + currY);
         }
 
         // Render the notes label
@@ -197,27 +178,5 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
             notesLabel.anchoredAt(textLeft, currY, AnchorPosition.LEFT_TOP);
             notesLabel.render(sb);
         }
-
-        //System.out.println("-----------------\n\n");
-
-//        int index = 0;
-//        for (AbstractWidget label : choiceNameLabels) {
-//            label.anchoredAt(textLeft, currY, AnchorPosition.LEFT_BOTTOM);
-//            label.render(sb);
-//
-//            // Render effects of this choice
-//            LinkedList<SmartLabel> effects = choiceEffectLabels.get(index++);
-//
-//            currX = textLeft + maxChoiceNameWidth + 15.0f;
-//            for (SmartLabel effect : effects) {
-//                effect.anchoredAt(currX, currY, AnchorPosition.LEFT_TOP);
-//                effect.render(sb);
-//
-//                currX += effect.getPreferredContentWidth() + 10.0f;
-//            }
-//
-//            currY -= LINE_HEIGHT;
-//        }
-
     }
 }

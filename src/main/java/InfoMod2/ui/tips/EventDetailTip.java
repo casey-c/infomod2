@@ -7,11 +7,14 @@ import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.cards.EventChoiceCard;
 import InfoMod2.ui.widgets.text.SimpleLabel;
+import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.DynamicTextureBox;
 import InfoMod2.utils.ExtraColors;
 import InfoMod2.utils.ExtraFonts;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
@@ -26,6 +29,9 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private LinkedList<SimpleLabel> reqLabels = new LinkedList<>();
 
     private List<EventChoiceCard> choiceCards = new LinkedList<>();
+
+    private SmartLabel notesLabel;
+
 //    private List<AbstractWidget> choiceNameLabels = new LinkedList<>();
 //    private ArrayList<LinkedList<SmartLabel>> choiceEffectLabels = new ArrayList<>();
 
@@ -109,12 +115,19 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         this.totalHeightChoiceCards = sum;
 
 
+        // Notes
+        if (detail.hasNotes()) {
+            this.notesLabel = new SmartLabel(detail.getNotes(), Color.GRAY, ExtraFonts.medItalicFontNoShadow(), tooltipWidth, 28.0f);
+        }
+
     }
 
     @Override public float getPreferredContentWidth() { return 0; }
     @Override public float getPreferredContentHeight() { return 0; }
 
     private static final float LINE_HEIGHT = 28.0f;
+    private static final float DIVIDER_CHOICE_GAP = 32.0f;
+    private static final float CHOICES_NOTES_GAP = 28.0f;
 
     @Override
     public void render(SpriteBatch sb) {
@@ -136,7 +149,10 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         float dividerBottom = reqBottom - 17.0f;
 
         // Figure out the bottom of the tool tip
-        float realBottom = dividerBottom - 32.0f - totalHeightChoiceCards;
+        float realBottom = dividerBottom - DIVIDER_CHOICE_GAP - totalHeightChoiceCards;
+        if (notesLabel != null)
+            realBottom -= (CHOICES_NOTES_GAP + notesLabel.getPreferredContentHeight());
+
         float h = top - realBottom;
 
         textureBox.render(sb, left, realBottom, w, h);
@@ -173,6 +189,13 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
             currY -= (choiceCard.getPreferredContentHeight() + 10.0f);
             //System.out.println("New currY: " + currY);
+        }
+
+        // Render the notes label
+        if (notesLabel != null) {
+            currY -= CHOICES_NOTES_GAP;
+            notesLabel.anchoredAt(textLeft, currY, AnchorPosition.LEFT_TOP);
+            notesLabel.render(sb);
         }
 
         //System.out.println("-----------------\n\n");

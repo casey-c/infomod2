@@ -77,4 +77,8 @@ public class EventDetail {
         return wide;
     }
 
+    public boolean hasNotes() {
+        return !(notes == null || notes.equals(""));
+    }
+
 }

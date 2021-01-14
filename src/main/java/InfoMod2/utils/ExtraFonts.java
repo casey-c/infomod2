@@ -38,6 +38,27 @@ public class ExtraFonts {
 
         return SMALL_ITALIC_FONT;
     }
+
+    private static BitmapFont MED_ITALIC_FONT_NO_SHADOW;
+    public static BitmapFont medItalicFontNoShadow() {
+        if (MED_ITALIC_FONT_NO_SHADOW == null) {
+            MED_ITALIC_FONT_NO_SHADOW = prepFont(18.0f,
+                    false,
+                    0.9f,
+                    0,
+                    0,
+                    ExtraColors.TEXT_BORDER_COLOR,
+                    false,
+                    1.0f,
+                    0.9f,
+                    new Color(0f, 0f, 0f, 0f),
+                    (int)(3.0f * Settings.scale),
+                    (int)(3.0f * Settings.scale),
+                    "font/ZillaSlab-RegularItalic.otf");
+        }
+
+        return MED_ITALIC_FONT_NO_SHADOW;
+    }
 //
 //    public static BitmapFont largeNumberFont() {
 //        if (LARGE_NUMBER_FONT == null) {

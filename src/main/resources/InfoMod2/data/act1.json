@@ -27,7 +27,7 @@
           "name": "Box",
           "effects": [
             {
-              "text": "Become Cursed: Regret"
+              "text": "Become Cursed: Regret."
             },
             {
               "text": "Obtain a random relic."
@@ -90,7 +90,7 @@
           ]
         }
       ],
-      "notes": "X is the number of times you've clicked [Search / Continue] without entering into a fight, starting at 0."
+      "notes": "X is the number of times you've clicked [Search / Continue] without entering into a fight, starting at 0. Search rewards are not repeated."
     },
     {
       "name": "Golden Idol",
@@ -259,7 +259,7 @@
           ]
         }
       ],
-      "notes": "X starts at 0 and increases by 1 each time Reach Inside is used. Can be repeated until a relic is obtained."
+      "notes": "X starts at 0 and increases by 1 each time [Reach Inside] is used. Can be repeated until a relic is obtained."
     },
     {
       "name": "Shining Light",
@@ -315,12 +315,13 @@
           "val": 35
         }
       ],
+      "notes": "Both Heal and Purify require the full cost to be paid in order to be used.",
       "choices": [
         {
           "name": "Heal",
           "effects": [
             {
-              "text": "Lose 35 gold (Required minimum)."
+              "text": "Lose 35 gold."
             },
             {
               "text": "Heal for 1/4 of max HP."
@@ -331,7 +332,7 @@
           "name": "Purify",
           "effects": [
             {
-              "text": "Lose X gold (Required minimum).",
+              "text": "Lose X gold.",
               "asc_scaling": [
                 {
                   "replaces": "X",

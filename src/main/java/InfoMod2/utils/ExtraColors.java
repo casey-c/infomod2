@@ -49,6 +49,7 @@ public class ExtraColors {
     // --------------------------------------------------------------------------------
 
     public static final Color EVENT_SCREEN_CARD_TITLE = new Color(0.667f, 0.522f, 0.173f, 1.0f);
+    public static final Color EVENT_SCREEN_CARD_NUM = new Color(0.478f, 0.451f, 0.376f, 1.0f);
 
     public static final Color EVENT_SCREEN_CARD_ACTIVE = new Color(0.706f, 0.702f, 0.706f, 1.0f);
     public static final Color EVENT_SCREEN_CARD_ACTIVE_HOVER = new Color(0.231f, 0.420f, 0.235f, 1.0f);

@@ -1,8 +1,7 @@
 package InfoMod2.ui.screens;
 
 import InfoMod2.data.EventDatabase;
-import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.ui.widgets.text.HoverableLabelGroup;
+import InfoMod2.ui.widgets.cards.EventGroupCard;
 import InfoMod2.utils.ExtraColors;
 import InfoMod2.utils.ScreenHelper;
 import com.badlogic.gdx.graphics.Color;
@@ -18,12 +17,14 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 public class EventDetailScreen implements IScreen {
     private static final Texture TEX_BG = new Texture("InfoMod2/screens/events.png");
 
-    private HoverableLabelGroup act1;
+    private EventGroupCard act1;
 
     public EventDetailScreen() {
-        act1 = new HoverableLabelGroup(500.0f)
-                .anchoredAt(407.0f, 765.0f, AnchorPosition.LEFT_TOP)
-                .withItems( EventDatabase.act1_events.values() );
+//        act1 = new HoverableLabelGroup(500.0f)
+//                .anchoredAt(407.0f, 765.0f, AnchorPosition.LEFT_TOP)
+//                .withItems( EventDatabase.act1_events.values() );
+
+        act1 = new EventGroupCard(407.0f, 788.0f, "Act I", EventDatabase.act1_events.values());
     }
 
     // --------------------------------------------------------------------------------

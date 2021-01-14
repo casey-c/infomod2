@@ -3,9 +3,7 @@ package InfoMod2.ui.widgets.text;
 import InfoMod2.data.EventDetail;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 import java.util.Collection;
 import java.util.HashSet;

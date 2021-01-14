@@ -1,4 +1,4 @@
-package InfoMod2.ui.widgets.events;
+package InfoMod2.ui.widgets.cards;
 
 import InfoMod2.data.EventChoice;
 import InfoMod2.data.EventEffect;

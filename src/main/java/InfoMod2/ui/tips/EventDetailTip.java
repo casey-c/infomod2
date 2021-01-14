@@ -5,7 +5,7 @@ import InfoMod2.data.EventDetail;
 import InfoMod2.data.EventIntegerRequirement;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.ui.widgets.events.EventChoiceCard;
+import InfoMod2.ui.widgets.cards.EventChoiceCard;
 import InfoMod2.ui.widgets.text.SimpleLabel;
 import InfoMod2.utils.DynamicTextureBox;
 import InfoMod2.utils.ExtraColors;

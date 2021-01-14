@@ -102,7 +102,7 @@
       "id": "Cursed Tome",
       "min_floor": 19,
       "max_floor": 31,
-      "notes": "Clicking [Read] requires 3 clicks and removes [Leave] once started. [Stop] and [Take] both require the full 3 clicks of [Read] to become available.",
+      "notes": "[Leave] is only available until you start to [Read]. Once starting [Read], you must click 3 times and lose a total of 9 HP to unlock the other options.",
       "choices": [
         {
           "name": "Read / Continue (x3)",
@@ -122,7 +122,7 @@
           ]
         },
         {
-          "name": "Leave (Before Reading)",
+          "name": "Leave",
           "effects": [
             {
               "text": "Ends the event (no rewards)."
@@ -173,7 +173,7 @@
       "id": "Forgotten Altar",
       "min_floor": 19,
       "max_floor": 31,
-      "notes": "[Offer] requires having the Golden Idol relic (from an Act I event).",
+      "notes": "You must already have a Golden Idol (from the Act I event) in order to trade it away.",
       "choices": [
         {
           "name": "Offer: Golden Idol",
@@ -330,10 +330,10 @@
       "id": "Colosseum",
       "min_floor": 19,
       "max_floor": 31,
-      "notes": "[COWARDICE] and [VICTORY] become available after winning the first fight. Relics that affect elite fights will work in the Taskmaster / Nob fight (except Black Star).",
+      "notes": "The first fight is mandatory, and [COWARDICE] and [VICTORY] become available on winning. Relics that affect elite fights will work in the Taskmaster / Nob fight (except Black Star).",
       "choices": [
         {
-          "name": "Continue / Fight (Mandatory)",
+          "name": "Continue / Fight",
           "effects": [
             {
               "text": "Fight Blue Slaver and Red Slaver."
@@ -493,7 +493,7 @@
       "id": "Vampires",
       "min_floor": 19,
       "max_floor": 31,
-      "notes": "[Lose Blood Vial] requires having the Blood Vial relic to be available.",
+      "notes": "You must already have the Blood Vial in order to trade it away.",
       "choices": [
         {
           "name": "Accept",

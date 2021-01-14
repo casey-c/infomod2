@@ -140,19 +140,26 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         if (notesLabel != null)
             realBottom -= (CHOICES_NOTES_GAP + notesLabel.getPreferredContentHeight());
 
+        // Compute the vertical offset (to make sure tips don't run off the bottom of the screen)
+        float verticalOffset = 0.0f;
+        if (realBottom < 0.0f)
+            verticalOffset = 0.0f - realBottom + 10.0f;
+        else if (realBottom < 10.0f)
+            verticalOffset = 10.0f - realBottom;
+
         float h = top - realBottom;
 
-        textureBox.render(sb, left, realBottom, w, h);
+        textureBox.render(sb, left, realBottom + verticalOffset, w, h);
 
         // Render the name of the event
-        titleLabel.anchoredAt(textLeft, titleBottom, AnchorPosition.LEFT_BOTTOM);
+        titleLabel.anchoredAt(textLeft, titleBottom + verticalOffset, AnchorPosition.LEFT_BOTTOM);
         titleLabel.render(sb);
 
         // Render all the requirements for this event
         float currX = textLeft;
 
         for (SimpleLabel label : reqLabels) {
-            label.anchoredAt(currX, reqBottom, AnchorPosition.LEFT_BOTTOM);
+            label.anchoredAt(currX, reqBottom + verticalOffset, AnchorPosition.LEFT_BOTTOM);
             label.render(sb);
             currX += label.getPreferredContentWidth() + REQ_LABEL_SPACING;
         }
@@ -160,13 +167,13 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         // Render the divider line
         final float DIVIDER_OFFSET = 23.0f;
         sb.setColor(ExtraColors.DIVIDER_COLOR);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.scale, dividerBottom * Settings.scale, (w - (2 * DIVIDER_OFFSET)) * Settings.scale, 3.0f);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.scale, (dividerBottom + verticalOffset) * Settings.scale, (w - (2 * DIVIDER_OFFSET)) * Settings.scale, 3.0f);
 
         // Choice cards
         float currY = dividerBottom - 22.0f;
 
         for (EventChoiceCard choiceCard : choiceCards) {
-            choiceCard.anchoredAt(textLeft, currY, AnchorPosition.LEFT_TOP);
+            choiceCard.anchoredAt(textLeft, currY + verticalOffset, AnchorPosition.LEFT_TOP);
             choiceCard.render(sb);
 
             currY -= (choiceCard.getPreferredContentHeight() + 10.0f);
@@ -175,7 +182,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         // Render the notes label
         if (notesLabel != null) {
             currY -= CHOICES_NOTES_GAP;
-            notesLabel.anchoredAt(textLeft, currY, AnchorPosition.LEFT_TOP);
+            notesLabel.anchoredAt(textLeft, currY + verticalOffset, AnchorPosition.LEFT_TOP);
             notesLabel.render(sb);
         }
     }

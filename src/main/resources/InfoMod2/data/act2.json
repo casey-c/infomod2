@@ -1,0 +1,65 @@
+{
+  "type": "ACT_2",
+  "events": [
+    {
+      "name": "The Cleric",
+      "id": "The Cleric",
+      "min_floor": 1,
+      "max_floor": 14,
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_GOLD",
+          "val": 35
+        }
+      ],
+      "notes": "Both Heal and Purify require the full cost to be paid in order to be used.",
+      "choices": [
+        {
+          "name": "Heal",
+          "effects": [
+            {
+              "text": "Lose 35 gold."
+            },
+            {
+              "text": "Heal for 1/4 of max HP."
+            }
+          ]
+        },
+        {
+          "name": "Purify",
+          "effects": [
+            {
+              "text": "Lose X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "50"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "75"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Remove a card."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

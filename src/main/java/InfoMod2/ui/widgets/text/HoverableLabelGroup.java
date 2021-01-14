@@ -16,6 +16,8 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     private final LinkedList<HoverableEventLabel> labels = new LinkedList<>();
     private final Set<MultiHitboxEventLabel> labelConnections = new HashSet<>();
 
+    private Collection<EventDetail> details;
+
     // TODO: probably should not make these hardcoded but based on the font instead.
     private static final float ROW_HEIGHT = 40.0f; // spacing between labels on the Y axis (includes font height)
 
@@ -237,6 +239,8 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
         // Make the actual labels
         makeTheLabels(finalCombinedWordLines);
 
+        this.details = details;
+
         return this;
     }
 
@@ -287,5 +291,17 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     public void update() {
         for (HoverableEventLabel label : labels)
             label.update();
+    }
+
+    public int getNumDetails() {
+        return (details != null) ? details.size() : 0;
+    }
+
+    public int getNumActiveDetails() {
+        return (details != null) ? (int) details.stream().filter(x -> x.isEventPossible()).count() : 0;
+    }
+
+    public String getDetailStatusString() {
+        return getNumActiveDetails() + " / " + getNumDetails();
     }
 }

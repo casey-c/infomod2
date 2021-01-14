@@ -1,5 +1,6 @@
 {
-  "act1": [
+  "type": "ACT_1",
+  "events": [
     {
       "name": "Big Fish",
       "id": "Big Fish",
@@ -501,8 +502,5 @@
       ],
       "notes": "Destroy requires an attack that deals at least 10 damage."
     }
-  ],
-  "act2": [],
-  "act3": [],
-  "shrines": []
+  ]
 }

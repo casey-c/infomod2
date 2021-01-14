@@ -26,6 +26,7 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
 
         // Load event database from json
         EventDatabase.load("/InfoMod2/data/act1.json");
+        EventDatabase.load("/InfoMod2/data/act2.json");
     }
 
     @Override

@@ -32,7 +32,7 @@ public class EventDatabase {
     // Cleaned data
     public static TreeMap<String, EventDetail> act1_events = new TreeMap<>();
 
-    //"InfoMod2/data/act1_all_but_dead_adv.json"
+    //"InfoMod2/data/act1.json"
     public static void load(String internalPath) {
         InputStream stream = InfoMod2.class.getResourceAsStream(internalPath);
         if (stream != null) {

@@ -17,7 +17,7 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
 
     private float desiredNameWidth;
 
-    public EventChoiceCard(EventChoice choice) {
+    public EventChoiceCard(EventChoice choice, boolean wide) {
         choiceNameLabel = new SimpleLabel(choice.getName(), Color.GRAY);
 
         StringBuilder sb = new StringBuilder();
@@ -26,7 +26,10 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
             sb.append(" ");
         }
 
-        effectsLabel = new SmartLabel(sb.toString(), ExtraColors.TEXT_EVENT_DESC, FontHelper.tipBodyFont, 350.0f, 28.0f);
+        if (wide)
+            effectsLabel = new SmartLabel(sb.toString(), ExtraColors.TEXT_EVENT_DESC, FontHelper.tipBodyFont, 450.0f, 28.0f);
+        else
+            effectsLabel = new SmartLabel(sb.toString(), ExtraColors.TEXT_EVENT_DESC, FontHelper.tipBodyFont, 350.0f, 28.0f);
     }
 
     public float getNameWidth() {

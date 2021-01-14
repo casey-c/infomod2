@@ -65,7 +65,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         float maxCardNameWidth = 0f;
 
         for (EventChoice choice : detail.getChoices()) {
-            EventChoiceCard card = new EventChoiceCard(choice);
+            EventChoiceCard card = new EventChoiceCard(choice, detail.isWide());
 
             float cardNameWidth = card.getNameWidth();
             if (cardNameWidth > maxCardNameWidth)

@@ -37,6 +37,62 @@
       ]
     },
     {
+      "name": "Dead Adventurer",
+      "id": "Dead Adventurer",
+      "min_floor": 7,
+      "max_floor": 14,
+      "requirements": [],
+      "wide": true,
+      "choices": [
+        {
+          "name": "Search / Continue",
+          "effects": [
+            {
+              "text": "(Y + 15 * X)% chance to fight. Otherwise, receive a random remaining reward from the following: 30 gold, random relic, or nothing.",
+              "asc_scaling": [
+                {
+                  "replaces": "Y",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "25"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "35"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fight",
+          "effects": [
+            {
+              "text": "Forcibly occurs when you fail the roll in [Search / Continue]. Enters into combat with an elite - the event text indicates which elite you will fight; 'Giant Claws' for Lagavulin, 'Scoured by Flames' for Sentries, and 'Horned Beast' for Gremlin Nob."
+            },
+            {
+              "text": "Upon victory, obtain the remaining rewards not yet obtained in the search in addition to normal elite combat rewards. You cannot get a second relic from this event if you successfully found it during the search."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Ends the event."
+            },
+            {
+              "text": "Mandatory after 3 successful searches."
+            }
+          ]
+        }
+      ],
+      "notes": "X is the number of times you've clicked [Search / Continue] without entering into a fight, starting at 0."
+    },
+    {
       "name": "Golden Idol",
       "id": "Golden Idol",
       "min_floor": 1,

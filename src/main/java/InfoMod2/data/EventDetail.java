@@ -31,6 +31,9 @@ public class EventDetail {
     @SerializedName("notes") @Expose
     protected String notes;
 
+    @SerializedName("wide") @Expose
+    protected boolean wide;
+
     // Getters
     public String getName() { return name; }
     public String getFloorString() {
@@ -68,6 +71,10 @@ public class EventDetail {
 
     public Color getFloorNumStringTextColor() {
         return (isFloorNumSatisfied()) ? ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS : ExtraColors.EVENT_TOOLTIP_REQ_FAILED;
+    }
+
+    public boolean isWide() {
+        return wide;
     }
 
 }

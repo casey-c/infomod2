@@ -22,13 +22,8 @@ public class EventDetailScreen implements IScreen {
     private static final float ACT_CARD_SPACING = 32.0f;
 
     public EventDetailScreen() {
-//        act1 = new HoverableLabelGroup(500.0f)
-//                .anchoredAt(407.0f, 765.0f, AnchorPosition.LEFT_TOP)
-//                .withItems( EventDatabase.act1_events.values() );
-
         // TODO: do something fancier to center it automatically?
         float left = 407.0f;
-        //float topAct1 = 788.0f;
         float topAct1 = 811.0f;
 
         act1 = new EventGroupCard(left, topAct1, "Act I", EventDatabase.act1_events.values());

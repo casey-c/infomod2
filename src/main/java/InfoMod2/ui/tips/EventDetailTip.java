@@ -2,7 +2,7 @@ package InfoMod2.ui.tips;
 
 import InfoMod2.data.EventChoice;
 import InfoMod2.data.EventDetail;
-import InfoMod2.data.EventIntegerRequirement;
+import InfoMod2.data.EventRequirement;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.cards.EventChoiceCard;
@@ -57,7 +57,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Other requirements (e.g. requires 35 gold)
         if (detail.hasRequirements()) {
-            for (EventIntegerRequirement req : detail.getRequirements())
+            for (EventRequirement req : detail.getRequirements())
                 reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
         }
 

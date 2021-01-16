@@ -1,0 +1,344 @@
+{
+  "type": "ACT_3",
+  "events": [
+    {
+      "name": "Falling",
+      "id": "Falling",
+      "min_floor": 36,
+      "max_floor": 48,
+      "notes": "You must lose a card to proceed out of this event - options are only available if you have cards of that particular type. With no cards in your deck (yes, this is possible), you can [Land] for free.",
+      "choices": [
+        {
+          "name": "Land",
+          "effects": [
+            {
+              "text": "Lose the chosen skill card."
+            }
+          ]
+        },
+        {
+          "name": "Channel",
+          "effects": [
+            {
+              "text": "Lose the chosen power card."
+            }
+          ]
+        },
+        {
+          "name": "Strike",
+          "effects": [
+            {
+              "text": "Lose the chosen attack card."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mind Bloom",
+      "id": "MindBloom",
+      "min_floor": 36,
+      "max_floor": 48,
+      "notes": "[I am Rich] and [I am Healthy] are mutually exclusive. You can only see the former up to floor 40, while the latter occurs on floor 41 and above.",
+      "choices": [
+        {
+          "name": "I am War",
+          "effects": [
+            {
+              "text": "Fight a random boss from Act 1."
+            },
+            {
+              "text": "Upon victory, obtain a random rare relic, X gold, and normal combat rewards.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "50"
+                    },
+                    {
+                      "asc": 13,
+                      "text": "25"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "I am Awake",
+          "effects": [
+            {
+              "text": "Upgrade all cards."
+            },
+            {
+              "text": "Obtain Mark of Bloom (relic)."
+            }
+          ]
+        },
+        {
+          "name": "I am Rich",
+          "effects": [
+            {
+              "text": "Gain 999 gold."
+            },
+            {
+              "text": "Become Cursed: 2 Normality."
+            }
+          ]
+        },
+        {
+          "name": "I am Healthy",
+          "effects": [
+            {
+              "text": "Heal to full HP."
+            },
+            {
+              "text": "Become Cursed: Doubt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sensory Stone",
+      "id": "SensoryStone",
+      "min_floor": 36,
+      "max_floor": 48,
+      "choices": [
+        {
+          "name": "Recall (1 card)",
+          "effects": [
+            {
+              "text": "Choose from 1 colorless card reward."
+            }
+          ]
+        },
+        {
+          "name": "Recall (2 cards)",
+          "effects": [
+            {
+              "text": "Lose 5 HP."
+            },
+            {
+              "text": "Choose from 2 colorless card rewards."
+            }
+          ]
+        },
+        {
+          "name": "Recall (3 cards)",
+          "effects": [
+            {
+              "text": "Lose 10 HP."
+            },
+            {
+              "text": "Choose from 3 colorless card rewards."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mysterious Sphere",
+      "id": "Mysterious Sphere",
+      "min_floor": 36,
+      "max_floor": 48,
+      "choices": [
+        {
+          "name": "Open Sphere",
+          "effects": [
+            {
+              "text": "Enter combat with 2x Orb Walker."
+            },
+            {
+              "text": "Upon victory, obtain a random rare relic, 45 - 55 gold, and normal combat rewards."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Moai Head",
+      "id": "The Moai Head",
+      "min_floor": 36,
+      "max_floor": 48,
+      "notes": "You must already have the Golden Idol in order to trade it away. This event's non-floor requirements are combined in a logical OR.",
+      "requirements": [
+        {
+          "type": "ANY",
+          "of": [
+            {
+              "type": "HAS_RELIC",
+              "val": "Golden Idol"
+            },
+            {
+              "type": "LEQ_X_PERCENT_HP",
+              "val": "0.5"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "name": "Jump Inside",
+          "effects": [
+            {
+              "text": "Lose X% of max HP.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "12.5"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "18"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Heal to full HP."
+            }
+          ]
+        },
+        {
+          "name": "Offer: Golden Idol",
+          "effects": [
+            {
+              "text": "Lose Golden Idol."
+            },
+            {
+              "text": "Gain 333 gold."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tomb of Lord Red Mask",
+      "id": "Tomb of Lord Red Mask",
+      "min_floor": 36,
+      "max_floor": 48,
+      "notes": "You must have the Red Mask (relic) from the act 2 Masked Bandits event to be able to Don.",
+      "choices": [
+        {
+          "name": "Offer Gold",
+          "effects": [
+            {
+              "text": "Lose all gold"
+            },
+            {
+              "text": "Obtain Red Mask (relic)."
+            }
+          ]
+        },
+        {
+          "name": "Don the Mask",
+          "effects": [
+            {
+              "text": "Gain 222 gold."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Winding Halls",
+      "id": "Winding Halls",
+      "min_floor": 36,
+      "max_floor": 48,
+      "choices": [
+        {
+          "name": "Embrace Madness",
+          "effects": [
+            {
+              "text": "Obtain 2 copies of Madness (card)."
+            },
+            {
+              "text": "Take X% of max HP as damage",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "12.5"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "18"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Focus",
+          "effects": [
+            {
+              "text": "Heal for X% of max HP.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "25"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "20"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Become Cursed: Writhe."
+            }
+          ]
+        },
+        {
+          "name": "Retrace Your Steps",
+          "effects": [
+            {
+              "text": "Lose 5% of max HP."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

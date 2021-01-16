@@ -23,7 +23,7 @@ public class EventDetail {
     protected int max_floor;
 
     @SerializedName("requirements") @Expose
-    protected List<EventIntegerRequirement> requirements;
+    protected List<EventRequirement> requirements;
 
     @SerializedName("choices") @Expose
     protected List<EventChoice> choices;
@@ -40,7 +40,7 @@ public class EventDetail {
         return "Floors " + min_floor + " - " + max_floor + ". ";
     }
 
-    public List<EventIntegerRequirement> getRequirements() { return requirements; }
+    public List<EventRequirement> getRequirements() { return requirements; }
     public List<EventChoice> getChoices() { return choices; }
     public String getNotes() { return notes; }
 
@@ -60,9 +60,11 @@ public class EventDetail {
         if (!isFloorNumSatisfied())
             return false;
         else {
-            for (EventIntegerRequirement req : requirements) {
-                if (!req.isRequirementSatisfied())
-                    return false;
+            if (requirements != null) {
+                for (EventRequirement req : requirements) {
+                    if (!req.isRequirementSatisfied())
+                        return false;
+                }
             }
         }
 

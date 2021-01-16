@@ -260,7 +260,7 @@
       "requirements": [
         {
           "type": "AT_LEAST_X_GOLD",
-          "val": 75
+          "val": "75"
         }
       ],
       "notes": "[Offer Gold] requires the full 75 gold cost.",

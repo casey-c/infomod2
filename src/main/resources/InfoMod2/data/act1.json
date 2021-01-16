@@ -6,7 +6,6 @@
       "id": "Big Fish",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Banana",
@@ -42,7 +41,6 @@
       "id": "Dead Adventurer",
       "min_floor": 7,
       "max_floor": 14,
-      "requirements": [],
       "wide": true,
       "choices": [
         {
@@ -98,7 +96,6 @@
       "id": "Golden Idol",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Take",
@@ -162,7 +159,6 @@
       "id": "Mushrooms",
       "min_floor": 7,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Stomp",
@@ -190,7 +186,6 @@
       "id": "Living Wall",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Forget",
@@ -223,7 +218,6 @@
       "id": "Scrap Ooze",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Reach Inside",
@@ -267,7 +261,6 @@
       "id": "Shining Light",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Enter",
@@ -313,7 +306,7 @@
       "requirements": [
         {
           "type": "AT_LEAST_X_GOLD",
-          "val": 35
+          "val": "35"
         }
       ],
       "notes": "Both Heal and Purify require the full cost to be paid in order to be used.",
@@ -370,7 +363,6 @@
       "id": "Liars Game",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Agree",
@@ -413,7 +405,6 @@
       "id": "World of Goop",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Gather Gold",
@@ -470,7 +461,6 @@
       "id": "Golden Wing",
       "min_floor": 1,
       "max_floor": 14,
-      "requirements": [],
       "choices": [
         {
           "name": "Pray",

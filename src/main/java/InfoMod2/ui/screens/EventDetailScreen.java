@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 public class EventDetailScreen implements IScreen {
     private static final Texture TEX_BG = new Texture("InfoMod2/screens/events.png");
 
-    private EventGroupCard act1, act2;
+    private EventGroupCard act1, act2, act3;
 
     private static final float ACT_CARD_SPACING = 32.0f;
 
@@ -28,12 +28,16 @@ public class EventDetailScreen implements IScreen {
 
         // TODO: do something fancier to center it automatically?
         float left = 407.0f;
-        float topAct1 = 788.0f;
+        //float topAct1 = 788.0f;
+        float topAct1 = 811.0f;
 
         act1 = new EventGroupCard(left, topAct1, "Act I", EventDatabase.act1_events.values());
 
         float topAct2 = topAct1 - act1.getPreferredContentHeight() - ACT_CARD_SPACING;
         act2 = new EventGroupCard(left, topAct2, "Act II", EventDatabase.act2_events.values());
+
+        float topAct3 = topAct2 - act2.getPreferredContentHeight() - ACT_CARD_SPACING;
+        act3 = new EventGroupCard(left, topAct3, "Act III", EventDatabase.act3_events.values());
     }
 
     // --------------------------------------------------------------------------------
@@ -45,6 +49,7 @@ public class EventDetailScreen implements IScreen {
         // Update all child widgets
         act1.update();
         act2.update();
+        act3.update();
 
         // Let this screen close itself
         if (InputHelper.isMouseDown_R) {
@@ -75,9 +80,11 @@ public class EventDetailScreen implements IScreen {
 
         act1.render(sb);
         act2.render(sb);
+        act3.render(sb);
 
         act1.renderHovers(sb);
         act2.renderHovers(sb);
+        act3.renderHovers(sb);
     }
 
     @Override
@@ -95,6 +102,7 @@ public class EventDetailScreen implements IScreen {
         // Show all child widgets
         act1.show();
         act2.show();
+        act3.show();
     }
 
     @Override
@@ -102,5 +110,6 @@ public class EventDetailScreen implements IScreen {
         // Hide all child widgets
         act1.hide();
         act2.hide();
+        act3.hide();
     }
 }

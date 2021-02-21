@@ -58,4 +58,19 @@ public class ExtraColors {
     public static final Color EVENT_SCREEN_CARD_INACTIVE_HOVER = new Color(0.255f, 0.169f, 0.220f, 1.0f);
 
     // --------------------------------------------------------------------------------
+    // Tool tips (v2)
+    // --------------------------------------------------------------------------------
+    public static final Color TOOLTIP_OUTER = new Color(0.318f, 0.345f, 0.365f, 1.000f);
+    public static final Color TOOLTIP_INNER = new Color(0.376f, 0.455f, 0.514f, 1.000f);
+    public static final Color TOOLTIP_BASE = new Color(0.129f, 0.153f, 0.169f, 1.000f);
+
+    public static final Color TOOLTIP_TEXT_CREAM = new Color(0.945f, 0.914f, 0.824f, 1.000f);
+    public static final Color TOOLTIP_TEXT_GRAY = new Color(0.494f, 0.494f, 0.494f, 1.000f);
+
+    // Qualitative colors
+    public static final Color QUAL_TEAL = new Color(0.545f, 0.855f, 0.808f, 1.000f);
+    public static final Color QUAL_BLUE = new Color(0.055f, 0.667f, 0.824f, 1.000f);
+    public static final Color QUAL_RED = new Color(0.824f, 0.345f, 0.251f, 1.000f);
+    public static final Color QUAL_YELLOW = new Color(0.953f, 0.776f, 0.369f, 1.000f);
+    public static final Color QUAL_GREEN = new Color(0.608f, 0.835f, 0.396f, 1.000f);
 }

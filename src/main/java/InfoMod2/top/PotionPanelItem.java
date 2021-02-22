@@ -1,6 +1,8 @@
 package InfoMod2.top;
 
 import InfoMod2.ui.*;
+import InfoMod2.ui.widgets.tooltips.groups.MapTips;
+import InfoMod2.ui.widgets.tooltips.groups.PotionTips;
 import InfoMod2.utils.KeyHelper;
 import basemod.TopPanelItem;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,7 +25,7 @@ public class PotionPanelItem extends TopPanelItem {
 
     //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Multiline line", "test lorem ipsum").anchoredAtTop(1383);
     //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Single line test").anchoredAtTop(1383);
-    private PotionChanceTip potionChanceTip;
+//    private PotionChanceTip potionChanceTip;
 
     public PotionPanelItem() {
         super(tex, "ojb_InfoMod2_panel");
@@ -38,7 +40,7 @@ public class PotionPanelItem extends TopPanelItem {
         this.hitbox = new Hitbox(this.x, this.y, this.hb_w, this.hb_h);
 
         // Set up the tool tip
-        potionChanceTip = new PotionChanceTip(400, 360, "Chance to see at least one", "potion after multiple fights:").anchoredAtTop(1383);
+//        potionChanceTip = new PotionChanceTip(400, 360, "Chance to see at least one", "potion after multiple fights:").anchoredAtTop(1383);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class PotionPanelItem extends TopPanelItem {
         );
 
         if (currentlyHovering)
-            potionChanceTip.render(sb);
+            PotionTips.render(sb);
     }
 
     protected void onHover() {

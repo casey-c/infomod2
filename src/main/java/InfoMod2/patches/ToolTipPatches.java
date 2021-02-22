@@ -1,12 +1,11 @@
 package InfoMod2.patches;
 
-import InfoMod2.ui.DeckTip;
-import InfoMod2.ui.EventChanceTip;
-import InfoMod2.ui.MapTips;
+//import InfoMod2.ui.DeckTip;
+import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
+import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.screens.EventDetailScreen;
 import InfoMod2.utils.RightClickWatcher;
 import InfoMod2.utils.ScreenHelper;
-import InfoMod2.utils.SoundHelper;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -59,7 +58,8 @@ public class ToolTipPatches {
 
             // Show my custom deck tool tip
             if (!deckButtonDisabled && instance.deckHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                DeckTip.renderCustomMapTip(sb);
+                //DeckTip.renderCustomMapTip(sb);
+                // TODO
             }
         }
 

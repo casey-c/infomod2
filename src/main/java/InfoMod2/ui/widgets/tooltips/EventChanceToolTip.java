@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 //public class EventChanceToolTip extends ExtendedToolTip<EventChanceToolTip> {
 public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
+    private static final float SPACING = 37;
+
     public EventChanceToolTip() {
         super(293, 338, "Next [?] Floor", "Right-Click for full details");
     }
@@ -28,37 +30,36 @@ public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
     private String shopText = "3.00%";
     private String treasureText = "2.00%";
 
+
     @Override
     protected void renderContent(SpriteBatch sb, float left, float top) {
-        final float textLeft = left;
         final float detailLeft = left + 123;
 
-        final float infoSpacing = 37;
-        final float eventTop = top - 32;
+        float currY = top - 30;
 
         final Color eventColor = getEventColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Event", textLeft, eventTop, eventColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, eventText, detailLeft, eventTop, eventColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Event", left * Settings.scale, currY * Settings.scale, eventColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, eventText, detailLeft * Settings.scale, currY * Settings.scale, eventColor);
+        currY -= SPACING;
 
-        final float shrineTop = eventTop - infoSpacing;
         final Color shrineColor = getShrineColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shrine", textLeft, shrineTop, shrineColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, shrineText, detailLeft, shrineTop, shrineColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shrine", left * Settings.scale, currY * Settings.scale, shrineColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, shrineText, detailLeft * Settings.scale, currY * Settings.scale, shrineColor);
+        currY -= SPACING;
 
-        final float fightTop = shrineTop - infoSpacing;
         final Color fightColor = getFightColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Fight", textLeft, fightTop, fightColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fightText, detailLeft, fightTop, fightColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Fight", left * Settings.scale, currY * Settings.scale, fightColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fightText, detailLeft * Settings.scale, currY * Settings.scale, fightColor);
+        currY -= SPACING;
 
-        final float shopTop = fightTop - infoSpacing;
         final Color shopColor = getShopColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shop", textLeft, shopTop, shopColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, shopText, detailLeft, shopTop, shopColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shop", left * Settings.scale, currY * Settings.scale, shopColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, shopText, detailLeft * Settings.scale, currY * Settings.scale, shopColor);
+        currY -= SPACING;
 
-        final float treasureTop = shopTop - infoSpacing;
         final Color treasureColor = getTreasureColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Treasure", textLeft, treasureTop, treasureColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, treasureText, detailLeft, treasureTop, treasureColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Treasure", left * Settings.scale, currY * Settings.scale, treasureColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, treasureText, detailLeft * Settings.scale, currY * Settings.scale, treasureColor);
     }
 
     //    @Override

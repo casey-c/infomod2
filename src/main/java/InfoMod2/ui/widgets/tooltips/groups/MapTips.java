@@ -1,4 +1,4 @@
-package InfoMod2.ui;
+package InfoMod2.ui.widgets.tooltips.groups;
 
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.tooltips.BossToolTip;
@@ -11,20 +11,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class MapTips {
-//    private static EventChanceTip eventChanceTip;
-//    private static BossTip bossTip;
-
     private static EventChanceToolTip eventChanceToolTip;
     private static BossToolTip bossToolTip;
 
     private static final float MAP_TIPS_LEFT = 1575; // 1600
 
     public static void renderCustomMapTips(SpriteBatch sb) {
-
-//        this.left = left;
-//        //this.bottom = (float) Settings.HEIGHT - 89.0f - height;
-//        this.bottom = 1080.0f - 89.0f - height;
-
         if (eventChanceToolTip == null)
             eventChanceToolTip = new EventChanceToolTip().anchoredAt(MAP_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
 
@@ -35,17 +27,6 @@ public class MapTips {
 
         eventChanceToolTip.render(sb);
         bossToolTip.render(sb);
-
-//        if (eventChanceTip == null)
-//            eventChanceTip = new EventChanceTip().anchoredAtTop(1469);
-//
-//        if (bossTip == null) {
-//            bossTip = new BossTip().anchoredAtTopLeft(1469, eventChanceTip.getBottom() - 10);
-//            bossTip.setBosses("Hexaghost");
-//        }
-//
-//        eventChanceTip.render(sb);
-//        bossTip.render(sb);
     }
 
     // TODO: remove DEBUG
@@ -61,6 +42,5 @@ public class MapTips {
     public static void resetBossTip() {
         if (bossToolTip != null)
             bossToolTip.setBosses(new ArrayList<>());
-            //bossToolTip.setBosses(new ArrayList<>(Arrays.asList("Hexaghost", "The Champ")));
     }
 }

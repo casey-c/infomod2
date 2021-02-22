@@ -11,7 +11,7 @@ public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
     private static final float SPACING = 37;
 
     public EventChanceToolTip() {
-        super(293, 338, "Next [?] Floor", "Right-Click for full details");
+        super(261, 338, "Next [?] Floor", "Right-Click for full details");
     }
 
     // TODO: use config settings to enable/disable qualitative color scheme

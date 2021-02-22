@@ -15,7 +15,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 // TODO: eventually most of this will be extracted into a more generic TitledScreen, but this is the only screen
 //   I plan on having for the initial release so I haven't bothered.
 public class EventDetailScreen implements IScreen {
-    private static final Texture TEX_BG = new Texture("InfoMod2/screens/events.png");
+    private static final Texture TEX_BG = new Texture("InfoMod2/screens/screen_event.png");
+    private static final Texture SCREEN_GLOW = new Texture("InfoMod2/screens/screen_glow.png");
 
     private EventGroupCard act1, act2, act3;
 
@@ -58,9 +59,20 @@ public class EventDetailScreen implements IScreen {
     // --------------------------------------------------------------------------------
 
     public void renderBackground(SpriteBatch sb) {
-        sb.setColor(ExtraColors.SCREEN_DIM);
+        // Dim background
+        sb.setColor(ExtraColors.SCREEN_DIM_V2);
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
 
+        // Glow
+        sb.setColor(Color.WHITE);
+        sb.draw(SCREEN_GLOW,
+                (Settings.WIDTH - (SCREEN_GLOW.getWidth() * Settings.scale)) * 0.5f,
+                (Settings.HEIGHT - (SCREEN_GLOW.getHeight() * Settings.scale)) * 0.5f,
+                SCREEN_GLOW.getWidth() * Settings.scale,
+                SCREEN_GLOW.getHeight() * Settings.scale
+        );
+
+        // Main texture
         sb.setColor(Color.WHITE);
         sb.draw(TEX_BG,
                 (Settings.WIDTH - (TEX_BG.getWidth() * Settings.scale)) * 0.5f,
@@ -71,7 +83,7 @@ public class EventDetailScreen implements IScreen {
     }
 
     public void renderForeground(SpriteBatch sb) {
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Events", 928.0f * Settings.scale, 885.0f * Settings.scale, Settings.CREAM_COLOR);
+        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Events", 928.0f * Settings.scale, 885.0f * Settings.scale, ExtraColors.EVENT_SCREEN_CARD_ACTIVE);
 
         act1.render(sb);
         act2.render(sb);

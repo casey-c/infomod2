@@ -10,7 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 
 public class BossToolTip extends ExtendedToolTip<BossToolTip> {
-    public BossToolTip() { super(293, 128); }
+    //public BossToolTip() { super(293, 128); }
+    public BossToolTip() { super(261, 128); }
 
     private ArrayList<String> bossNames = new ArrayList<>();
     private ArrayList<SimpleLabel> bossLabels = new ArrayList<>();

@@ -1,0 +1,38 @@
+{
+  "type": "SHRINES",
+  "events": [
+    {
+      "name": "Falling",
+      "id": "Falling",
+      "min_floor": 36,
+      "max_floor": 48,
+      "notes": "You must lose a card to proceed out of this event - options are only available if you have cards of that particular type. With no cards in your deck (yes, this is possible), you can [Land] for free.",
+      "choices": [
+        {
+          "name": "Land",
+          "effects": [
+            {
+              "text": "Lose the chosen skill card."
+            }
+          ]
+        },
+        {
+          "name": "Channel",
+          "effects": [
+            {
+              "text": "Lose the chosen power card."
+            }
+          ]
+        },
+        {
+          "name": "Strike",
+          "effects": [
+            {
+              "text": "Lose the chosen attack card."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

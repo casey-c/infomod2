@@ -73,4 +73,5 @@ public class ExtraColors {
     public static final Color QUAL_RED = new Color(0.824f, 0.345f, 0.251f, 1.000f);
     public static final Color QUAL_YELLOW = new Color(0.953f, 0.776f, 0.369f, 1.000f);
     public static final Color QUAL_GREEN = new Color(0.608f, 0.835f, 0.396f, 1.000f);
+    public static final Color QUAL_PURPLE = new Color(0.890f, 0.502f, 0.890f, 1.000f);
 }

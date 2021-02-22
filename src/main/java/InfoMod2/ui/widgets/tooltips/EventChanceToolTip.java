@@ -20,9 +20,17 @@ public class EventChanceToolTip extends ExtendedToolTip<EventChanceToolTip> {
     private Color getShopColor() { return ExtraColors.QUAL_YELLOW; }
     private Color getTreasureColor() { return ExtraColors.QUAL_GREEN; }
 
+    // TODO: write update functions etc.
+    private String eventText = "63.75%";
+    private String shrineText = "21.25%";
+    private String fightText = "10.00%";
+    private String shopText = "3.00%";
+    private String treasureText = "2.00%";
+
     @Override
     public void renderForeground(SpriteBatch sb) {
         final float textLeft = getContentLeft() + 34;
+        final float detailLeft = textLeft + 123;
 
         // Title/Subtitle
         final float titleTop = getContentTop() - 31;
@@ -35,25 +43,37 @@ public class EventChanceToolTip extends ExtendedToolTip<EventChanceToolTip> {
         final float hruleTop = subtitleTop - 40;
         final float hruleInset = 6; // ?
 
-        sb.setColor(ExtraColors.TOOLTIP_TEXT_GRAY);
+        //sb.setColor(ExtraColors.TOOLTIP_TEXT_GRAY);
+        sb.setColor(ExtraColors.TOOLTIP_OUTER);
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, (getContentLeft() + hruleInset) * Settings.scale, (hruleTop * Settings.scale), (getPreferredContentWidth() - (2 * hruleInset)) * Settings.scale, 2.0f);
 
         // Main Information
         final float infoSpacing = 37;
 
         final float eventTop = hruleTop - 32;
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Event", textLeft, eventTop, getEventColor());
+
+        final Color eventColor = getEventColor();
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Event", textLeft, eventTop, eventColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, eventText, detailLeft, eventTop, eventColor);
 
         final float shrineTop = eventTop - infoSpacing;
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shrine", textLeft, shrineTop, getShrineColor());
+        final Color shrineColor = getShrineColor();
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shrine", textLeft, shrineTop, shrineColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, shrineText, detailLeft, shrineTop, shrineColor);
 
         final float fightTop = shrineTop - infoSpacing;
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Fight", textLeft, fightTop, getFightColor());
+        final Color fightColor = getFightColor();
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Fight", textLeft, fightTop, fightColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fightText, detailLeft, fightTop, fightColor);
 
         final float shopTop = fightTop - infoSpacing;
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shop", textLeft, shopTop, getShopColor());
+        final Color shopColor = getShopColor();
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shop", textLeft, shopTop, shopColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, shopText, detailLeft, shopTop, shopColor);
 
         final float treasureTop = shopTop - infoSpacing;
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Treasure", textLeft, treasureTop, getTreasureColor());
+        final Color treasureColor = getTreasureColor();
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Treasure", textLeft, treasureTop, treasureColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, treasureText, detailLeft, treasureTop, treasureColor);
     }
 }

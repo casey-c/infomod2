@@ -15,4 +15,18 @@ public class PotionTips {
 
         potionChanceTip.render(sb);
     }
+
+    public static void updatePotionChance(int chance) {
+        if (potionChanceTip == null)
+            potionChanceTip = new PotionChanceTip().anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
+
+        potionChanceTip.updatePotionChance(chance);
+    }
+
+    public static String getMainPotionChance() {
+        if (potionChanceTip == null)
+            potionChanceTip = new PotionChanceTip().anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
+
+        return potionChanceTip.getMainChanceText();
+    }
 }

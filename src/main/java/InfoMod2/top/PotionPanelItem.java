@@ -1,31 +1,21 @@
 package InfoMod2.top;
 
-import InfoMod2.ui.*;
-import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.widgets.tooltips.groups.PotionTips;
-import InfoMod2.utils.KeyHelper;
+import InfoMod2.utils.ExtraColors;
 import basemod.TopPanelItem;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class PotionPanelItem extends TopPanelItem {
-//    private static final float WIDTH = 64.0F;
-//    private static final float HEIGHT = 64.0F;
-//    private String ID;
-
     private boolean currentlyHovering = false;
 
     private static final Texture tex = new Texture("InfoMod2/panel_v4.png");
-    //private ThiccToolTip toolTip = new ThiccToolTip();
-    //private PotionChanceTip potionChanceTip = new PotionChanceTip();
-
-    //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Multiline line", "test lorem ipsum").anchoredAtTop(1383);
-    //TitledToolTip potionChanceTip = new TitledToolTip(400, 300, "Single line test").anchoredAtTop(1383);
-//    private PotionChanceTip potionChanceTip;
 
     public PotionPanelItem() {
         super(tex, "ojb_InfoMod2_panel");
@@ -38,27 +28,29 @@ public class PotionPanelItem extends TopPanelItem {
 
         this.image = tex;
         this.hitbox = new Hitbox(this.x, this.y, this.hb_w, this.hb_h);
-
-        // Set up the tool tip
-//        potionChanceTip = new PotionChanceTip(400, 360, "Chance to see at least one", "potion after multiple fights:").anchoredAtTop(1383);
     }
 
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
 
-        //float textLeft = (x + 68) * Settings.scale;
-        //float textBottom = (y + 21) * Settings.scale;
-        float textLeft = x + 68 * Settings.scale;
+        String text = PotionTips.getMainPotionChance();
+
+        // Slight shift left for 100% being wider than the others (might need 0% to shift right as well, need to check)
+        float offset = text.equals("100%") ? -6 * Settings.scale : 0;
+
+        float textLeft = x + offset + 68 * Settings.scale;
         float textBottom = y + 21 * Settings.scale;
+
+        // TODO: config option?
+        Color textColor = text.equals("80%") ? ExtraColors.rainbowColor() : Settings.CREAM_COLOR;
 
         FontHelper.renderFontLeftDownAligned(sb,
                 FontHelper.topPanelAmountFont,
-                "40%",
+                text,
                 textLeft,
                 textBottom,
-                //ExtraColors.rainbowColor()
-                Settings.CREAM_COLOR
+                textColor
         );
 
         if (currentlyHovering)
@@ -66,7 +58,6 @@ public class PotionPanelItem extends TopPanelItem {
     }
 
     protected void onHover() {
-//        this.angle = MathHelper.angleLerpSnap(this.angle, 15.0F);
         this.tint.a = 0.25F;
 
         if (!currentlyHovering) {
@@ -77,7 +68,6 @@ public class PotionPanelItem extends TopPanelItem {
     }
 
     protected void onUnhover() {
-//        this.angle = MathHelper.angleLerpSnap(this.angle, 0.0F);
         this.tint.a = 0.0F;
         currentlyHovering = false;
     }
@@ -86,10 +76,12 @@ public class PotionPanelItem extends TopPanelItem {
     protected void onClick() {
         CardCrawlGame.sound.play("DECK_OPEN");
 
+        System.out.println("Potion clicked... abstract room blizzard potion mod is: " + AbstractRoom.blizzardPotionMod);
+
         // Debug
-        if (KeyHelper.isShiftPressed())
-            MapTips.resetBossTip();
-        else
-            MapTips.updateBossTip("Champ");
+//        if (KeyHelper.isShiftPressed())
+//            MapTips.resetBossTip();
+//        else
+//            MapTips.updateBossTip("Champ");
     }
 }

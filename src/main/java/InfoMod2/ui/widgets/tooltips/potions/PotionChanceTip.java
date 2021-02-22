@@ -4,6 +4,7 @@ import InfoMod2.ui.widgets.tooltips.TitledToolTip;
 import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class PotionChanceTip extends TitledToolTip<PotionChanceTip> {
@@ -14,10 +15,32 @@ public class PotionChanceTip extends TitledToolTip<PotionChanceTip> {
     }
 
     // TODO: setters etc.
-    private String twoFightText = "70.0%";
-    private String threeFightText = "88.0%";
-    private String fourFightText = "96.4%";
-    private String fiveFightText = "99.3%";
+    private String oneFightText = "40%";
+    private String twoFightText = "0.0%";
+    private String threeFightText = "0.0%";
+    private String fourFightText = "0.0%";
+    private String fiveFightText = "0.0%";
+
+    public void updatePotionChance(int chance) {
+        float f = ((float) chance) / 100.0f;
+
+        float after2 = (1.0f - f) * (0.9f - f);
+        float after3 = after2 * (0.8f - f);
+        float after4 = after3 * (0.7f - f);
+        float after5 = after4 * (0.6f - f);
+
+        if (AbstractDungeon.player.hasRelic("Sozu")) {
+            after2 = after3 = after4 = after5 = 1.0f;
+        }
+
+        this.oneFightText = chance + "%";
+        this.twoFightText = String.format("%.01f%%", ((1.0f - after2) * 100.0f));
+        this.threeFightText = String.format("%.01f%%", ((1.0f - after3) * 100.0f));
+        this.fourFightText = String.format("%.01f%%", ((1.0f - after4) * 100.0f));
+        this.fiveFightText = String.format("%.01f%%", ((1.0f - after5) * 100.0f));
+    }
+
+    public String getMainChanceText() { return oneFightText; }
 
     @Override
     protected void renderContent(SpriteBatch sb, float left, float top) {

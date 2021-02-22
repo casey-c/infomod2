@@ -67,6 +67,11 @@ public class ExtraColors {
     public static final Color TOOLTIP_TEXT_CREAM = new Color(0.945f, 0.914f, 0.824f, 1.000f);
     public static final Color TOOLTIP_TEXT_GRAY = new Color(0.494f, 0.494f, 0.494f, 1.000f);
 
+    public static final Color TOOLTIP_TEXT_POTION_2 = new Color(0.694f, 0.843f, 0.765f, 1.000f);
+    public static final Color TOOLTIP_TEXT_POTION_3 = new Color(0.627f, 0.812f, 0.812f, 1.000f);
+    public static final Color TOOLTIP_TEXT_POTION_4 = new Color(0.529f, 0.682f, 0.753f, 1.000f);
+    public static final Color TOOLTIP_TEXT_POTION_5 = new Color(0.435f, 0.545f, 0.714f, 1.000f);
+
     // Qualitative colors
     public static final Color QUAL_TEAL = new Color(0.545f, 0.855f, 0.808f, 1.000f);
     public static final Color QUAL_BLUE = new Color(0.055f, 0.667f, 0.824f, 1.000f);

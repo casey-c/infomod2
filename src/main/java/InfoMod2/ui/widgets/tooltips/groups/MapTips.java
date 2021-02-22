@@ -1,27 +1,27 @@
 package InfoMod2.ui.widgets.tooltips.groups;
 
 import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.ui.widgets.tooltips.BossToolTip;
-import InfoMod2.ui.widgets.tooltips.EventChanceToolTip;
-import InfoMod2.ui.widgets.tooltips.ExtendedToolTip;
+import InfoMod2.ui.widgets.tooltips.map.BossToolTip;
+import InfoMod2.ui.widgets.tooltips.map.EventChanceToolTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class MapTips {
     private static EventChanceToolTip eventChanceToolTip;
     private static BossToolTip bossToolTip;
 
-    private static final float MAP_TIPS_LEFT = 1575; // 1600
+//    private static final float MAP_TIPS_LEFT = 1575; // 1600
+    private static final float MAP_TIPS_RIGHT = 1920 - 52;
 
     public static void renderCustomMapTips(SpriteBatch sb) {
         if (eventChanceToolTip == null)
-            eventChanceToolTip = new EventChanceToolTip().anchoredAt(MAP_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
+            eventChanceToolTip = new EventChanceToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f, AnchorPosition.RIGHT_TOP);
 
         if (bossToolTip == null) {
-            bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_LEFT, 1080.0f - 89.0f - 350.0f, AnchorPosition.LEFT_TOP);
+            // TODO: double check this Y coordinate (where tf did i come up with this)
+            bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f - 350.0f, AnchorPosition.RIGHT_TOP);
             bossToolTip.setBosses(new ArrayList<>(Arrays.asList("Hexaghost", "The Champ")));
         }
 

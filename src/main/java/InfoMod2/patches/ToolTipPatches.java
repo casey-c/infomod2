@@ -1,6 +1,5 @@
 package InfoMod2.patches;
 
-//import InfoMod2.ui.DeckTip;
 import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.screens.EventDetailScreen;
@@ -58,8 +57,7 @@ public class ToolTipPatches {
 
             // Show my custom deck tool tip
             if (!deckButtonDisabled && instance.deckHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                //DeckTip.renderCustomMapTip(sb);
-                // TODO
+                DeckTips.renderCustomDeckTips(sb);
             }
         }
 
@@ -100,6 +98,4 @@ public class ToolTipPatches {
             RightClickWatcher.update();
         }
     }
-
-    //public static void renderGenericTip(float x, float y, String header, String body) {
 }

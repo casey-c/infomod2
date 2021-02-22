@@ -1,15 +1,16 @@
-package InfoMod2.ui.widgets.tooltips;
+package InfoMod2.ui.widgets.tooltips.potions;
 
+import InfoMod2.ui.widgets.tooltips.TitledToolTip;
 import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
-public class PotionChanceTip extends TitledToolTip<PotionChanceTip>{
+public class PotionChanceTip extends TitledToolTip<PotionChanceTip> {
     private static final float SPACING = 37;
 
     public PotionChanceTip() {
-        super(293, 299, "Potion Chance", "After multiple floors");
+        super(234, 299, "Potion Chance", "After multiple floors");
     }
 
     // TODO: setters etc.

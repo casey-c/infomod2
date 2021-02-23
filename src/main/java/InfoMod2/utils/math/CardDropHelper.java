@@ -24,10 +24,8 @@ public class CardDropHelper {
     // --------------------------------------------------------------------------------
 
     public void setCBR(int cbr) {
-        if (this.cbr != cbr) {
-            this.cbr = cbr;
-            recompute();
-        }
+        this.cbr = cbr;
+        recompute();
     }
 
     private void updateTextCache() {

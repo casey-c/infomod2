@@ -20,9 +20,8 @@ public class MapTips {
             eventChanceToolTip = new EventChanceToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f, AnchorPosition.RIGHT_TOP);
 
         if (bossToolTip == null) {
-            // TODO: double check this Y coordinate (where tf did i come up with this)
             bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f - 350.0f, AnchorPosition.RIGHT_TOP);
-            bossToolTip.setBosses(new ArrayList<>(Arrays.asList("Hexaghost", "The Champ")));
+            //bossToolTip.setBosses(new ArrayList<>(Arrays.asList("Hexaghost", "The Champ")));
         }
 
         eventChanceToolTip.render(sb);
@@ -30,17 +29,35 @@ public class MapTips {
     }
 
     // TODO: remove DEBUG
-    public static void updateBossTip(String next) {
-        if (bossToolTip == null)
-            return;
+//    public static void updateBossTip(String next) {
+//        if (bossToolTip == null)
+//            return;
+//
+//        ArrayList<String> bosses = bossToolTip.getBossNames();
+//        bosses.add(next);
+//        bossToolTip.setBosses(bosses);
+//    }
+//
+//    public static void resetBossTip() {
+//        if (bossToolTip != null)
+//            bossToolTip.setBosses(new ArrayList<>());
+//    }
 
-        ArrayList<String> bosses = bossToolTip.getBossNames();
-        bosses.add(next);
-        bossToolTip.setBosses(bosses);
+    public static void addBoss(String name, boolean isA20SecondBoss) {
+        if (bossToolTip == null)
+            bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f - 350.0f, AnchorPosition.RIGHT_TOP);
+
+        bossToolTip.addBoss(name, isA20SecondBoss);
     }
 
     public static void resetBossTip() {
-        if (bossToolTip != null)
-            bossToolTip.setBosses(new ArrayList<>());
+        if (bossToolTip == null)
+            bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f - 350.0f, AnchorPosition.RIGHT_TOP);
+
+        bossToolTip.reset();
+    }
+
+    public static void refreshBossTip() {
+        bossToolTip.updateLabels();
     }
 }

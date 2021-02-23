@@ -20,23 +20,21 @@ public class MapTips {
 
     private static final float MAP_TIPS_RIGHT = 1920 - 52;
 
-    public static void renderCustomMapTips(SpriteBatch sb) {
+    private static void ensureExists() {
         if (eventChanceToolTip == null)
             eventChanceToolTip = new EventChanceToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f, AnchorPosition.RIGHT_TOP);
 
-        if (bossToolTip == null) {
+        if (bossToolTip == null)
             bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f - 350.0f, AnchorPosition.RIGHT_TOP);
-            //bossToolTip.setBosses(new ArrayList<>(Arrays.asList("Hexaghost", "The Champ")));
-        }
+    }
+
+    public static void renderCustomMapTips(SpriteBatch sb) {
+        ensureExists();
 
         eventChanceToolTip.render(sb);
         bossToolTip.render(sb);
     }
 
-    private static void ensureExists() {
-        if (bossToolTip == null)
-            bossToolTip = new BossToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f - 350.0f, AnchorPosition.RIGHT_TOP);
-    }
 
     public static void addBoss(String name, boolean isA20SecondBoss) {
         ensureExists();
@@ -51,6 +49,11 @@ public class MapTips {
     public static void refreshBossTip() {
         ensureExists();
         bossToolTip.updateLabels();
+    }
+
+    public static void updateEventChanceTip() {
+        ensureExists();
+        eventChanceToolTip.updateHelper();
     }
 
     public static void print() {

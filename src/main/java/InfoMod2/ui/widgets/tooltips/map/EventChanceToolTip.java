@@ -25,6 +25,10 @@ public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
     // TODO: write update functions etc.
     EventChanceHelper helper = new EventChanceHelper();
 
+    public void updateHelper() {
+        helper.update();
+    }
+
     @Override
     protected void renderContent(SpriteBatch sb, float left, float top) {
         final float detailLeft = left + 123;

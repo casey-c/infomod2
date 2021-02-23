@@ -1,4 +1,4 @@
-package InfoMod2.utils;
+package InfoMod2.utils.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;

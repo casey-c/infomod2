@@ -1,11 +1,9 @@
 package InfoMod2.ui.widgets.text;
 
 import InfoMod2.data.EventDetail;
-import InfoMod2.ui.tips.EventDetailTip;
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class HoverableEventLabel extends HoverableLabel {

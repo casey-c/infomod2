@@ -1,7 +1,7 @@
 package InfoMod2.ui.widgets.text;
 
 import InfoMod2.ui.widgets.AbstractWidget;
-import InfoMod2.utils.ExtraFonts;
+import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

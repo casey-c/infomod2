@@ -1,6 +1,6 @@
 package InfoMod2.data;
 
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

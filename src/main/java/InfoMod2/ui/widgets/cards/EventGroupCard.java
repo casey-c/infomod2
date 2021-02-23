@@ -5,7 +5,7 @@ import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.HoverableLabelGroup;
 import InfoMod2.ui.widgets.text.SimpleLabel;
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Collection;

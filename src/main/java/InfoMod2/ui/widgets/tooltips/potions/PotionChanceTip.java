@@ -1,7 +1,7 @@
 package InfoMod2.ui.widgets.tooltips.potions;
 
 import InfoMod2.ui.widgets.tooltips.TitledToolTip;
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

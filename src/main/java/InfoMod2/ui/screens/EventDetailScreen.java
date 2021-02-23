@@ -2,8 +2,8 @@ package InfoMod2.ui.screens;
 
 import InfoMod2.data.EventDatabase;
 import InfoMod2.ui.widgets.cards.EventGroupCard;
-import InfoMod2.utils.ExtraColors;
-import InfoMod2.utils.ScreenHelper;
+import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.ScreenHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

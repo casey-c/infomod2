@@ -1,5 +1,6 @@
 package InfoMod2.utils;
 
+import InfoMod2.utils.graphics.ScreenHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 

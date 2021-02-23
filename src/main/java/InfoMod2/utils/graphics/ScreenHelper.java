@@ -1,6 +1,7 @@
-package InfoMod2.utils;
+package InfoMod2.utils.graphics;
 
 import InfoMod2.ui.screens.IScreen;
+import InfoMod2.utils.SoundHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 // TODO: not really super generic, but good enough for simple non-hierarchical screens

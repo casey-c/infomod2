@@ -1,5 +1,6 @@
-package InfoMod2.utils;
+package InfoMod2.utils.graphics;
 
+import InfoMod2.utils.graphics.ExtraColors;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

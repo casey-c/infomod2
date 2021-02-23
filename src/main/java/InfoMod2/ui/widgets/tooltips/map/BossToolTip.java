@@ -3,7 +3,7 @@ package InfoMod2.ui.widgets.tooltips.map;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.SimpleLabel;
 import InfoMod2.ui.widgets.tooltips.ExtendedToolTip;
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.google.gson.JsonArray;

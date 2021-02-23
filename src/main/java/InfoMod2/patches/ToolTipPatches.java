@@ -4,7 +4,7 @@ import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.screens.EventDetailScreen;
 import InfoMod2.utils.RightClickWatcher;
-import InfoMod2.utils.ScreenHelper;
+import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;

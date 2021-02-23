@@ -2,7 +2,7 @@ package InfoMod2.top;
 
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.widgets.tooltips.groups.PotionTips;
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.ExtraColors;
 import basemod.TopPanelItem;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;

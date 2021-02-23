@@ -1,7 +1,7 @@
 package InfoMod2.ui.widgets.tooltips;
 
-import InfoMod2.utils.ExtraColors;
-import InfoMod2.utils.ExtraFonts;
+import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;

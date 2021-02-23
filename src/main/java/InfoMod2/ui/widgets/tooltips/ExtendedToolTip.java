@@ -1,8 +1,8 @@
 package InfoMod2.ui.widgets.tooltips;
 
 import InfoMod2.ui.widgets.AbstractWidget;
-import InfoMod2.utils.DynamicTextureBox;
-import InfoMod2.utils.ExtraColors;
+import InfoMod2.utils.graphics.DynamicTextureBox;
+import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class ExtendedToolTip<T extends ExtendedToolTip<T>> extends AbstractWidget<T> {

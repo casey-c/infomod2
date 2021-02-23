@@ -2,7 +2,7 @@ package InfoMod2;
 
 import InfoMod2.data.EventDatabase;
 import InfoMod2.top.PotionPanelItem;
-import InfoMod2.utils.ScreenHelper;
+import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.RenderSubscriber;

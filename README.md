@@ -38,7 +38,8 @@ Requires ModTheSpire and BaseMod (you can find them on the Steam workshop!). Cur
 
 To install:
 
-* Head over to the [releases page](https://github.com/casey-c/infomod2/releases) and download the latest InfoMod.jar file. Place it into your SlayTheSpire/mods directory. 
+* Remove any previous version of InfoMod from your SlayTheSpire/mods folder (you can delete InfoMod.jar as it is incompatible with this mod)
+* Head over to the [releases page](https://github.com/casey-c/infomod2/releases) and download the latest InfoMod2.jar file. Place it into your SlayTheSpire/mods directory. 
 * Launch the game with mods and make sure to check the box to enable InfoMod and the required BaseMod library.
   
 *NOTE: You may want to start a fresh game save first - as the boss indicator won't update correctly*

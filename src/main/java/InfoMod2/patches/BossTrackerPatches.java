@@ -2,7 +2,6 @@ package InfoMod2.patches;
 
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import basemod.BaseMod;
-import basemod.abstracts.CustomSavable;
 import basemod.abstracts.CustomSavableRaw;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PreStartGameSubscriber;
@@ -10,14 +9,11 @@ import basemod.interfaces.StartGameSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 public class BossTrackerPatches {
@@ -91,7 +87,6 @@ public class BossTrackerPatches {
 
         @Override
         public void receiveStartGame() {
-            System.out.println("Recv. a start game - going to refresh the boss tips? Current floor num is " + AbstractDungeon.floorNum);
             MapTips.refreshBossTip();
         }
     }

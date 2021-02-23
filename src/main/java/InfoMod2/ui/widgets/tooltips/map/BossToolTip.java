@@ -6,18 +6,15 @@ import InfoMod2.ui.widgets.tooltips.ExtendedToolTip;
 import InfoMod2.utils.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Json;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
 
 public class BossToolTip extends ExtendedToolTip<BossToolTip> {
-    //public BossToolTip() { super(293, 128); }
     public BossToolTip() { super(261, 128); }
 
     protected ArrayList<String> bossNames = new ArrayList<>();
@@ -43,24 +40,14 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
     public void updateLabels() {
         bossLabels.clear();
 
-        System.out.println("Updating labels. Current status of this obj looks like:");
-        System.out.println(this);
-
-        System.out.println();
-        System.out.println("AbstractDungeon.floorNum: " + AbstractDungeon.floorNum);
-
         // TODO: this was very lazy and is bad code and needs refactoring badly but whatever
         if (hasA20SecondBoss && AbstractDungeon.floorNum == 51) {
-            System.out.println("Floor 51");
-
             for (String name : bossNames)
                 bossLabels.add( new SimpleLabel(name, ExtraColors.TOOLTIP_TEXT_GRAY) );
 
             bossLabels.add( new SimpleLabel(a20SecondBossName, ExtraColors.QUAL_PURPLE) );
         }
         else if (hasA20SecondBoss && AbstractDungeon.floorNum > 51) {
-            System.out.println("Greater than Floor 51");
-
             for (int i = 0; i < bossNames.size() - 1; ++i)
                 bossLabels.add( new SimpleLabel(bossNames.get(i), ExtraColors.TOOLTIP_TEXT_GRAY) );
 
@@ -68,8 +55,6 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
             bossLabels.add( new SimpleLabel(bossNames.get(bossNames.size() - 1), ExtraColors.QUAL_PURPLE) );
         }
         else {
-            System.out.println("Else branch");
-
             for (int i = 0; i < bossNames.size(); ++i) {
                 Color labelColor = (i == bossNames.size() - 1) ? ExtraColors.QUAL_PURPLE : ExtraColors.TOOLTIP_TEXT_GRAY;
                 bossLabels.add( new SimpleLabel(bossNames.get(i), labelColor) );
@@ -112,25 +97,11 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
 
         obj.add("bossNames", arr);
 
-        System.out.println("Current obj looks like: ");
-        System.out.println(this);
-
-        System.out.println("Serializing...");
-        System.out.println(obj);
-        System.out.println();
-
         return obj;
     }
 
     public void deserialize(JsonObject obj) {
         reset();
-
-        System.out.println("Current obj looks like: ");
-        System.out.println(this);
-
-        System.out.println("Deserializing...");
-        System.out.println(obj);
-        System.out.println();
 
         if (obj.has("bossNames") && obj.get("bossNames").isJsonArray()) {
             JsonArray list = obj.get("bossNames").getAsJsonArray();

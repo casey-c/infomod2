@@ -85,6 +85,16 @@ public class EventDetailScreen implements IScreen {
     public void renderForeground(SpriteBatch sb) {
         FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Events", 928.0f * Settings.scale, 885.0f * Settings.scale, ExtraColors.EVENT_SCREEN_CARD_ACTIVE);
 
+        // WIP text (TODO: remove after finishing)
+        FontHelper.renderSmartText(sb,
+                FontHelper.tipBodyFont,
+                "Please pardon our dust - this screen is under construction! It should be ready for the full release, but for now it's only partially ready. (You can right click anywhere to close this overlay)",
+                1121 * Settings.scale,
+                768 * Settings.scale,
+                375 * Settings.scale,
+                32 * Settings.scale,
+                ExtraColors.DEBUG_TEXT_COLOR);
+
         act1.render(sb);
         act2.render(sb);
         act3.render(sb);

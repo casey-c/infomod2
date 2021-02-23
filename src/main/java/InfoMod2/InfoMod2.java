@@ -20,7 +20,6 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
 
     @Override
     public void receivePostInitialize() {
-        System.out.println("InfoMod2 reporting for duty");
         potionPanelItem = new PotionPanelItem();
         BaseMod.addTopPanelItem(potionPanelItem);
 

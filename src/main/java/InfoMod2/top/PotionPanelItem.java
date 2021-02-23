@@ -1,5 +1,6 @@
 package InfoMod2.top;
 
+import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.widgets.tooltips.groups.PotionTips;
 import InfoMod2.utils.ExtraColors;
 import basemod.TopPanelItem;
@@ -77,6 +78,9 @@ public class PotionPanelItem extends TopPanelItem {
         CardCrawlGame.sound.play("DECK_OPEN");
 
         System.out.println("Potion clicked... abstract room blizzard potion mod is: " + AbstractRoom.blizzardPotionMod);
+
+        System.out.println("Current boss tips: ");
+        MapTips.print();
 
         // Debug
 //        if (KeyHelper.isShiftPressed())

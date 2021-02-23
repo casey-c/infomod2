@@ -2,15 +2,22 @@ package InfoMod2.patches;
 
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import basemod.BaseMod;
+import basemod.abstracts.CustomSavable;
+import basemod.abstracts.CustomSavableRaw;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PreStartGameSubscriber;
+import basemod.interfaces.StartGameSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
+import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 public class BossTrackerPatches {
@@ -64,7 +71,7 @@ public class BossTrackerPatches {
     // TODO: save / load this data into the run file
 
     @SpireInitializer
-    public static class BossWatcher implements PreStartGameSubscriber, OnStartBattleSubscriber {
+    public static class BossWatcher implements PreStartGameSubscriber, OnStartBattleSubscriber, StartGameSubscriber {
         public static void initialize() { new BossWatcher(); }
         public BossWatcher() { BaseMod.subscribe(this); }
 
@@ -80,6 +87,33 @@ public class BossTrackerPatches {
             if (CardCrawlGame.isInARun() && AbstractDungeon.floorNum == 51 && AbstractDungeon.ascensionLevel == 20) {
                 MapTips.refreshBossTip();
             }
+        }
+
+        @Override
+        public void receiveStartGame() {
+            System.out.println("Recv. a start game - going to refresh the boss tips? Current floor num is " + AbstractDungeon.floorNum);
+            MapTips.refreshBossTip();
+        }
+    }
+
+    // Ensure the data is properly saved/loaded between game boots
+    @SpireInitializer
+    public static class BossSaveableHelper implements CustomSavableRaw {
+        public static void initialize() { new BossSaveableHelper(); }
+
+        public BossSaveableHelper() {
+            BaseMod.addSaveField("OJB_INFOMOD_BOSSES", this);
+        }
+
+        @Override
+        public JsonElement onSaveRaw() {
+            return MapTips.serialize();
+        }
+
+        @Override
+        public void onLoadRaw(JsonElement jsonElement) {
+            if (jsonElement.isJsonObject())
+                MapTips.deserialize(jsonElement.getAsJsonObject());
         }
     }
 

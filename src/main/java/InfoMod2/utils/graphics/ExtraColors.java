@@ -51,6 +51,7 @@ public class ExtraColors {
     // Screen v2
     //public static final Color SCREEN_OVERLAY = new Color(0.055f, 0.067f, 0.086f, 0.588f);
     public static final Color SCREEN_DIM_V2 = new Color(0.000f, 0.000f, 0.000f, 0.600f);
+    public static final Color SCREEN_GLOW_ALPHA = new Color(1.000f, 1.000f, 1.000f, 0.300f);
 
     public static final Color EVENT_SCREEN_CARD_TITLE = new Color(0.667f, 0.522f, 0.173f, 1.0f);
     public static final Color EVENT_SCREEN_CARD_NUM = new Color(0.478f, 0.451f, 0.376f, 1.0f);

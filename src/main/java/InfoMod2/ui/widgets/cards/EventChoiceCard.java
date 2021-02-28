@@ -9,6 +9,7 @@ import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
@@ -30,6 +31,31 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
             effectsLabel = new SmartLabel(sb.toString(), ExtraColors.TEXT_EVENT_DESC, FontHelper.tipBodyFont, 450.0f, 28.0f);
         else
             effectsLabel = new SmartLabel(sb.toString(), ExtraColors.TEXT_EVENT_DESC, FontHelper.tipBodyFont, 350.0f, 28.0f);
+
+        System.out.println("***********************");
+        System.out.println("Made event choice card: " + choice.getName());
+        System.out.println();
+        System.out.println("NON SCALED--------");
+        System.out.println("prefWidth: " + getPreferredContentWidth());
+        System.out.println("prefHeight: " + getPreferredContentHeight());
+        System.out.println();
+        System.out.println("Child choiceNameLabel has prefWidth: " + choiceNameLabel.getPreferredContentWidth());
+        System.out.println("Child choiceNameLabel has prefHeight: " + choiceNameLabel.getPreferredContentHeight());
+        System.out.println();
+        System.out.println("Child effectsLabel has prefWidth: " + effectsLabel.getPreferredContentWidth());
+        System.out.println("Child effectsLabel has prefHeight: " + effectsLabel.getPreferredContentHeight());
+        System.out.println();
+        System.out.println("SCALED--------");
+        System.out.println("prefWidth: " + getPreferredContentWidth() * Settings.scale);
+        System.out.println("prefHeight: " + getPreferredContentHeight() * Settings.scale);
+        System.out.println();
+        System.out.println("Child choiceNameLabel has prefWidth: " + choiceNameLabel.getPreferredContentWidth() * Settings.scale);
+        System.out.println("Child choiceNameLabel has prefHeight: " + choiceNameLabel.getPreferredContentHeight() * Settings.scale);
+        System.out.println();
+        System.out.println("Child effectsLabel has prefWidth: " + effectsLabel.getPreferredContentWidth() * Settings.scale);
+        System.out.println("Child effectsLabel has prefHeight: " + effectsLabel.getPreferredContentHeight() * Settings.scale);
+        System.out.println("***********************");
+        System.out.println();
     }
 
     public float getNameWidth() {

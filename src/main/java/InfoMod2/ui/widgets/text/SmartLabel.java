@@ -5,6 +5,7 @@ import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class SmartLabel extends AbstractWidget<SmartLabel> {
@@ -35,16 +36,24 @@ public class SmartLabel extends AbstractWidget<SmartLabel> {
         this.text = text;
 
         ExtraFonts.BetterBlockDetails size = ExtraFonts.getSmartSize(font, text, lineWidth, lineSpacing);
-        this.textWidth = size.fullBlockWidth;
-        this.textHeight = size.fullBlockHeight;
+        this.textWidth = size.fullBlockWidth / Settings.scale;
+        this.textHeight = size.fullBlockHeight / Settings.scale;
+
+        System.out.println("------------");
+        System.out.println("Setting smart label text: " + text);
+        System.out.println("It has a textWidth of " + textWidth);
+        System.out.println("It has a textHeight of " + textHeight);
+        System.out.println("(Both in 1080p space?)");
+        System.out.println("------------");
+        System.out.println();
     }
 
     // Already in 1080p space
-    @Override public float getPreferredContentWidth() { return textWidth; }
-    @Override public float getPreferredContentHeight() { return textHeight; }
+    @Override public float getPreferredContentWidth() { return textWidth / Settings.scale; }
+    @Override public float getPreferredContentHeight() { return textHeight / Settings.scale; }
 
     @Override
     public void render(SpriteBatch sb) {
-        FontHelper.renderSmartText(sb, font, text, getContentLeft(), getContentTop(), lineWidth, lineSpacing, textColor);
+        FontHelper.renderSmartText(sb, font, text, getContentLeft() * Settings.scale, getContentTop() * Settings.scale, lineWidth * Settings.scale, lineSpacing * Settings.scale, textColor);
     }
 }

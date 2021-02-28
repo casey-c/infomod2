@@ -2,6 +2,7 @@ package InfoMod2;
 
 import InfoMod2.data.EventDatabase;
 import InfoMod2.top.PotionPanelItem;
+import InfoMod2.ui.screens.DebugScreen;
 import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
@@ -18,6 +19,9 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
 
     private PotionPanelItem potionPanelItem;
 
+    // DEBUG: TODO remove
+    private DebugScreen debugScreen;
+
     @Override
     public void receivePostInitialize() {
         potionPanelItem = new PotionPanelItem();
@@ -28,11 +32,15 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
         EventDatabase.load("/InfoMod2/data/act2.json");
         EventDatabase.load("/InfoMod2/data/act3.json");
         EventDatabase.load("/InfoMod2/data/shrines.json");
+
+        debugScreen = new DebugScreen();
     }
 
     @Override
     public void receiveRender(SpriteBatch sb) {
         if (ScreenHelper.isScreenUp())
             ScreenHelper.render(sb);
+
+        debugScreen.render(sb);
     }
 }

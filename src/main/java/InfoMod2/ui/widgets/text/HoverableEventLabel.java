@@ -4,6 +4,7 @@ import InfoMod2.data.EventDetail;
 import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class HoverableEventLabel extends HoverableLabel {
@@ -33,6 +34,6 @@ public class HoverableEventLabel extends HoverableLabel {
 
     @Override
     protected void renderText(SpriteBatch sb) {
-        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft(), getContentBottom(), getTextColor());
+        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.scale, getContentBottom() * Settings.scale, getTextColor());
     }
 }

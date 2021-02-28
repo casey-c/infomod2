@@ -123,8 +123,11 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     public void render(SpriteBatch sb) {
         float w = tooltipWidth + 46.0f;
 
-        float left = InputHelper.mX + 40.0f;
-        float top = InputHelper.mY - 50.0f;
+        // Need 1080p space on the mouse coordinates
+        float left = (InputHelper.mX / Settings.scale) + 40.0f;
+        float top = (InputHelper.mY / Settings.scale) - 50.0f;
+
+        System.out.println("EventDetailTip (left, top): \t(" + left + ", " + top + ") - name = " + detail.getName());
 
         float textLeft = left + 23.0f;
 

@@ -37,6 +37,6 @@ public class SimpleLabel extends AbstractWidget<SimpleLabel> {
 
     @Override
     public void render(SpriteBatch sb) {
-        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft(), getContentBottom(), textColor);
+        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.scale, getContentBottom() * Settings.scale, textColor);
     }
 }

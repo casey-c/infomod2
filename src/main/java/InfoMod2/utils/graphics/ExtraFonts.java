@@ -176,7 +176,7 @@ public class ExtraFonts {
     // TODO: for Bestiary (a past mod of mine), I actually customized this entirely to remove crashes with trailing #
     //  and to support a larger range of custom characters. Because this project is only interested in a better
     //  FontHelper.getSmartHeight() [for now, at least], I'm leaving this as is.
-    private static Color identifyColor(String word) {
+    public static Color identifyColor(String word) {
         if (word.length() > 0 && word.charAt(0) == '#') {
             switch(word.charAt(1)) {
                 case 'b':
@@ -193,7 +193,7 @@ public class ExtraFonts {
                     return Color.WHITE;
             }
         } else {
-            return Color.WHITE;
+            return null;
         }
     }
 
@@ -206,15 +206,17 @@ public class ExtraFonts {
         public BetterBlockDetails() {}
 
         public BetterBlockDetails(float w, float h) {
-            this.fullBlockWidth = w / Settings.scale;
-            this.fullBlockHeight = h / Settings.scale;
+            this.fullBlockWidth = w * Settings.scale;
+            this.fullBlockHeight = h * Settings.scale;
         }
     }
 
     public static BetterBlockDetails getSmartSize(BitmapFont font, String msg, float lineWidth, float lineSpacing) {
         if (msg == null) {
             return new BetterBlockDetails();
-        } else if (Settings.lineBreakViaCharacter) {
+        }
+        // Localization related for non english languages (e.g. ZHT, JPN - though not ENG which is why I'm ignoring it)
+        else if (Settings.lineBreakViaCharacter) {
             //return -getHeightForCharLineBreak(font, msg, lineWidth, lineSpacing);
             return new BetterBlockDetails();
         } else {

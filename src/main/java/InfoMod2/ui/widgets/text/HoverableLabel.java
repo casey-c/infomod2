@@ -55,7 +55,7 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
 
     protected void renderText(SpriteBatch sb) {
         Color debugColor = hb.hovered ? Color.GREEN : fontColor;
-        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft(), getContentBottom(), debugColor);
+        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.scale, getContentBottom() * Settings.scale, debugColor);
     }
 
     // Subclasses can override this for more useful behavior

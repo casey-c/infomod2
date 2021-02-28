@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class ExtendedToolTip<T extends ExtendedToolTip<T>> extends AbstractWidget<T> {
 
-    private DynamicTextureBox textureBox = new DynamicTextureBox("InfoMod2/tooltip2/")
+    private final DynamicTextureBox textureBox = new DynamicTextureBox("InfoMod2/dtb/mainToolTips.atlas")
             .withColors(ExtraColors.TOOLTIP_OUTER, ExtraColors.TOOLTIP_INNER, ExtraColors.TOOLTIP_BASE);
 
     protected float prefWidth;

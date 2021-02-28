@@ -23,7 +23,7 @@ import java.util.List;
 
 public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private EventDetail detail;
-    private DynamicTextureBox textureBox;
+//    private DynamicTextureBox textureBox;
 
 //    private SimpleLabel titleLabel;
 //    private LinkedList<SimpleLabel> reqLabels = new LinkedList<>();
@@ -43,7 +43,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     public EventDetailTip(EventDetail detail) {
         setDetail(detail);
-        textureBox = new DynamicTextureBox("InfoMod2/event_tooltip/").withColors(ExtraColors.EVENT_TOOLTIP_BASE, ExtraColors.EVENT_TOOLTIP_TRIM, ExtraColors.EVENT_TOOLTIP_BASE);
+//        textureBox = new DynamicTextureBox("InfoMod2/event_tooltip/").withColors(ExtraColors.EVENT_TOOLTIP_BASE, ExtraColors.EVENT_TOOLTIP_TRIM, ExtraColors.EVENT_TOOLTIP_BASE);
     }
 
     public void setDetail(EventDetail detail) {
@@ -163,7 +163,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         float h = top - realBottom;
 
-        textureBox.render(sb, left, realBottom + verticalOffset, w, h);
+//        textureBox.render(sb, left, realBottom + verticalOffset, w, h);
 
         // Render the name of the event
         titleLabel.anchoredAt(textLeft, titleBottom + verticalOffset, AnchorPosition.LEFT_BOTTOM);

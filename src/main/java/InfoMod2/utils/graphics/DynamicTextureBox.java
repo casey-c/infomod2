@@ -126,20 +126,30 @@ public class DynamicTextureBox {
 //        sb.draw(LEFT_EDGE_BASE, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
     }
 
-    public void renderEdge(SpriteBatch sb, float left, float bottom, float width, float height, float wScale, float hScale, float rot) { }
 
     // TODO: move all scaling inside render
     //       then -> make sure inner pieces are square from left/bottom/top/right (e.g. scaled by Settings.scale, not xS/yS)
 
     public void renderCorner(SpriteBatch sb, float scaledLeft, float scaledBottom, float scaledSize, float rot) {
-        sb.setColor(Color.RED);
-        sb.draw(TOP_LEFT_CORNER_OUTER,
+        sb.setColor(outerBevelColor);
+        sb.draw(TOP_LEFT_CORNER_OUTER, scaledLeft, scaledBottom, 0, 0, scaledSize, scaledSize, 1, 1, rot);
+
+        sb.setColor(innerBevelColor);
+        sb.draw(TOP_LEFT_CORNER_INNER, scaledLeft, scaledBottom, 0, 0, scaledSize, scaledSize, 1, 1, rot);
+
+        sb.setColor(baseColor);
+        sb.draw(TOP_LEFT_CORNER_BASE, scaledLeft, scaledBottom, 0, 0, scaledSize, scaledSize, 1, 1, rot);
+    }
+
+    public void renderEdge(SpriteBatch sb, float scaledLeft, float scaledBottom, float scaledWidth, float scaledHeight, float rot) {
+//        sb.setColor(Color.RED);
+        sb.draw(LEFT_EDGE_OUTER,
                 scaledLeft,
                 scaledBottom,
                 0,
                 0,
-                scaledSize,
-                scaledSize,
+                scaledWidth,
+                scaledHeight,
                 1,
                 1,
                 rot);
@@ -168,27 +178,28 @@ public class DynamicTextureBox {
         float scaledInnerWidth = scaledInnerRight - scaledInnerLeft;
         float scaledInnerHeight = scaledInnerTop - scaledInnerBottom;
 
-        sb.setColor(DEBUG_COLOR);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, scaledLeft, scaledBottom, scaledWidth, scaledHeight);
-
-        sb.setColor(DEBUG_COLOR);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, scaledInnerLeft, scaledInnerBottom, scaledInnerWidth, scaledInnerHeight);
-
         // Corners
         renderCorner(sb, scaledLeft, scaledInnerTop, scaledCornerSize, 0); // top left
         renderCorner(sb, scaledInnerLeft, scaledBottom, scaledCornerSize, 90); // bottom left
         renderCorner(sb, scaledInnerRight + scaledCornerSize, scaledBottom + scaledCornerSize, scaledCornerSize, 180); // bottom left
         renderCorner(sb, scaledInnerRight, scaledInnerTop + scaledCornerSize, scaledCornerSize, -90); // bottom left
-//        renderCorner(sb, scaledInnerLeft + scaledCornerSize, bottom, Settings.yScale, Settings.xScale, 90); // bottom left
-//        renderCorner(sb, innerRight + SIZE, bottom + SIZE, Settings.xScale, Settings.yScale, 180); // bottom right
-//        renderCorner(sb, innerRight, innerTop + SIZE, Settings.yScale, Settings.xScale, -90); // top right
 
-//        float innerBottom = bottom * Settings.yScale + SIZE * Settings.scale;
-//        float innerRight = left + width - SIZE;
-//        float innerTop = bottom + height - SIZE;
+        // Edges
+        sb.setColor(Color.RED);
+        renderEdge(sb, scaledLeft, scaledInnerBottom, scaledCornerSize, scaledInnerHeight, 0); // left edge
 
-//        float edgeWidth = innerRight - innerLeft;
-//        float edgeHeight = innerTop - innerBottom;
+        sb.setColor(Color.GREEN);
+        renderEdge(sb, scaledInnerLeft + scaledInnerWidth, scaledBottom, scaledCornerSize, scaledInnerWidth, 90); // bottom edge
+
+        sb.setColor(Color.BLUE);
+        renderEdge(sb, scaledInnerRight + scaledCornerSize, scaledInnerBottom + scaledInnerHeight, scaledCornerSize, scaledInnerHeight, 180); // right edge
+
+        sb.setColor(Color.PURPLE);
+        renderEdge(sb, scaledInnerLeft, scaledInnerTop + scaledCornerSize, scaledCornerSize, scaledInnerWidth, -90); // top edge
+
+//        renderEdge(sb, innerLeft + edgeWidth, bottom, SIZE, edgeWidth, Settings.yScale, Settings.xScale, 90); // bottom edge
+//        renderEdge(sb, innerRight + SIZE, innerBottom + edgeHeight, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 180); // right edge
+//        renderEdge(sb, innerLeft, innerTop + SIZE, SIZE, edgeWidth, Settings.yScale, Settings.xScale, -90); // top edge
     }
 
     public void render2(SpriteBatch sb, float left, float bottom, float width, float height) {

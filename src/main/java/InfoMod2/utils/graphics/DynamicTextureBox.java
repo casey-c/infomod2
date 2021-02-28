@@ -108,19 +108,21 @@ public class DynamicTextureBox {
 
     public void renderCorner(SpriteBatch sb, float left, float bottom, float rot, float wScale, float hScale) {
         sb.setColor(outerBevelColor);
+        sb.draw(TOP_LEFT_CORNER_OUTER,
+                left * Settings.xScale,
+                bottom * Settings.yScale,
+                0,
+                0,
+                SIZE * wScale,
+                SIZE * hScale,
+                1,
+                1,
+                rot);
+    }
 
-        //sb.draw(TOP_LEFT_CORNER_OUTER, left * Settings.xScale, bottom * Settings.yScale, CENTER_X, CENTER_Y, SIZE * Settings.xScale, SIZE * Settings.yScale, 1, 1, rot);
-        sb.draw(TOP_LEFT_CORNER_OUTER, left * Settings.xScale, bottom * Settings.yScale, 0, 0, SIZE * wScale, SIZE * hScale, 1, 1, rot);
-
-//        sb.draw(TOP_LEFT_CORNER_OUTER,
-//                left * Settings.xScale, bottom * Settings.yScale,
-//                CENTER_X, CENTER_Y,
-//                SIZE * Settings.xScale, SIZE * Settings.yScale,
-//                1, 1,
-//                0,
-//                0, 0,
-//                SIZE, SIZE,
-//                flipX, flipY);
+    public void renderEdge(SpriteBatch sb, TextureRegion tex, float left, float bottom, float width, float height, float wScale, float hScale, float rot) {
+        sb.setColor(Color.RED);
+        sb.draw(tex, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
     }
 
     public void render(SpriteBatch sb, float left, float bottom, float width, float height) {
@@ -136,6 +138,24 @@ public class DynamicTextureBox {
         renderCorner(sb, left + SIZE, bottom, 90, Settings.yScale, Settings.xScale); // bottom left
         renderCorner(sb, innerRight + SIZE, bottom + SIZE, 180, Settings.xScale, Settings.yScale); // bottom right
         renderCorner(sb, innerRight, innerTop + SIZE, -90, Settings.yScale, Settings.xScale); // top right
+
+        renderEdge(sb, EDGE_OUTER, left, innerBottom, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 0); // left edge
+        renderEdge(sb, EDGE_OUTER, innerRight + SIZE, innerBottom + edgeHeight, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 180); // right edge
+
+        renderEdge(sb,
+                EDGE_OUTER,
+                innerLeft + edgeWidth, bottom,
+                SIZE, edgeWidth,
+                Settings.yScale, Settings.xScale,
+                90); // bottom edge
+
+        renderEdge(sb,
+                EDGE_OUTER,
+                innerLeft, innerTop + SIZE,
+                SIZE, edgeWidth,
+                Settings.yScale, Settings.xScale,
+                -90); // top edge
+
 
 //        renderCorner(sb, left, innerTop, false, false); // top left
 //        renderCorner(sb, innerRight, innerTop, true, false); // top right

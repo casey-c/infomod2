@@ -2,6 +2,7 @@ package InfoMod2.utils.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -100,7 +101,7 @@ public class DynamicTextureBox {
         return this;
     }
 
-    public void renderCorner(SpriteBatch sb, float left, float bottom, float wScale, float hScale, float rot) {
+    public void renderCorner2(SpriteBatch sb, float left, float bottom, float wScale, float hScale, float rot) {
         sb.setColor(outerBevelColor);
         sb.draw(TOP_LEFT_CORNER_OUTER, left * Settings.xScale, bottom * Settings.yScale, 0, 0, SIZE * wScale, SIZE * hScale, 1, 1, rot);
 
@@ -111,43 +112,116 @@ public class DynamicTextureBox {
         sb.draw(TOP_LEFT_CORNER_BASE, left * Settings.xScale, bottom * Settings.yScale, 0, 0, SIZE * wScale, SIZE * hScale, 1, 1, rot);
     }
 
-    public void renderEdge(SpriteBatch sb, float left, float bottom, float width, float height, float wScale, float hScale, float rot) {
-        sb.setColor(outerBevelColor);
+    private static final Color DEBUG_COLOR = new Color(0.1f, 0.8f, 0.1f, 0.6f);
+
+    public void renderEdge2(SpriteBatch sb, float left, float bottom, float width, float height, float wScale, float hScale, float rot) {
+//        sb.setColor(outerBevelColor);
+        sb.setColor(Color.RED);
         sb.draw(LEFT_EDGE_OUTER, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
 
-        sb.setColor(innerBevelColor);
-        sb.draw(LEFT_EDGE_INNER, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
-
-        sb.setColor(baseColor);
-        sb.draw(LEFT_EDGE_BASE, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
+//        sb.setColor(innerBevelColor);
+//        sb.draw(LEFT_EDGE_INNER, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
+//
+//        sb.setColor(baseColor);
+//        sb.draw(LEFT_EDGE_BASE, left * Settings.xScale, bottom * Settings.yScale, 0, 0, width * wScale, height * hScale, 1, 1, rot);
     }
 
+    public void renderEdge(SpriteBatch sb, float left, float bottom, float width, float height, float wScale, float hScale, float rot) { }
+
+    // TODO: move all scaling inside render
+    //       then -> make sure inner pieces are square from left/bottom/top/right (e.g. scaled by Settings.scale, not xS/yS)
+
+    public void renderCorner(SpriteBatch sb, float scaledLeft, float scaledBottom, float scaledSize, float rot) {
+        sb.setColor(Color.RED);
+        sb.draw(TOP_LEFT_CORNER_OUTER,
+                scaledLeft,
+                scaledBottom,
+                0,
+                0,
+                scaledSize,
+                scaledSize,
+                1,
+                1,
+                rot);
+    }
+
+
     public void render(SpriteBatch sb, float left, float bottom, float width, float height) {
-        float innerLeft = left + SIZE;
-        float innerBottom = bottom + SIZE;
-        float innerRight = left + width - SIZE;
-        float innerTop = bottom + height - SIZE;
+        // Scaled dimensions
+        float scaledCornerSize = SIZE * Settings.scale;
+        float scaledWidth = width * Settings.xScale;
+        float scaledHeight = height * Settings.yScale;
 
-        float edgeWidth = innerRight - innerLeft;
-        float edgeHeight = innerTop - innerBottom;
+        // Scaled outer bounds
+        float scaledLeft = left * Settings.xScale;
+        float scaledBottom = bottom * Settings.yScale;
+        float scaledRight = scaledLeft + scaledWidth;
+        float scaledTop = scaledBottom + scaledHeight;
 
-        renderCorner(sb, left, innerTop, Settings.xScale, Settings.yScale, 0); // top left
-        renderCorner(sb, left + SIZE, bottom, Settings.yScale, Settings.xScale, 90); // bottom left
-        renderCorner(sb, innerRight + SIZE, bottom + SIZE, Settings.xScale, Settings.yScale, 180); // bottom right
-        renderCorner(sb, innerRight, innerTop + SIZE, Settings.yScale, Settings.xScale, -90); // top right
+        // Scaled inner bounds
+        float scaledInnerLeft = scaledLeft + scaledCornerSize;
+        float scaledInnerBottom = scaledBottom + scaledCornerSize;
+        float scaledInnerRight = scaledRight - scaledCornerSize;
+        float scaledInnerTop = scaledTop - scaledCornerSize;
 
-        renderEdge(sb, left, innerBottom, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 0); // left edge
-        renderEdge(sb, innerLeft + edgeWidth, bottom, SIZE, edgeWidth, Settings.yScale, Settings.xScale, 90); // bottom edge
-        renderEdge(sb, innerRight + SIZE, innerBottom + edgeHeight, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 180); // right edge
-        renderEdge(sb, innerLeft, innerTop + SIZE, SIZE, edgeWidth, Settings.yScale, Settings.xScale, -90); // top edge
+        // Inner dimensions
+        float scaledInnerWidth = scaledInnerRight - scaledInnerLeft;
+        float scaledInnerHeight = scaledInnerTop - scaledInnerBottom;
 
-        // Render center
-        sb.setColor(baseColor);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, innerLeft * Settings.xScale, innerBottom * Settings.yScale, edgeWidth * Settings.xScale, edgeHeight * Settings.yScale);
+        sb.setColor(DEBUG_COLOR);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, scaledLeft, scaledBottom, scaledWidth, scaledHeight);
 
-//        renderCorner(sb, left, innerTop, false, false); // top left
-//        renderCorner(sb, innerRight, innerTop, true, false); // top right
-//        renderCorner(sb, innerRight, bottom, true, true); // bottom right
+        sb.setColor(DEBUG_COLOR);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, scaledInnerLeft, scaledInnerBottom, scaledInnerWidth, scaledInnerHeight);
+
+        // Corners
+        renderCorner(sb, scaledLeft, scaledInnerTop, scaledCornerSize, 0); // top left
+        renderCorner(sb, scaledInnerLeft, scaledBottom, scaledCornerSize, 90); // bottom left
+        renderCorner(sb, scaledInnerRight + scaledCornerSize, scaledBottom + scaledCornerSize, scaledCornerSize, 180); // bottom left
+        renderCorner(sb, scaledInnerRight, scaledInnerTop + scaledCornerSize, scaledCornerSize, -90); // bottom left
+//        renderCorner(sb, scaledInnerLeft + scaledCornerSize, bottom, Settings.yScale, Settings.xScale, 90); // bottom left
+//        renderCorner(sb, innerRight + SIZE, bottom + SIZE, Settings.xScale, Settings.yScale, 180); // bottom right
+//        renderCorner(sb, innerRight, innerTop + SIZE, Settings.yScale, Settings.xScale, -90); // top right
+
+//        float innerBottom = bottom * Settings.yScale + SIZE * Settings.scale;
+//        float innerRight = left + width - SIZE;
+//        float innerTop = bottom + height - SIZE;
+
+//        float edgeWidth = innerRight - innerLeft;
+//        float edgeHeight = innerTop - innerBottom;
+    }
+
+    public void render2(SpriteBatch sb, float left, float bottom, float width, float height) {
+//        float innerLeft = left + SIZE;
+//        float innerBottom = bottom + SIZE;
+//        float innerRight = left + width - SIZE;
+//        float innerTop = bottom + height - SIZE;
+//
+//        float edgeWidth = innerRight - innerLeft;
+//        float edgeHeight = innerTop - innerBottom;
+//
+//        renderCorner(sb, left, innerTop, Settings.xScale, Settings.yScale, 0); // top left
+//        renderCorner(sb, left + SIZE, bottom, Settings.yScale, Settings.xScale, 90); // bottom left
+//        renderCorner(sb, innerRight + SIZE, bottom + SIZE, Settings.xScale, Settings.yScale, 180); // bottom right
+//        renderCorner(sb, innerRight, innerTop + SIZE, Settings.yScale, Settings.xScale, -90); // top right
+//
+//        renderEdge(sb, left, innerBottom, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 0); // left edge
+//        renderEdge(sb, innerLeft + edgeWidth, bottom, SIZE, edgeWidth, Settings.yScale, Settings.xScale, 90); // bottom edge
+//        renderEdge(sb, innerRight + SIZE, innerBottom + edgeHeight, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 180); // right edge
+//        renderEdge(sb, innerLeft, innerTop + SIZE, SIZE, edgeWidth, Settings.yScale, Settings.xScale, -90); // top edge
+//
+//        // Render center
+//        sb.setColor(baseColor);
+//        sb.draw(ImageMaster.WHITE_SQUARE_IMG, innerLeft * Settings.xScale, innerBottom * Settings.yScale, edgeWidth * Settings.xScale, edgeHeight * Settings.yScale);
+//
+//        // Render debug region
+//        sb.setColor(DEBUG_COLOR);
+//        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 100 * Settings.xScale, 100 * Settings.yScale, SIZE * Settings.xScale, SIZE * Settings.yScale);
+//        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 400 * Settings.xScale, 100 * Settings.yScale, SIZE, SIZE);
+//
+////        renderCorner(sb, left, innerTop, false, false); // top left
+////        renderCorner(sb, innerRight, innerTop, true, false); // top right
+////        renderCorner(sb, innerRight, bottom, true, true); // bottom right
     }
 
 //    // Rendered in order OUTER BEVEL -> INNER BEVEL -> BASE (on top, last)

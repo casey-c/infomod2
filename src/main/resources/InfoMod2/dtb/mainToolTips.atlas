@@ -18,6 +18,13 @@ leftEdgeInner
   orig: 64, 64
   offset: 0, 0
   index: -1
+topLeftCornerInner
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 leftEdgeOuter
   rotate: false
   xy: 2, 2
@@ -26,13 +33,6 @@ leftEdgeOuter
   offset: 0, 0
   index: -1
 topLeftCornerBase
-  rotate: false
-  xy: 332, 2
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
-topLeftCornerInner
   rotate: false
   xy: 266, 2
   size: 64, 64

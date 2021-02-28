@@ -142,17 +142,14 @@ public class DynamicTextureBox {
     }
 
     public void renderEdge(SpriteBatch sb, float scaledLeft, float scaledBottom, float scaledWidth, float scaledHeight, float rot) {
-//        sb.setColor(Color.RED);
-        sb.draw(LEFT_EDGE_OUTER,
-                scaledLeft,
-                scaledBottom,
-                0,
-                0,
-                scaledWidth,
-                scaledHeight,
-                1,
-                1,
-                rot);
+        sb.setColor(outerBevelColor);
+        sb.draw(LEFT_EDGE_OUTER, scaledLeft, scaledBottom, 0, 0, scaledWidth, scaledHeight, 1, 1, rot);
+
+        sb.setColor(innerBevelColor);
+        sb.draw(LEFT_EDGE_INNER, scaledLeft, scaledBottom, 0, 0, scaledWidth, scaledHeight, 1, 1, rot);
+
+        sb.setColor(baseColor);
+        sb.draw(LEFT_EDGE_BASE, scaledLeft, scaledBottom, 0, 0, scaledWidth, scaledHeight, 1, 1, rot);
     }
 
 
@@ -185,21 +182,14 @@ public class DynamicTextureBox {
         renderCorner(sb, scaledInnerRight, scaledInnerTop + scaledCornerSize, scaledCornerSize, -90); // bottom left
 
         // Edges
-        sb.setColor(Color.RED);
         renderEdge(sb, scaledLeft, scaledInnerBottom, scaledCornerSize, scaledInnerHeight, 0); // left edge
-
-        sb.setColor(Color.GREEN);
         renderEdge(sb, scaledInnerLeft + scaledInnerWidth, scaledBottom, scaledCornerSize, scaledInnerWidth, 90); // bottom edge
-
-        sb.setColor(Color.BLUE);
         renderEdge(sb, scaledInnerRight + scaledCornerSize, scaledInnerBottom + scaledInnerHeight, scaledCornerSize, scaledInnerHeight, 180); // right edge
-
-        sb.setColor(Color.PURPLE);
         renderEdge(sb, scaledInnerLeft, scaledInnerTop + scaledCornerSize, scaledCornerSize, scaledInnerWidth, -90); // top edge
 
-//        renderEdge(sb, innerLeft + edgeWidth, bottom, SIZE, edgeWidth, Settings.yScale, Settings.xScale, 90); // bottom edge
-//        renderEdge(sb, innerRight + SIZE, innerBottom + edgeHeight, SIZE, edgeHeight, Settings.xScale, Settings.yScale, 180); // right edge
-//        renderEdge(sb, innerLeft, innerTop + SIZE, SIZE, edgeWidth, Settings.yScale, Settings.xScale, -90); // top edge
+        // Center
+        sb.setColor(baseColor);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, scaledInnerLeft, scaledInnerBottom, scaledInnerWidth, scaledInnerHeight);
     }
 
     public void render2(SpriteBatch sb, float left, float bottom, float width, float height) {

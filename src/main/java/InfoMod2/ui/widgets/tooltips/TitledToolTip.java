@@ -32,12 +32,12 @@ public class TitledToolTip<T extends TitledToolTip<T>> extends ExtendedToolTip<T
 
 
     protected float renderTitle(SpriteBatch sb, float left, float top) {
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, title, left * Settings.scale, top * Settings.scale, ExtraColors.TOOLTIP_TEXT_CREAM);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, title, left * Settings.xScale, top * Settings.yScale, ExtraColors.TOOLTIP_TEXT_CREAM);
         return top - 34;
     }
 
     protected float renderSubtitle(SpriteBatch sb, float left, float top) {
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), subtitle, left * Settings.scale, top * Settings.scale, ExtraColors.TOOLTIP_TEXT_GRAY);
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), subtitle, left * Settings.xScale, top * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
         return top - 34; // TODO: technically font dependent
     }
 
@@ -46,7 +46,7 @@ public class TitledToolTip<T extends TitledToolTip<T>> extends ExtendedToolTip<T
         float width = getPreferredContentWidth() - (2 * DIVIDER_X_INSET);
 
         sb.setColor(ExtraColors.TOOLTIP_OUTER);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, left * Settings.scale, top * Settings.scale, width * Settings.scale, 2);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, left * Settings.xScale, top * Settings.yScale, width * Settings.xScale, 2);
 
         return top - 4;
     }

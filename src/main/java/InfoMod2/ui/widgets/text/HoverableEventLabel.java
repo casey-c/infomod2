@@ -34,6 +34,6 @@ public class HoverableEventLabel extends HoverableLabel {
 
     @Override
     protected void renderText(SpriteBatch sb) {
-        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.scale, getContentBottom() * Settings.scale, getTextColor());
+        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.xScale, getContentBottom() * Settings.yScale, getTextColor());
     }
 }

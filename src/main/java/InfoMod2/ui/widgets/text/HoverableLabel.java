@@ -42,20 +42,20 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
 
     // Helper: returns the width that the label would take up in 1080p space
     public static float getPredictedWidth(String text) {
-        return FontHelper.getWidth(font, text, 1.0f) / Settings.scale;
+        return FontHelper.getWidth(font, text, 1.0f) / Settings.xScale;
     }
 
     // --------------------------------------------------------------------------------
 
     // Note that we are "fixing" the scaling back into our 1080p basis, since tW and tH are prescaled by FontHelper.
-    @Override public float getPreferredContentWidth() { return textWidth / Settings.scale; }
-    @Override public float getPreferredContentHeight() { return textHeight / Settings.scale; }
+    @Override public float getPreferredContentWidth() { return textWidth / Settings.xScale; }
+    @Override public float getPreferredContentHeight() { return textHeight / Settings.yScale; }
 
     // --------------------------------------------------------------------------------
 
     protected void renderText(SpriteBatch sb) {
         Color debugColor = hb.hovered ? Color.GREEN : fontColor;
-        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.scale, getContentBottom() * Settings.scale, debugColor);
+        FontHelper.renderFontLeftDownAligned(sb, font, text, getContentLeft() * Settings.xScale, getContentBottom() * Settings.yScale, debugColor);
     }
 
     // Subclasses can override this for more useful behavior
@@ -72,6 +72,6 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
 
     // --------------------------------------------------------------------------------
 
-    @Override public void show() { hb.move(getContentCenterX() * Settings.scale, getContentCenterY() * Settings.scale); }
+    @Override public void show() { hb.move(getContentCenterX() * Settings.xScale, getContentCenterY() * Settings.yScale); }
     @Override public void hide() { hb.move(-10000.0f, -10000.0f); }
 }

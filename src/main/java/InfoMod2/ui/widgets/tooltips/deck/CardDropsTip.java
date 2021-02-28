@@ -37,28 +37,28 @@ public class CardDropsTip extends TitledToolTip<CardDropsTip> {
         float currY = top - 30;
 
         // Table headers
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Regular", col2 * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Elite", col3 * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_GRAY);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Regular", col2 * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Elite", col3 * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
 
         currY -= SPACING;
 
         // Rare
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Rare", left * Settings.scale, currY * Settings.scale, ExtraColors.QUAL_YELLOW);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getRareChance(), col2 * Settings.scale, currY * Settings.scale, ExtraColors.QUAL_YELLOW);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getRareChanceElite(), col3 * Settings.scale, currY * Settings.scale, ExtraColors.QUAL_YELLOW);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Rare", left * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_YELLOW);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getRareChance(), col2 * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_YELLOW);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getRareChanceElite(), col3 * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_YELLOW);
 
         currY -= SPACING;
 
         // Uncommon
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Uncommon", left * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_3);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getUncommonChance(), col2 * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_3);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getUncommonChanceElite(), col3 * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_3);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Uncommon", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_3);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getUncommonChance(), col2 * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_3);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getUncommonChanceElite(), col3 * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_3);
 
         currY -= SPACING;
 
         // Common
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Common", left * Settings.scale, currY * Settings.scale, ExtraColors.QUAL_BEIGE);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getCommonChance(), col2 * Settings.scale, currY * Settings.scale, ExtraColors.QUAL_BEIGE);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getCommonChanceElite(), col3 * Settings.scale, currY * Settings.scale, ExtraColors.QUAL_BEIGE);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Common", left * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_BEIGE);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getCommonChance(), col2 * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_BEIGE);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getCommonChanceElite(), col3 * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_BEIGE);
     }
 }

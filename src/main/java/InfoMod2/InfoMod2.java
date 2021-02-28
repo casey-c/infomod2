@@ -20,7 +20,7 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
     private PotionPanelItem potionPanelItem;
 
     // DEBUG: TODO remove
-    private DebugScreen debugScreen;
+//    private DebugScreen debugScreen;
 
     @Override
     public void receivePostInitialize() {
@@ -33,7 +33,7 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
         EventDatabase.load("/InfoMod2/data/act3.json");
         EventDatabase.load("/InfoMod2/data/shrines.json");
 
-        debugScreen = new DebugScreen();
+//        debugScreen = new DebugScreen();
     }
 
     @Override
@@ -41,6 +41,6 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
         if (ScreenHelper.isScreenUp())
             ScreenHelper.render(sb);
 
-        debugScreen.render(sb);
+//        debugScreen.render(sb);
     }
 }

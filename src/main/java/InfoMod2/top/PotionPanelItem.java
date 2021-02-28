@@ -38,6 +38,8 @@ public class PotionPanelItem extends TopPanelItem {
         String text = PotionTips.getMainPotionChance();
 
         // Slight shift left for 100% being wider than the others (might need 0% to shift right as well, need to check)
+        // TODO: do a shift right for 0% as well!
+        // TODO: make the shifts better for different resolution scaling?
         float offset = text.equals("100%") ? -6 * Settings.scale : 0;
 
         float textLeft = x + offset + 68 * Settings.scale;

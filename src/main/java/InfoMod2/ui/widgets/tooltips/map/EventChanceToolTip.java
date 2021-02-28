@@ -36,27 +36,27 @@ public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
         float currY = top - 30;
 
         final Color eventColor = getEventColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Event", left * Settings.scale, currY * Settings.scale, eventColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getEventChance(), detailLeft * Settings.scale, currY * Settings.scale, eventColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Event", left * Settings.xScale, currY * Settings.yScale, eventColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getEventChance(), detailLeft * Settings.xScale, currY * Settings.yScale, eventColor);
         currY -= SPACING;
 
         final Color shrineColor = getShrineColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shrine", left * Settings.scale, currY * Settings.scale, shrineColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getShrineChance(), detailLeft * Settings.scale, currY * Settings.scale, shrineColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shrine", left * Settings.xScale, currY * Settings.yScale, shrineColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getShrineChance(), detailLeft * Settings.xScale, currY * Settings.yScale, shrineColor);
         currY -= SPACING;
 
         final Color fightColor = getFightColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Fight", left * Settings.scale, currY * Settings.scale, fightColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getFightChance(), detailLeft * Settings.scale, currY * Settings.scale, fightColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Fight", left * Settings.xScale, currY * Settings.yScale, fightColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getFightChance(), detailLeft * Settings.xScale, currY * Settings.yScale, fightColor);
         currY -= SPACING;
 
         final Color shopColor = getShopColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shop", left * Settings.scale, currY * Settings.scale, shopColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getShopChance(), detailLeft * Settings.scale, currY * Settings.scale, shopColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Shop", left * Settings.xScale, currY * Settings.yScale, shopColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getShopChance(), detailLeft * Settings.xScale, currY * Settings.yScale, shopColor);
         currY -= SPACING;
 
         final Color treasureColor = getTreasureColor();
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Treasure", left * Settings.scale, currY * Settings.scale, treasureColor);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getTreasureChance(), detailLeft * Settings.scale, currY * Settings.scale, treasureColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Treasure", left * Settings.xScale, currY * Settings.yScale, treasureColor);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, helper.getTreasureChance(), detailLeft * Settings.xScale, currY * Settings.yScale, treasureColor);
     }
 }

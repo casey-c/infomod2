@@ -66,33 +66,38 @@ public class EventDetailScreen implements IScreen {
         // Glow
         sb.setColor(ExtraColors.SCREEN_GLOW_ALPHA);
         sb.draw(SCREEN_GLOW,
-                (Settings.WIDTH - (SCREEN_GLOW.getWidth() * Settings.scale)) * 0.5f,
-                (Settings.HEIGHT - (SCREEN_GLOW.getHeight() * Settings.scale)) * 0.5f,
-                SCREEN_GLOW.getWidth() * Settings.scale,
-                SCREEN_GLOW.getHeight() * Settings.scale
+                (Settings.WIDTH - (SCREEN_GLOW.getWidth() * Settings.xScale)) * 0.5f,
+                (Settings.HEIGHT - (SCREEN_GLOW.getHeight() * Settings.yScale)) * 0.5f,
+                SCREEN_GLOW.getWidth() * Settings.xScale,
+                SCREEN_GLOW.getHeight() * Settings.yScale
         );
 
         // Main texture
         sb.setColor(Color.WHITE);
         sb.draw(TEX_BG,
-                (Settings.WIDTH - (TEX_BG.getWidth() * Settings.scale)) * 0.5f,
-                (Settings.HEIGHT - (TEX_BG.getHeight() * Settings.scale)) * 0.5f,
-                TEX_BG.getWidth() * Settings.scale,
-                TEX_BG.getHeight() * Settings.scale
+                (Settings.WIDTH - (TEX_BG.getWidth() * Settings.xScale)) * 0.5f,
+                (Settings.HEIGHT - (TEX_BG.getHeight() * Settings.yScale)) * 0.5f,
+                TEX_BG.getWidth() * Settings.xScale,
+                TEX_BG.getHeight() * Settings.yScale
         );
     }
 
     public void renderForeground(SpriteBatch sb) {
-        FontHelper.renderFontLeftDownAligned(sb, FontHelper.tipBodyFont, "Events", 928.0f * Settings.scale, 885.0f * Settings.scale, ExtraColors.EVENT_SCREEN_CARD_ACTIVE);
+        FontHelper.renderFontLeftDownAligned(sb,
+                FontHelper.tipBodyFont,
+                "Events",
+                928.0f * Settings.xScale,
+                885.0f * Settings.yScale,
+                ExtraColors.EVENT_SCREEN_CARD_ACTIVE);
 
         // WIP text (TODO: remove after finishing)
         FontHelper.renderSmartText(sb,
                 FontHelper.tipBodyFont,
                 "Please pardon our dust - this screen is under construction! It should be ready for the full release, but for now it's only partially ready. (You can right click anywhere to close this overlay)",
-                1121 * Settings.scale,
-                768 * Settings.scale,
-                375 * Settings.scale,
-                32 * Settings.scale,
+                1121 * Settings.xScale,
+                768 * Settings.yScale,
+                375 * Settings.xScale,
+                32 * Settings.yScale,
                 ExtraColors.DEBUG_TEXT_COLOR);
 
         act1.render(sb);

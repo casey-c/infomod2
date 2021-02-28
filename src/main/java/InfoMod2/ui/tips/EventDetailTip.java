@@ -6,14 +6,15 @@ import InfoMod2.data.EventRequirement;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.cards.EventChoiceCard;
-import InfoMod2.ui.widgets.text.SimpleLabel;
-import InfoMod2.ui.widgets.text.SmartLabel;
+//import InfoMod2.ui.widgets.text.SimpleLabel;
+import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
 import InfoMod2.utils.graphics.DynamicTextureBox;
 import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
@@ -24,12 +25,15 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private EventDetail detail;
     private DynamicTextureBox textureBox;
 
-    private SimpleLabel titleLabel;
-    private LinkedList<SimpleLabel> reqLabels = new LinkedList<>();
+//    private SimpleLabel titleLabel;
+//    private LinkedList<SimpleLabel> reqLabels = new LinkedList<>();
+    private NewSmartLabel titleLabel;
+    private LinkedList<NewSmartLabel> reqLabels = new LinkedList<>();
 
     private List<EventChoiceCard> choiceCards = new LinkedList<>();
 
-    private SmartLabel notesLabel;
+    //private SmartLabel notesLabel;
+    private NewSmartLabel notesLabel;
 
     private float tooltipWidth;
     private float totalHeightChoiceCards;
@@ -44,7 +48,8 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     public void setDetail(EventDetail detail) {
         this.detail = detail;
-        this.titleLabel = new SimpleLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
+        //this.titleLabel = new SimpleLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
+        this.titleLabel = new NewSmartLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
         updateDetails();
     }
 
@@ -53,12 +58,14 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         reqLabels.clear();
 
         // Floors: x - y
-        reqLabels.add(new SimpleLabel(detail.getFloorString(), detail.getFloorNumStringTextColor(), ExtraFonts.smallItalicFont()));
+        //reqLabels.add(new SimpleLabel(detail.getFloorString(), detail.getFloorNumStringTextColor(), ExtraFonts.smallItalicFont()));
+        reqLabels.add(new NewSmartLabel(detail.getFloorString(), ExtraFonts.smallItalicFont(), detail.getFloorNumStringTextColor()));
 
         // Other requirements (e.g. requires 35 gold)
         if (detail.hasRequirements()) {
             for (EventRequirement req : detail.getRequirements())
-                reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
+//                reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
+                reqLabels.add(new NewSmartLabel(req.getText(), ExtraFonts.smallItalicFont(), req.getTextColor()));
         }
 
         // Choices
@@ -69,8 +76,10 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
             EventChoiceCard card = new EventChoiceCard(choice, detail.isWide());
 
             float cardNameWidth = card.getNameWidth();
-            if (cardNameWidth > maxCardNameWidth)
-                maxCardNameWidth = cardNameWidth;
+
+            maxCardNameWidth = Math.max(cardNameWidth, maxCardNameWidth);
+//            if (cardNameWidth > maxCardNameWidth)
+//                maxCardNameWidth = cardNameWidth;
 
             choiceCards.add(card);
         }
@@ -83,7 +92,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         float maxWidth = titleLabel.getPreferredContentWidth();
 
         float reqLabelTotalWidth = 0.0f;
-        for (SimpleLabel label : reqLabels) {
+        for (NewSmartLabel label : reqLabels) {
             reqLabelTotalWidth += label.getPreferredContentWidth() + REQ_LABEL_SPACING;
         }
 
@@ -107,7 +116,9 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Notes
         if (detail.hasNotes()) {
-            this.notesLabel = new SmartLabel(detail.getNotes(), Color.GRAY, ExtraFonts.medItalicFontNoShadow(), tooltipWidth, 28.0f);
+            //this.notesLabel = new SmartLabel(detail.getNotes(), Color.GRAY, ExtraFonts.medItalicFontNoShadow(), tooltipWidth, 28.0f);
+            this.notesLabel = new NewSmartLabel(detail.getNotes(), ExtraFonts.medItalicFontNoShadow(), Color.GRAY, tooltipWidth, 28.0f);
+            //this.notesLabel = new SmartLabel(detail.getNotes(), Color.GRAY, ExtraFonts.medItalicFontNoShadow(), tooltipWidth, 28.0f);
         }
 
     }
@@ -124,8 +135,8 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         float w = tooltipWidth + 46.0f;
 
         // Need 1080p space on the mouse coordinates
-        float left = (InputHelper.mX / Settings.scale) + 40.0f;
-        float top = (InputHelper.mY / Settings.scale) - 50.0f;
+        float left = (InputHelper.mX / Settings.xScale) + 40.0f;
+        float top = (InputHelper.mY / Settings.yScale) - 50.0f;
 
         System.out.println("EventDetailTip (left, top): \t(" + left + ", " + top + ") - name = " + detail.getName());
 
@@ -161,7 +172,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         // Render all the requirements for this event
         float currX = textLeft;
 
-        for (SimpleLabel label : reqLabels) {
+        for (NewSmartLabel label : reqLabels) {
             label.anchoredAt(currX, reqBottom + verticalOffset, AnchorPosition.LEFT_BOTTOM);
             label.render(sb);
             currX += label.getPreferredContentWidth() + REQ_LABEL_SPACING;
@@ -170,7 +181,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         // Render the divider line
         final float DIVIDER_OFFSET = 23.0f;
         sb.setColor(ExtraColors.DIVIDER_COLOR);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.scale, (dividerBottom + verticalOffset) * Settings.scale, (w - (2 * DIVIDER_OFFSET)) * Settings.scale, 3.0f);
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + DIVIDER_OFFSET) * Settings.xScale, (dividerBottom + verticalOffset) * Settings.yScale, (w - (2 * DIVIDER_OFFSET)) * Settings.xScale, 3.0f);
 
         // Choice cards
         float currY = dividerBottom - 22.0f;

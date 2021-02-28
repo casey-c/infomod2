@@ -25,8 +25,8 @@ public class ToolTipPatches {
             method = "renderTopRightIcons"
     )
     public static class TopPanelRenderTopRightPreventionPatch {
-        private static final float TOP_RIGHT_TIP_X = 1550.0f * Settings.scale;
-        private static final float TIP_Y = (float)Settings.HEIGHT - 120.0f * Settings.scale;
+        private static final float TOP_RIGHT_TIP_X = 1550.0f * Settings.xScale;
+        private static final float TIP_Y = (float)Settings.HEIGHT - 120.0f * Settings.yScale;
 
         @SpirePrefixPatch
         public static void Prefix(TopPanel _instance, SpriteBatch _sb) {

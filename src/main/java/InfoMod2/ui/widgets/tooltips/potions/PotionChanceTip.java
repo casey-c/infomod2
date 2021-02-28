@@ -48,19 +48,19 @@ public class PotionChanceTip extends TitledToolTip<PotionChanceTip> {
 
         float currY = top - 30;
 
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "2 Fights", left * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_2);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, twoFightText, detailsLeft * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_2);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "2 Fights", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_2);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, twoFightText, detailsLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_2);
         currY -= SPACING;
 
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "3 Fights", left * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_3);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, threeFightText, detailsLeft * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_3);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "3 Fights", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_3);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, threeFightText, detailsLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_3);
         currY -= SPACING;
 
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "4 Fights", left * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_4);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fourFightText, detailsLeft * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_4);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "4 Fights", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_4);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fourFightText, detailsLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_4);
         currY -= SPACING;
 
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "5 Fights", left * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_5);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fiveFightText, detailsLeft * Settings.scale, currY * Settings.scale, ExtraColors.TOOLTIP_TEXT_POTION_5);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "5 Fights", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_5);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, fiveFightText, detailsLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_POTION_5);
     }
 }

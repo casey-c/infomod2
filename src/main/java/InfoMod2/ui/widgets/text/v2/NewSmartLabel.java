@@ -122,36 +122,32 @@ public class NewSmartLabel extends AbstractWidget<NewSmartLabel> {
                 currWidth += (spaceWidth * 5.0f);
             }
             else {
-                // Handle things like #gWord being "Word" but in green
-                if (ExtraFonts.identifyColor(word) != null)
+                // Strip out leading color info, e.g. #rRed -> Red
+                if (ExtraFonts.wordStartsWithPoundColor(word))
                     word = word.substring(2);
 
                 layout.setText(font, word);
 
                 if (currWidth + layout.width > scaledLineWidth) {
-                    //blockWidth = Math.max(curWidth, blockWidth);
-
                     currWidth = layout.width + spaceWidth;
                     blockWidth = Math.max(currWidth, blockWidth);
 
                     blockHeight += scaledLineSpacing;
 
                     System.out.println("TOO WIDE - made new line");
-                    System.out.println("Current width is " + currWidth);
-                    System.out.println("Current blockWidth is " + blockWidth);
-                    System.out.println("Current blockHeight is " + blockHeight);
-                    System.out.println();
                 }
                 else {
                     currWidth += (layout.width + spaceWidth);
                     blockWidth = Math.max(currWidth, blockWidth);
 
                     System.out.println("Fits on existing line");
-                    System.out.println("Current width is " + currWidth);
-                    System.out.println("Current blockWidth is " + blockWidth);
-                    System.out.println("Current blockHeight is " + blockHeight);
-                    System.out.println();
                 }
+
+                // DEBUG
+                System.out.println("Current width is " + currWidth);
+                System.out.println("Current blockWidth is " + blockWidth);
+                System.out.println("Current blockHeight is " + blockHeight);
+                System.out.println();
             }
         }
 

@@ -173,9 +173,30 @@ public class ExtraFonts {
     // --------------------------------------------------------------------------------
     // Slightly reworked base game code
 
+    // TODO: make sure any changes to the list of acceptable colors used in identifyColor are reflected here as well
+    //   (Should refactor to ensure this statically, but right now no plans to update these colors and I'm lazy)
+    //   I.E. ****DON'T JUST BLINDLY UPDATE THIS: future dummy version of me****
+    public static boolean wordStartsWithPoundColor(String word) {
+        if (word.startsWith("#b"))
+            return true;
+        else if (word.startsWith("#g"))
+            return true;
+        else if (word.startsWith("#p"))
+            return true;
+        else if (word.startsWith("#r"))
+            return true;
+        else if (word.startsWith("#y"))
+            return true;
+        else
+            return false;
+    }
+
     // TODO: for Bestiary (a past mod of mine), I actually customized this entirely to remove crashes with trailing #
     //  and to support a larger range of custom characters. Because this project is only interested in a better
     //  FontHelper.getSmartHeight() [for now, at least], I'm leaving this as is.
+    //
+    // TODO: make sure any changes to the list of acceptable colors used in wordStartsWithPoundColor are reflected here as well
+    //   I.E. ****DON'T JUST BLINDLY UPDATE THIS: future dummy version of me****
     public static Color identifyColor(String word) {
         if (word.length() > 0 && word.charAt(0) == '#') {
             switch(word.charAt(1)) {
@@ -193,7 +214,7 @@ public class ExtraFonts {
                     return Color.WHITE;
             }
         } else {
-            return null;
+            return Color.WHITE;
         }
     }
 

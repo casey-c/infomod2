@@ -9,24 +9,25 @@ public class PotionTips {
 
     private static final float POTION_TIPS_LEFT = 1480; //1452; // 1575; // 1600;
 
-    public static void render(SpriteBatch sb) {
+    private static void ensureExists() {
         if (potionChanceTip == null)
-            potionChanceTip = new PotionChanceTip().anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
+            potionChanceTip = new PotionChanceTip();//.anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
+    }
 
+    public static void render(SpriteBatch sb, float centerX) {
+        ensureExists();
+
+        potionChanceTip.anchoredAt(centerX, 1080.0f - 89.0f, AnchorPosition.CENTER_TOP);
         potionChanceTip.render(sb);
     }
 
     public static void updatePotionChance(int chance) {
-        if (potionChanceTip == null)
-            potionChanceTip = new PotionChanceTip().anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
-
+        ensureExists();
         potionChanceTip.updatePotionChance(chance);
     }
 
     public static String getMainPotionChance() {
-        if (potionChanceTip == null)
-            potionChanceTip = new PotionChanceTip().anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
-
+        ensureExists();
         return potionChanceTip.getMainChanceText();
     }
 }

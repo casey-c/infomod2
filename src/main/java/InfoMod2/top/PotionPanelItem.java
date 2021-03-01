@@ -1,6 +1,5 @@
 package InfoMod2.top;
 
-import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.widgets.tooltips.groups.PotionTips;
 import InfoMod2.utils.graphics.ExtraColors;
 import basemod.TopPanelItem;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class PotionPanelItem extends TopPanelItem {
     private boolean currentlyHovering = false;
@@ -56,8 +54,10 @@ public class PotionPanelItem extends TopPanelItem {
                 textColor
         );
 
-        if (currentlyHovering)
-            PotionTips.render(sb);
+        if (currentlyHovering) {
+            float centerX =  (x + 0.5f * hb_w) / Settings.xScale;
+            PotionTips.render(sb, centerX);
+        }
     }
 
     protected void onHover() {
@@ -79,15 +79,13 @@ public class PotionPanelItem extends TopPanelItem {
     protected void onClick() {
         CardCrawlGame.sound.play("DECK_OPEN");
 
-        System.out.println("Potion clicked... abstract room blizzard potion mod is: " + AbstractRoom.blizzardPotionMod);
-
-        System.out.println("Current boss tips: ");
-        MapTips.print();
-
-        // Debug
-//        if (KeyHelper.isShiftPressed())
-//            MapTips.resetBossTip();
-//        else
-//            MapTips.updateBossTip("Champ");
+//        System.out.println("********** System Information **********");
+//        System.out.println("Settings.WIDTH: " + Settings.WIDTH);
+//        System.out.println("Settings.HEIGHT: " + Settings.HEIGHT);
+//        System.out.println();
+//        System.out.println("Settings.scale: " + Settings.scale);
+//        System.out.println("Settings.xScale: " + Settings.xScale);
+//        System.out.println("Settings.yScale: " + Settings.yScale);
+//        System.out.println("****************************************\n");
     }
 }

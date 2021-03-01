@@ -4,20 +4,20 @@ import InfoMod2.data.EventChoice;
 import InfoMod2.data.EventEffect;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
+import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
 public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
-    private NewSmartLabel choiceNameLabel;
-    private NewSmartLabel effectsLabel;
+    private SmartLabel choiceNameLabel;
+    private SmartLabel effectsLabel;
 
     private float desiredNameWidth;
 
     public EventChoiceCard(EventChoice choice, boolean wide) {
-        choiceNameLabel = new NewSmartLabel(choice.getName(), Color.GRAY);
+        choiceNameLabel = new SmartLabel(choice.getName(), Color.GRAY);
 
         StringBuilder sb = new StringBuilder();
         for (EventEffect effect : choice.getEffects()) {
@@ -26,7 +26,7 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
         }
 
         float lineWidth = wide ? 450.0f : 350.0f;
-        effectsLabel = new NewSmartLabel(sb.toString(), FontHelper.tipBodyFont, ExtraColors.TEXT_EVENT_DESC, lineWidth, 28.0f);
+        effectsLabel = new SmartLabel(sb.toString(), FontHelper.tipBodyFont, ExtraColors.TEXT_EVENT_DESC, lineWidth, 28.0f);
     }
 
     public float getNameWidth() {

@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 // TODO: eventually most of this will be extracted into a more generic TitledScreen, but this is the only screen
 //   I plan on having for the initial release so I haven't bothered.
 public class EventDetailScreen implements IScreen {
-    private static final Texture TEX_BG = new Texture("InfoMod2/screens/screen_event_v2.png");
-    private static final Texture SCREEN_GLOW = new Texture("InfoMod2/screens/screen_glow.png");
+    private static final Texture TEX_BG = new Texture("InfoMod2/screens/events/screen.png");
+    private static final Texture SCREEN_GLOW = new Texture("InfoMod2/screens/events/glow.png");
 
     private EventGroupCard act1, act2, act3;
 

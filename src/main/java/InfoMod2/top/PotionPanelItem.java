@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 public class PotionPanelItem extends TopPanelItem {
     private boolean currentlyHovering = false;
 
-    private static final Texture tex = new Texture("InfoMod2/panel_v4.png");
+    private static final Texture tex = new Texture("InfoMod2/panel.png");
 
     public PotionPanelItem() {
         super(tex, "ojb_InfoMod2_panel");

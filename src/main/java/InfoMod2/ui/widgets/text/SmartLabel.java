@@ -8,52 +8,79 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 
-//public class SmartLabel extends AbstractWidget<SmartLabel> {
-//    protected String text;
-//    protected BitmapFont font;
-//    protected float textWidth, textHeight;
-//    protected Color textColor;
-//
-//    protected float lineWidth;
-//    protected float lineSpacing;
-//
-//    public SmartLabel(String text, Color textColor) {
-//        this(text, textColor, FontHelper.tipBodyFont);
-//    }
-//    public SmartLabel(String text, Color textColor, BitmapFont font) { this(text, textColor, font, 100000.0f, 40.0f); }
-//
-//    public SmartLabel(String text, Color textColor, BitmapFont font, float lineWidth, float lineSpacing) {
-//        this.font = font;
-//        this.textColor = textColor;
-//
-//        this.lineWidth = lineWidth;
-//        this.lineSpacing = lineSpacing;
-//
-//        setText(text);
-//    }
-//
-//    public void setText(String text) {
-//        this.text = text;
-//
-//        ExtraFonts.BetterBlockDetails size = ExtraFonts.getSmartSize(font, text, lineWidth, lineSpacing);
-//        this.textWidth = size.fullBlockWidth / Settings.scale;
-//        this.textHeight = size.fullBlockHeight / Settings.scale;
-//
-//        System.out.println("------------");
-//        System.out.println("Setting smart label text: " + text);
-//        System.out.println("It has a textWidth of " + textWidth);
-//        System.out.println("It has a textHeight of " + textHeight);
-//        System.out.println("(Both in 1080p space?)");
-//        System.out.println("------------");
-//        System.out.println();
-//    }
-//
-//    // Already in 1080p space
-//    @Override public float getPreferredContentWidth() { return textWidth / Settings.scale; }
-//    @Override public float getPreferredContentHeight() { return textHeight / Settings.scale; }
-//
-//    @Override
-//    public void render(SpriteBatch sb) {
-//        FontHelper.renderSmartText(sb, font, text, getContentLeft() * Settings.scale, getContentTop() * Settings.scale, lineWidth * Settings.scale, lineSpacing * Settings.scale, textColor);
-//    }
-//}
+public class SmartLabel extends AbstractWidget<SmartLabel> {
+    protected String text;
+    protected BitmapFont font;
+    protected Color fontColor;
+
+    // These are stored in screen space (already scaled!)
+    protected float scaledLineWidth;
+    protected float scaledLineSpacing;
+
+    // ... although these are both in 1080p space - so need scaling after using
+    protected float textBlockWidth;
+    protected float textBlockHeight;
+
+    // --------------------------------------------------------------------------------
+
+    public SmartLabel(String text) {
+        this(text,
+                FontHelper.tipBodyFont,
+                Settings.CREAM_COLOR,
+                10000.0f,
+                32.0f);
+    }
+
+    public SmartLabel(String text, BitmapFont font, Color fontColor) {
+        this(text,
+                font,
+                fontColor,
+                10000.0f,
+                32.0f);
+    }
+
+    public SmartLabel(String text, Color fontColor) {
+        this(text,
+                FontHelper.tipBodyFont,
+                fontColor,
+                10000.0f,
+                32.0f);
+    }
+
+    public SmartLabel(String text, BitmapFont font, Color fontColor, float lineWidth, float lineSpacing) {
+        this.font = font;
+        this.fontColor = fontColor;
+
+        this.scaledLineWidth = lineWidth * Settings.xScale;
+        this.scaledLineSpacing = lineSpacing * Settings.yScale;
+
+        setText(text);
+    }
+
+    // Also updates the label's preferred width/height
+    public void setText(String text) {
+        this.text = text;
+
+        ExtraFonts.SizeHelper s = ExtraFonts.computeSmartSize(text, font, scaledLineWidth, scaledLineSpacing);
+        this.textBlockWidth = s.blockWidth;
+        this.textBlockHeight = s.blockHeight;
+    }
+
+    // --------------------------------------------------------------------------------
+
+    @Override public float getPreferredContentWidth() { return textBlockWidth; }
+    @Override public float getPreferredContentHeight() { return textBlockHeight; }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        // NOTE: lineWidth and spacing were already scaled when stored!
+        FontHelper.renderSmartText(sb,
+                font,
+                text,
+                getContentLeft() * Settings.xScale,
+                getContentTop() * Settings.yScale,
+                scaledLineWidth,
+                scaledLineSpacing,
+                fontColor);
+    }
+}

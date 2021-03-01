@@ -4,15 +4,15 @@ import InfoMod2.data.EventDetail;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.HoverableLabelGroup;
-import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
+import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Collection;
 
 public class EventGroupCard extends AbstractWidget<EventGroupCard> {
-    private NewSmartLabel groupTitleLabel;
-    private NewSmartLabel numAvailableLabel;
+    private SmartLabel groupTitleLabel;
+    private SmartLabel numAvailableLabel;
 
     private HoverableLabelGroup group;
 
@@ -26,7 +26,7 @@ public class EventGroupCard extends AbstractWidget<EventGroupCard> {
         // edge - the 28.0f should probably not be hardcoded but based on the font but whatever
         this.titleBottom = top - 28.0f;
 
-        this.groupTitleLabel = new NewSmartLabel(titleText, ExtraColors.EVENT_SCREEN_CARD_TITLE)
+        this.groupTitleLabel = new SmartLabel(titleText, ExtraColors.EVENT_SCREEN_CARD_TITLE)
                 .anchoredAt(left, titleBottom, AnchorPosition.LEFT_BOTTOM);
 
 
@@ -38,7 +38,7 @@ public class EventGroupCard extends AbstractWidget<EventGroupCard> {
 
         // Number of available events e.g. [10 / 11] (TODO: WIP)
         float labelRight = left + prefGroupWidth;
-        this.numAvailableLabel = new NewSmartLabel(group.getDetailStatusString(), ExtraColors.EVENT_SCREEN_CARD_NUM)
+        this.numAvailableLabel = new SmartLabel(group.getDetailStatusString(), ExtraColors.EVENT_SCREEN_CARD_NUM)
                 .anchoredAt(labelRight, titleBottom, AnchorPosition.RIGHT_BOTTOM);
 
         // probably not needed to ever call this since i've broken the pattern RIP

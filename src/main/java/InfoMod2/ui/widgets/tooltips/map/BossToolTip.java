@@ -2,7 +2,7 @@ package InfoMod2.ui.widgets.tooltips.map;
 
 import InfoMod2.ui.widgets.AnchorPosition;
 //import InfoMod2.ui.widgets.text.SimpleLabel;
-import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
+import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.ui.widgets.tooltips.ExtendedToolTip;
 import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.Color;
@@ -23,7 +23,7 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
     protected boolean hasA20SecondBoss = false;
 
     //private ArrayList<SimpleLabel> bossLabels = new ArrayList<>();
-    private ArrayList<NewSmartLabel> bossLabels = new ArrayList<>();
+    private ArrayList<SmartLabel> bossLabels = new ArrayList<>();
 
     private static final float individualBossLabelHeight = 37.0f;
 
@@ -45,21 +45,21 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
         // TODO: this was very lazy and is bad code and needs refactoring badly but whatever
         if (hasA20SecondBoss && AbstractDungeon.floorNum == 51) {
             for (String name : bossNames)
-                bossLabels.add( new NewSmartLabel(name, ExtraColors.TOOLTIP_TEXT_GRAY) );
+                bossLabels.add( new SmartLabel(name, ExtraColors.TOOLTIP_TEXT_GRAY) );
 
-            bossLabels.add( new NewSmartLabel(a20SecondBossName, ExtraColors.QUAL_PURPLE) );
+            bossLabels.add( new SmartLabel(a20SecondBossName, ExtraColors.QUAL_PURPLE) );
         }
         else if (hasA20SecondBoss && AbstractDungeon.floorNum > 51) {
             for (int i = 0; i < bossNames.size() - 1; ++i)
-                bossLabels.add( new NewSmartLabel(bossNames.get(i), ExtraColors.TOOLTIP_TEXT_GRAY) );
+                bossLabels.add( new SmartLabel(bossNames.get(i), ExtraColors.TOOLTIP_TEXT_GRAY) );
 
-            bossLabels.add( new NewSmartLabel(a20SecondBossName, ExtraColors.TOOLTIP_TEXT_GRAY) );
-            bossLabels.add( new NewSmartLabel(bossNames.get(bossNames.size() - 1), ExtraColors.QUAL_PURPLE) );
+            bossLabels.add( new SmartLabel(a20SecondBossName, ExtraColors.TOOLTIP_TEXT_GRAY) );
+            bossLabels.add( new SmartLabel(bossNames.get(bossNames.size() - 1), ExtraColors.QUAL_PURPLE) );
         }
         else {
             for (int i = 0; i < bossNames.size(); ++i) {
                 Color labelColor = (i == bossNames.size() - 1) ? ExtraColors.QUAL_PURPLE : ExtraColors.TOOLTIP_TEXT_GRAY;
-                bossLabels.add( new NewSmartLabel(bossNames.get(i), labelColor) );
+                bossLabels.add( new SmartLabel(bossNames.get(i), labelColor) );
             }
         }
 
@@ -144,7 +144,7 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
         float currTop = getContentTop() - 31;
         final float infoSpacing = 37.0f;
 
-        for (NewSmartLabel label : bossLabels) {
+        for (SmartLabel label : bossLabels) {
             label.anchoredAt(textLeft, currTop, AnchorPosition.LEFT_TOP);
             label.render(sb);
 

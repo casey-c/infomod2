@@ -6,7 +6,7 @@ import InfoMod2.data.EventRequirement;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.cards.EventChoiceCard;
-import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
+import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.DynamicTextureBox;
 import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
@@ -23,12 +23,12 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private EventDetail detail;
     private DynamicTextureBox textureBox;
 
-    private NewSmartLabel titleLabel;
-    private LinkedList<NewSmartLabel> reqLabels = new LinkedList<>();
+    private SmartLabel titleLabel;
+    private LinkedList<SmartLabel> reqLabels = new LinkedList<>();
 
     private List<EventChoiceCard> choiceCards = new LinkedList<>();
 
-    private NewSmartLabel notesLabel;
+    private SmartLabel notesLabel;
 
     private float tooltipWidth;
     private float totalHeightChoiceCards;
@@ -44,7 +44,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     public void setDetail(EventDetail detail) {
         this.detail = detail;
-        this.titleLabel = new NewSmartLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
+        this.titleLabel = new SmartLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
         updateDetails();
     }
 
@@ -53,12 +53,12 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         reqLabels.clear();
 
         // Floors: x - y
-        reqLabels.add(new NewSmartLabel(detail.getFloorString(), ExtraFonts.smallItalicFont(), detail.getFloorNumStringTextColor()));
+        reqLabels.add(new SmartLabel(detail.getFloorString(), ExtraFonts.smallItalicFont(), detail.getFloorNumStringTextColor()));
 
         // Other requirements (e.g. requires 35 gold)
         if (detail.hasRequirements()) {
             for (EventRequirement req : detail.getRequirements())
-                reqLabels.add(new NewSmartLabel(req.getText(), ExtraFonts.smallItalicFont(), req.getTextColor()));
+                reqLabels.add(new SmartLabel(req.getText(), ExtraFonts.smallItalicFont(), req.getTextColor()));
         }
 
         // Choices
@@ -83,7 +83,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         float maxWidth = titleLabel.getPreferredContentWidth();
 
         float reqLabelTotalWidth = 0.0f;
-        for (NewSmartLabel label : reqLabels) {
+        for (SmartLabel label : reqLabels) {
             reqLabelTotalWidth += label.getPreferredContentWidth() + REQ_LABEL_SPACING;
         }
 
@@ -107,7 +107,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Notes
         if (detail.hasNotes()) {
-            this.notesLabel = new NewSmartLabel(detail.getNotes(), ExtraFonts.medItalicFontNoShadow(), Color.GRAY, tooltipWidth, 28.0f);
+            this.notesLabel = new SmartLabel(detail.getNotes(), ExtraFonts.medItalicFontNoShadow(), Color.GRAY, tooltipWidth, 28.0f);
         }
 
     }
@@ -159,7 +159,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         // Render all the requirements for this event
         float currX = textLeft;
 
-        for (NewSmartLabel label : reqLabels) {
+        for (SmartLabel label : reqLabels) {
             label.anchoredAt(currX, reqBottom + verticalOffset, AnchorPosition.LEFT_BOTTOM);
             label.render(sb);
             currX += label.getPreferredContentWidth() + REQ_LABEL_SPACING;

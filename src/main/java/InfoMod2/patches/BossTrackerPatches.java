@@ -105,7 +105,7 @@ public class BossTrackerPatches {
 
         @Override
         public void onLoadRaw(JsonElement jsonElement) {
-            if (jsonElement.isJsonObject())
+            if (jsonElement != null && jsonElement.isJsonObject())
                 MapTips.deserialize(jsonElement.getAsJsonObject());
         }
     }

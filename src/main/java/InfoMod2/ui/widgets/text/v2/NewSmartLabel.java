@@ -4,11 +4,9 @@ import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 public class NewSmartLabel extends AbstractWidget<NewSmartLabel> {
     protected String text;
@@ -73,19 +71,8 @@ public class NewSmartLabel extends AbstractWidget<NewSmartLabel> {
     @Override public float getPreferredContentWidth() { return textBlockWidth; }
     @Override public float getPreferredContentHeight() { return textBlockHeight; }
 
-    // TODO: debug remove
-//    private static final Color DEBUG_COLOR = new Color(0.1f, 0.9f, 0.1f, 0.6f);
-
     @Override
     public void render(SpriteBatch sb) {
-//        // (DEBUG) Draw bounding area    TODO remove
-//        sb.setColor(DEBUG_COLOR);
-//        sb.draw(ImageMaster.WHITE_SQUARE_IMG,
-//                getContentLeft() * Settings.xScale,
-//                getContentBottom() * Settings.yScale,
-//                getPreferredContentWidth() * Settings.xScale,
-//                getPreferredContentHeight() * Settings.yScale);
-
         // NOTE: lineWidth and spacing were already scaled when stored!
         FontHelper.renderSmartText(sb,
                 font,

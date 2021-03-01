@@ -1,6 +1,5 @@
 package InfoMod2.utils.graphics;
 
-import InfoMod2.utils.graphics.ExtraColors;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -237,20 +236,6 @@ public class ExtraFonts {
     // NOTE: These computations occur in screen space (i.e. after scaling) as the layout
     // helpers are already scaled and it's easier that way
     public static SizeHelper computeSmartSize(String text, BitmapFont font, float scaledLineWidth, float scaledLineSpacing) {
-        System.out.println("************ System information ****************");
-        System.out.println("Settings.scale: " + Settings.scale);
-        System.out.println();
-        System.out.println("Settings.xScale: " + Settings.xScale);
-        System.out.println("Settings.yScale: " + Settings.yScale);
-        System.out.println();
-        System.out.println("Settings.WIDTH: " + Settings.WIDTH);
-        System.out.println("Settings.HEIGHT: " + Settings.HEIGHT);
-        System.out.println("************************************************");
-
-
-        System.out.println("---------------------");
-        System.out.println("Computing smart size for: " + text);
-
         float currWidth = 0.0f;
 
         GlyphLayout layout = FontHelper.layout;
@@ -263,19 +248,6 @@ public class ExtraFonts {
         // NOTE: this string was taken from base game and I'm not sure how robust it is
         layout.setText(font, "gl0!");
         float lineHeight = layout.height;
-
-
-        // DEBUG-----------------------------
-        System.out.println("The spaceWidth is: " + spaceWidth);
-        System.out.println("The lineHeight of gl0! is: " + lineHeight);
-
-        System.out.println();
-
-        System.out.println("Our desired lineWidth is: " + scaledLineWidth);
-        System.out.println("Our desired lineSpacing is: " + scaledLineSpacing);
-        System.out.println("---------------------");
-        // ----------------------------------
-
 
         float blockWidth = 0.0f;
         float blockHeight = lineHeight; // TODO: verify this does what I think it did (i.e. a fix for single line labels)
@@ -312,99 +284,6 @@ public class ExtraFonts {
             }
         }
 
-        System.out.println("DONE...");
-        System.out.println("Final blockWidth is " + blockWidth);
-        System.out.println("Final blockHeight is " + blockHeight);
-
         return new SizeHelper(blockWidth / Settings.xScale, blockHeight / Settings.yScale);
     }
-
-    // --------------------------------------------------------------------------------
-//
-//
-//    // A helper struct to store a bit more detail that the base game getSmartHeight ignores.
-//    // This actually converts back into 1080p space here, since I'll have to do that everywhere anyway
-//    public static class BetterBlockDetails {
-//        public float fullBlockWidth;
-//        public float fullBlockHeight;
-//
-//        public BetterBlockDetails() {}
-//
-//        public BetterBlockDetails(float w, float h) {
-//            this.fullBlockWidth = w * Settings.scale;
-//            this.fullBlockHeight = h * Settings.scale;
-//        }
-//    }
-//
-//    public static BetterBlockDetails getSmartSize(BitmapFont font, String msg, float lineWidth, float lineSpacing) {
-//        if (msg == null) {
-//            return new BetterBlockDetails();
-//        }
-//        // Localization related for non english languages (e.g. ZHT, JPN - though not ENG which is why I'm ignoring it)
-//        else if (Settings.lineBreakViaCharacter) {
-//            //return -getHeightForCharLineBreak(font, msg, lineWidth, lineSpacing);
-//            return new BetterBlockDetails();
-//        } else {
-//            float curWidth = 0.0F;
-//            float curHeight = 0.0F;
-//
-//            GlyphLayout layout = FontHelper.layout;
-//
-//            layout.setText(font, " ");
-//            float spaceWidth = layout.width;
-//            String[] var4 = msg.split(" ");
-//            int var5 = var4.length;
-//
-//            // keep track of this now
-//            float maxWidth = 0.0f;
-//
-//            for(int var6 = 0; var6 < var5; ++var6) {
-//                String word = var4[var6];
-//                if (word.equals("NL")) {
-//
-//                    if (curWidth > maxWidth)
-//                        maxWidth = curWidth;
-//
-//                    curWidth = 0.0F;
-//                    curHeight -= lineSpacing;
-//                } else if (word.equals("TAB")) {
-//                    curWidth += spaceWidth * 5.0F;
-//                } else {
-//                    // My stuff ignores the "orbs" which are basically inline images (e.g. the energy icon with #e)
-//                    //orb = identifyOrb(word);
-//                    //if (orb == null) {
-//                    if (!identifyColor(word).equals(Color.WHITE)) {
-//                        word = word.substring(2, word.length());
-//                    }
-//
-//                    layout.setText(font, word);
-//                    if (curWidth + layout.width > lineWidth) {
-//                        curHeight -= lineSpacing;
-//
-//                        if (curWidth > maxWidth)
-//                            maxWidth = curWidth;
-//
-//                        curWidth = layout.width + spaceWidth;
-//                    } else {
-//                        curWidth += layout.width + spaceWidth;
-//                    }
-////                    } else if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth) {
-////                        curHeight -= lineSpacing;
-////                        curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
-////                    } else {
-////                        curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
-////                    }
-//                }
-//            }
-//
-//            if (curWidth > maxWidth)
-//                maxWidth = curWidth;
-//
-//            // Figure out total height based on how far curHeight went down from start (since it's an offset originally)
-//            // Basically, account for the final row as well by taking one more linespacing out and then negate it all
-//            float totalHeight = -(curHeight - lineSpacing);
-//
-//            return new BetterBlockDetails(maxWidth, totalHeight);
-//        }
-//    }
 }

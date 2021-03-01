@@ -262,17 +262,11 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     public void render(SpriteBatch sb) {
         for (HoverableEventLabel label : labels)
             label.render(sb);
-
-        // TODO: remove debug
-//        sb.setColor(ExtraColors.DEBUG_COLOR);
-//        sb.draw(ImageMaster.WHITE_SQUARE_IMG, getContentLeft(), getContentBottom(), getPreferredContentWidth(), getPreferredContentHeight());
     }
 
     public void renderHovers(SpriteBatch sb) {
         for (MultiHitboxEventLabel connection : labelConnections)
             connection.renderHover(sb);
-//        for (HoverableEventLabel label : labels)
-//            label.renderHover(sb);
     }
 
     @Override

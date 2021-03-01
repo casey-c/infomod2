@@ -6,7 +6,6 @@ import InfoMod2.data.EventRequirement;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.cards.EventChoiceCard;
-//import InfoMod2.ui.widgets.text.SimpleLabel;
 import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
 import InfoMod2.utils.graphics.DynamicTextureBox;
 import InfoMod2.utils.graphics.ExtraColors;
@@ -14,7 +13,6 @@ import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
@@ -23,32 +21,29 @@ import java.util.List;
 
 public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     private EventDetail detail;
-//    private DynamicTextureBox textureBox;
+    private DynamicTextureBox textureBox;
 
-//    private SimpleLabel titleLabel;
-//    private LinkedList<SimpleLabel> reqLabels = new LinkedList<>();
     private NewSmartLabel titleLabel;
     private LinkedList<NewSmartLabel> reqLabels = new LinkedList<>();
 
     private List<EventChoiceCard> choiceCards = new LinkedList<>();
 
-    //private SmartLabel notesLabel;
     private NewSmartLabel notesLabel;
 
     private float tooltipWidth;
     private float totalHeightChoiceCards;
 
     private static final float REQ_LABEL_SPACING = 10.0f;
-    private static final float CHOICE_CARD_SPACING = 10.0f;
+    private static final float CHOICE_CARD_SPACING = 20.0f;
 
     public EventDetailTip(EventDetail detail) {
         setDetail(detail);
-//        textureBox = new DynamicTextureBox("InfoMod2/event_tooltip/").withColors(ExtraColors.EVENT_TOOLTIP_BASE, ExtraColors.EVENT_TOOLTIP_TRIM, ExtraColors.EVENT_TOOLTIP_BASE);
+        textureBox = new DynamicTextureBox("InfoMod2/dtb/eventToolTip.atlas")
+                .withColors(ExtraColors.EVENT_TOOLTIP_BASE, ExtraColors.EVENT_TOOLTIP_TRIM, ExtraColors.EVENT_TOOLTIP_BASE);
     }
 
     public void setDetail(EventDetail detail) {
         this.detail = detail;
-        //this.titleLabel = new SimpleLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
         this.titleLabel = new NewSmartLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
         updateDetails();
     }
@@ -58,13 +53,11 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         reqLabels.clear();
 
         // Floors: x - y
-        //reqLabels.add(new SimpleLabel(detail.getFloorString(), detail.getFloorNumStringTextColor(), ExtraFonts.smallItalicFont()));
         reqLabels.add(new NewSmartLabel(detail.getFloorString(), ExtraFonts.smallItalicFont(), detail.getFloorNumStringTextColor()));
 
         // Other requirements (e.g. requires 35 gold)
         if (detail.hasRequirements()) {
             for (EventRequirement req : detail.getRequirements())
-//                reqLabels.add(new SimpleLabel(req.getText(), req.getTextColor(), ExtraFonts.smallItalicFont()));
                 reqLabels.add(new NewSmartLabel(req.getText(), ExtraFonts.smallItalicFont(), req.getTextColor()));
         }
 
@@ -78,8 +71,6 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
             float cardNameWidth = card.getNameWidth();
 
             maxCardNameWidth = Math.max(cardNameWidth, maxCardNameWidth);
-//            if (cardNameWidth > maxCardNameWidth)
-//                maxCardNameWidth = cardNameWidth;
 
             choiceCards.add(card);
         }
@@ -116,9 +107,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Notes
         if (detail.hasNotes()) {
-            //this.notesLabel = new SmartLabel(detail.getNotes(), Color.GRAY, ExtraFonts.medItalicFontNoShadow(), tooltipWidth, 28.0f);
             this.notesLabel = new NewSmartLabel(detail.getNotes(), ExtraFonts.medItalicFontNoShadow(), Color.GRAY, tooltipWidth, 28.0f);
-            //this.notesLabel = new SmartLabel(detail.getNotes(), Color.GRAY, ExtraFonts.medItalicFontNoShadow(), tooltipWidth, 28.0f);
         }
 
     }
@@ -138,12 +127,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         float left = (InputHelper.mX / Settings.xScale) + 40.0f;
         float top = (InputHelper.mY / Settings.yScale) - 50.0f;
 
-        System.out.println("EventDetailTip (left, top): \t(" + left + ", " + top + ") - name = " + detail.getName());
-
         float textLeft = left + 23.0f;
-
-        // TODO: dynamic size
-        //float bottom = top - h;
 
         float titleBottom = top - 46.0f;
         float reqBottom = titleBottom - 30.0f;
@@ -154,6 +138,9 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         if (notesLabel != null)
             realBottom -= (CHOICES_NOTES_GAP + notesLabel.getPreferredContentHeight());
 
+        // Extra padding?
+        realBottom -= 20.0f;
+
         // Compute the vertical offset (to make sure tips don't run off the bottom of the screen)
         float verticalOffset = 0.0f;
         if (realBottom < 0.0f)
@@ -163,7 +150,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         float h = top - realBottom;
 
-//        textureBox.render(sb, left, realBottom + verticalOffset, w, h);
+        textureBox.render(sb, left, realBottom + verticalOffset, w, h);
 
         // Render the name of the event
         titleLabel.anchoredAt(textLeft, titleBottom + verticalOffset, AnchorPosition.LEFT_BOTTOM);
@@ -190,7 +177,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
             choiceCard.anchoredAt(textLeft, currY + verticalOffset, AnchorPosition.LEFT_TOP);
             choiceCard.render(sb);
 
-            currY -= (choiceCard.getPreferredContentHeight() + 10.0f);
+            currY -= (choiceCard.getPreferredContentHeight() + CHOICE_CARD_SPACING);
         }
 
         // Render the notes label

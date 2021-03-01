@@ -4,7 +4,6 @@ import InfoMod2.data.EventDetail;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.HoverableLabelGroup;
-//import InfoMod2.ui.widgets.text.SimpleLabel;
 import InfoMod2.ui.widgets.text.v2.NewSmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,9 +13,6 @@ import java.util.Collection;
 public class EventGroupCard extends AbstractWidget<EventGroupCard> {
     private NewSmartLabel groupTitleLabel;
     private NewSmartLabel numAvailableLabel;
-
-//    private SimpleLabel groupTitleLabel;
-//    private SimpleLabel numAvailableLabel;
 
     private HoverableLabelGroup group;
 

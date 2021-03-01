@@ -23,10 +23,8 @@ public class BossTrackerPatches {
             return;
 
         ArrayList<String> bossList = AbstractDungeon.bossList;
-        System.out.println("Act " + act + ": " + bossList);
         if (bossList != null && bossList.size() > index) {
             String desiredBoss = bossList.get(index);
-            System.out.println("\tBoss " + index + ": " + desiredBoss);
 
             MapTips.addBoss(desiredBoss, index != 0);
         }

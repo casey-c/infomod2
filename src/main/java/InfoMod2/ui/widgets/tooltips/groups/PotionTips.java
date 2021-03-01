@@ -7,11 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class PotionTips {
     private static PotionChanceTip potionChanceTip;
 
-    private static final float POTION_TIPS_LEFT = 1480; //1452; // 1575; // 1600;
-
     private static void ensureExists() {
         if (potionChanceTip == null)
-            potionChanceTip = new PotionChanceTip();//.anchoredAt(POTION_TIPS_LEFT, 1080.0f - 89.0f, AnchorPosition.LEFT_TOP);
+            potionChanceTip = new PotionChanceTip();
     }
 
     public static void render(SpriteBatch sb, float centerX) {

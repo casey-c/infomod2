@@ -3,6 +3,8 @@ package InfoMod2.patches;
 import InfoMod2.ui.widgets.tooltips.groups.GoldTips;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -74,4 +76,32 @@ public class GoldTrackerPatches {
     public static class ResetPurgeCostPatch {
         @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
     }
+
+    // --------------------------------------------------------------------------------
+    // Update whenever gold is changed (e.g. pickup gold/lose gold/etc)
+
+    // Thieves stealing gold
+    @SpirePatch( clz = DamageAction.class, method = "stealGold")
+    public static class StealGoldPatch {
+        @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
+    }
+
+    // Go commit die
+    @SpirePatch( clz = SuicideAction.class, method = "update")
+    public static class SeppukuPatch {
+        @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
+    }
+
+    // Lose gold
+    @SpirePatch( clz = AbstractPlayer.class, method = "loseGold")
+    public static class LoseGoldPatch {
+        @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
+    }
+
+    // Gain gold
+    @SpirePatch( clz = AbstractPlayer.class, method = "gainGold")
+    public static class GainGoldPatch {
+        @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
+    }
+
 }

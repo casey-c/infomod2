@@ -18,18 +18,11 @@ public class ShopPriceToolTip extends TitledToolTip<ShopPriceToolTip> {
         super(636, 334, "Shop Prices", "Sale price is 50% off. Colorless cards are 20% more expensive.");
     }
 
-    // TODO
-    // NOTES: Asc. 16+ has "shops are more costly" to also take into account
-    // to future me: don't forget things like the 50 gold remove, courier, and membership card as well
-    // also: discounts with ceramic fish?
-
     private String cardRemovalText,
             commonRelicText, commonCardText, commonPotionText,
             uncCardText, uncRelicText, uncPotionText,
-            rareCardText, rareRelicText, rarePotionText,
-            shopRelicText ;
+            rareCardText, rareRelicText, rarePotionText;
 
-    // TODO
     private Color rareRelicColor, uncRelicColor, commonRelicColor;
     private Color rareCardColor, uncCardColor, commonCardColor;
     private Color rarePotionColor, uncPotionColor, commonPotionColor;
@@ -104,7 +97,7 @@ public class ShopPriceToolTip extends TitledToolTip<ShopPriceToolTip> {
         this.uncCardText = formatRange(uncommonCardCost, cardAdjust, additionalPriceAdjust);
         this.rareCardText = formatRange(rareCardCost, cardAdjust, additionalPriceAdjust);
 
-        this.shopRelicText = this.commonRelicText = formatRange(commonRelicCost, relicAdjust, additionalPriceAdjust);
+        this.commonRelicText = formatRange(commonRelicCost, relicAdjust, additionalPriceAdjust);
         this.uncRelicText = formatRange(uncommonRelicCost, relicAdjust, additionalPriceAdjust);
         this.rareRelicText = formatRange(rareRelicCost, relicAdjust, additionalPriceAdjust);
 

@@ -25,6 +25,12 @@ Elite combat rewards are more likely to have a rare card than normal combats - a
 
 ![Card drop tracking](github/cards.png)
 
+### Shop Prices
+
+The Gold tool tip has been improved to show the prices you can expect in the next shop. The values are color coded to easily tell whether you can afford a certain rarity of item with your current amount of gold. These prices and colors will properly adjust with your current relics and whenever you gain / lose gold. There's also a card removal price tracker as well!
+
+![Shop Prices](github/shop.png)
+
 
 ### Notes
 

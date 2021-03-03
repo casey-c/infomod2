@@ -88,4 +88,7 @@ public class ExtraColors {
 
     // TEMPORARY / DEBUG
     public static final Color DEBUG_TEXT_COLOR = new Color(0.643f, 0.647f, 0.655f, 1.000f);
+
+    //public static final Color DISABLED_GRAY = new Color(0.322f, 0.298f, 0.298f, 1.000f);
+    public static final Color DISABLED_GRAY = new Color(0.320f, 0.320f, 0.320f, 1.000f);
 }

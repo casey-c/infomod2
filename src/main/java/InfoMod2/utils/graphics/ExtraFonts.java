@@ -59,6 +59,28 @@ public class ExtraFonts {
 
         return MED_ITALIC_FONT_NO_SHADOW;
     }
+
+    private static BitmapFont SCREEN_SUBTITLE;
+    public static BitmapFont screenSubtitle() {
+        if (SCREEN_SUBTITLE == null) {
+            SCREEN_SUBTITLE = prepFont(18.0f,
+                    false,
+                    0.9f,
+                    0,
+                    0,
+                    ExtraColors.TEXT_BORDER_COLOR,
+                    false,
+                    0.0f,
+                    0.9f,
+                    //new Color(0f, 0f, 0f, 0f),
+                    Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
+                    (int)(3.0f * Settings.scale),
+                    (int)(3.0f * Settings.scale),
+                    "font/ZillaSlab-RegularItalic.otf");
+        }
+
+        return SCREEN_SUBTITLE;
+    }
 //
 //    public static BitmapFont largeNumberFont() {
 //        if (LARGE_NUMBER_FONT == null) {

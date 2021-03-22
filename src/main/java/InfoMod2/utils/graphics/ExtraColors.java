@@ -49,7 +49,7 @@ public class ExtraColors {
     // --------------------------------------------------------------------------------
 
     // Screen v2
-    //public static final Color SCREEN_OVERLAY = new Color(0.055f, 0.067f, 0.086f, 0.588f);
+    public static final Color SCREEN_OVERLAY = new Color(0.055f, 0.067f, 0.086f, 0.588f);
     public static final Color SCREEN_DIM_V2 = new Color(0.000f, 0.000f, 0.000f, 0.600f);
     public static final Color SCREEN_GLOW_ALPHA = new Color(1.000f, 1.000f, 1.000f, 0.300f);
 
@@ -91,4 +91,25 @@ public class ExtraColors {
 
     //public static final Color DISABLED_GRAY = new Color(0.322f, 0.298f, 0.298f, 1.000f);
     public static final Color DISABLED_GRAY = new Color(0.320f, 0.320f, 0.320f, 1.000f);
+
+    // --------------------------------------------------------------------------------
+    // New screen stuff
+    // --------------------------------------------------------------------------------
+
+    public static final Color SCREEN_DIM_V3 = new Color(0.000f, 0.000f, 0.000f, 0.400f);
+    public static final Color SCREEN_OPACITY = new Color(1.000f, 1.000f, 1.000f, 0.950f);
+
+    public static final Color SCREEN_TITLE_TEXT = new Color(0.686f, 0.753f, 0.855f, 1.000f);
+    public static final Color SCREEN_SUBTITLE_TEXT = new Color(0.373f, 0.455f, 0.557f, 1.000f);
+
+    public static final Color SCREEN_ACT_SECTION_TITLE = new Color(0.753f, 0.627f, 0.255f, 1.000f);
+    public static final Color SCREEN_INACTIVE_EVENT_WRONG_ACT = new Color(0.400f, 0.400f, 0.400f, 1.000f);
+    public static final Color SCREEN_INACTIVE_EVENT_CORRECT_ACT = new Color(0.573f, 0.278f, 0.365f, 1.000f);
+    public static final Color SCREEN_ACTIVE_EVENT = new Color(0.714f, 0.729f, 0.800f, 1.000f);
+
+    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.800f, 0.447f, 0.549f, 1.000f);
+    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.455f, 0.592f, 0.353f, 1.000f);
+
+    public static final Color SCREEN_PERCENTAGE_BOX_TEXT = new Color(0.667f, 0.694f, 0.737f, 1.000f);
+
 }

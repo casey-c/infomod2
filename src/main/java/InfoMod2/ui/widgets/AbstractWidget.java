@@ -1,6 +1,7 @@
 package InfoMod2.ui.widgets;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 
 import java.util.List;
 
@@ -77,6 +78,16 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
         return (T)this;
     }
 
+    public T anchorCenteredOnScreen() {
+        float screenCenterX = (Settings.WIDTH / 2) / Settings.xScale;
+        float screenCenterY = (Settings.HEIGHT / 2) / Settings.yScale;
+
+        this.x = screenCenterX - (0.5f * getWidth());
+        this.y = screenCenterY - (0.5f * getHeight());
+
+        return (T)this;
+    }
+
     // --------------------------------------------------------------------------------
 
     // These can be obtained before (x,y) are set by the anchor
@@ -92,6 +103,12 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
 
     public float getContentCenterX() { return x + marginLeft + 0.5f * getPreferredContentWidth(); }
     public float getContentCenterY() { return y + marginBottom + 0.5f * getPreferredContentHeight(); }
+
+    // Ignores margins
+    public float getAbsoluteLeft() { return x; }
+    public float getAbsoluteBottom() { return y; }
+    public float getAbsoluteRight() { return x + getWidth(); }
+    public float getAbsoluteTop() { return y + getHeight(); }
 
     // --------------------------------------------------------------------------------
 

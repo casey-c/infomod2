@@ -3,6 +3,7 @@ package InfoMod2;
 import InfoMod2.data.EventDatabase;
 import InfoMod2.top.PotionPanelItem;
 import InfoMod2.ui.screens.DebugScreen;
+import InfoMod2.ui.screens.EventScreen;
 import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
@@ -21,6 +22,7 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
 
     // DEBUG: TODO remove
 //    private DebugScreen debugScreen;
+    private EventScreen debugScreen;
 
     @Override
     public void receivePostInitialize() {
@@ -33,7 +35,7 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
         EventDatabase.load("/InfoMod2/data/act3.json");
         EventDatabase.load("/InfoMod2/data/shrines.json");
 
-//        debugScreen = new DebugScreen();
+        debugScreen = new EventScreen();
     }
 
     @Override
@@ -41,6 +43,6 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
         if (ScreenHelper.isScreenUp())
             ScreenHelper.render(sb);
 
-//        debugScreen.render(sb);
+        debugScreen.render(sb);
     }
 }

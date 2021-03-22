@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 
+// Simple testing for UI widgets (not shown in final mod)
 public class DebugScreen implements IScreen {
     private SmartLabel label;
 

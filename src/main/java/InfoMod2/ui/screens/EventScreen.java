@@ -17,8 +17,6 @@ public class EventScreen extends TitledScreen<EventScreen> {
         super(new Texture("InfoMod2/screens/event_background.png"),
                 "Event Overview",
                 "Right click anywhere to close");
-
-//        initialize();
     }
 
     private static final float SPACING = 60.0f;

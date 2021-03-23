@@ -45,8 +45,6 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, Sta
 
     @Override
     public void receiveStartGame() {
-        System.out.println("Starting game. Asc level is: " + AbstractDungeon.ascensionLevel);
-
         // Recompute layouts
         eventScreen.initialize();
     }

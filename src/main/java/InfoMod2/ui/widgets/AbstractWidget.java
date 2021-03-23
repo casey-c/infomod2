@@ -67,6 +67,18 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
         return (T)this;
     }
 
+    public void setMargins(float left, float right, float bottom, float top) {
+        this.marginLeft = left;
+        this.marginRight = right;
+        this.marginBottom = bottom;
+        this.marginTop = top;
+    }
+
+    public T withMargins(float left, float right, float bottom, float top) {
+        this.setMargins(left, right, bottom, top);
+        return (T)this;
+    }
+
     // --------------------------------------------------------------------------------
     // The final step of the pseudo-builder pattern. Required for rendering.
     // --------------------------------------------------------------------------------
@@ -103,12 +115,6 @@ public abstract class AbstractWidget<T extends AbstractWidget<T>> {
 
     public float getContentCenterX() { return x + marginLeft + 0.5f * getPreferredContentWidth(); }
     public float getContentCenterY() { return y + marginBottom + 0.5f * getPreferredContentHeight(); }
-
-    // Ignores margins
-    public float getAbsoluteLeft() { return x; }
-    public float getAbsoluteBottom() { return y; }
-    public float getAbsoluteRight() { return x + getWidth(); }
-    public float getAbsoluteTop() { return y + getHeight(); }
 
     // --------------------------------------------------------------------------------
 

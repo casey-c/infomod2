@@ -112,4 +112,11 @@ public class ExtraColors {
 
     public static final Color SCREEN_PERCENTAGE_BOX_TEXT = new Color(0.667f, 0.694f, 0.737f, 1.000f);
 
+
+    public static final Color DEBUG_0 = new Color(0.1f, 0.2f, 0.3f, 0.3f);
+    public static final Color DEBUG_1 = new Color(0.1f, 0.3f, 0.2f, 0.3f);
+    public static final Color DEBUG_2 = new Color(0.2f, 0.1f, 0.3f, 0.3f);
+    public static final Color DEBUG_3 = new Color(0.2f, 0.3f, 0.1f, 0.3f);
+    public static final Color DEBUG_4 = new Color(0.3f, 0.1f, 0.2f, 0.3f);
+    public static final Color DEBUG_5 = new Color(0.3f, 0.2f, 0.1f, 0.3f);
 }

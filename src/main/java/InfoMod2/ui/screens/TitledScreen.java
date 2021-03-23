@@ -5,7 +5,6 @@ import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
@@ -23,6 +22,12 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
 
     private SmartLabel titleLabel, subtitleLabel;
 
+    // Useful for
+//    protected final float mainContentLeft;
+//    protected final float mainContentBottom;
+//    protected final float mainContentWidth;
+//    protected final float mainContentHeight;
+
     public TitledScreen(Texture texBG, String title, String subtitle) {
         this.TEX_BG = texBG;
 
@@ -30,18 +35,28 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
         this.texHeight = texBG.getHeight();
 
         this.anchorCenteredOnScreen();
-        setMargins(70.0f, 0.0f);
+            //.withMargins(70.0f, 70.0f, 40.0f, 140.0f);
+        //setMargins(70.0f, 0.0f);
 
-        // TODO: actual fonts (most likely shooting for Kreon 21 and Italic No Border 14)
+        // Title and subtitle creation/alignment
         this.titleLabel = new SmartLabel(title, FontHelper.tipBodyFont, ExtraColors.SCREEN_TITLE_TEXT);
         this.subtitleLabel = new SmartLabel(subtitle, ExtraFonts.screenSubtitle(), ExtraColors.SCREEN_SUBTITLE_TEXT);
 
-        float titleTop = getAbsoluteTop() - 39;
+        float titleTop = getContentTop() - 39;
         float subTitleTop = titleTop - 33;
 
-        titleLabel.anchoredAt(getContentLeft(), titleTop, AnchorPosition.LEFT_TOP);
-        subtitleLabel.anchoredAt(getContentLeft(), subTitleTop, AnchorPosition.LEFT_TOP);
+        titleLabel.anchoredAt(getMainContentLeft() - 10, titleTop, AnchorPosition.LEFT_TOP);
+        subtitleLabel.anchoredAt(getMainContentLeft() - 10, subTitleTop, AnchorPosition.LEFT_TOP);
     }
+
+    // horizontal padding = 40px, vertical padding = 95px. note: top also accounts 120px for title/subtitle area
+    protected float getMainContentLeft() { return getContentLeft() + 95.0f; }
+    protected float getMainContentRight() { return getContentRight() - 95.0f; }
+    protected float getMainContentBottom() { return getContentBottom() + 40.0f; }
+    protected float getMainContentTop() { return getContentTop() - 160.0f; }
+
+    protected float getMainContentWidth() { return getMainContentRight() - getMainContentLeft(); }
+    protected float getMainContentHeight() { return getMainContentTop() - getMainContentBottom(); }
 
     @Override public float getPreferredContentWidth() { return texWidth; }
     @Override public float getPreferredContentHeight() { return texHeight; }
@@ -52,16 +67,10 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
 
         sb.setColor(ExtraColors.SCREEN_OPACITY);
         sb.draw(TEX_BG,
-                getAbsoluteLeft() * Settings.xScale,
-                getAbsoluteBottom() * Settings.yScale,
+                getContentLeft() * Settings.xScale,
+                getContentBottom() * Settings.yScale,
                 texWidth * Settings.xScale,
                 texHeight * Settings.yScale);
-//        sb.draw(TEX_BG,
-//                (Settings.WIDTH - (texWidth * Settings.xScale)) * 0.5f,
-//                (Settings.HEIGHT - (texHeight * Settings.yScale)) * 0.5f,
-//                texWidth * Settings.xScale,
-//                texHeight * Settings.yScale
-//        );
     }
 
     protected void renderTitles(SpriteBatch sb) {

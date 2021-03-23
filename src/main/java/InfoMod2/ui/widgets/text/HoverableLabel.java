@@ -1,6 +1,7 @@
 package InfoMod2.ui.widgets.text;
 
 import InfoMod2.ui.widgets.AbstractWidget;
+import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,7 +16,8 @@ public class HoverableLabel extends AbstractWidget<HoverableLabel> {
     protected float textWidth, textHeight;
 
     // TODO: customizable in constructor to make it more generic (currently not needed)
-    protected static final BitmapFont font = FontHelper.tipBodyFont;
+    //protected static final BitmapFont font = FontHelper.tipBodyFont;
+    protected static final BitmapFont font = ExtraFonts.smallerTipBody();
     protected static final Color fontColor = Settings.CREAM_COLOR;
 
     public HoverableLabel(String text) {

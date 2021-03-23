@@ -107,8 +107,10 @@ public class ExtraColors {
     public static final Color SCREEN_INACTIVE_EVENT_CORRECT_ACT = new Color(0.573f, 0.278f, 0.365f, 1.000f);
     public static final Color SCREEN_ACTIVE_EVENT = new Color(0.714f, 0.729f, 0.800f, 1.000f);
 
-    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.800f, 0.447f, 0.549f, 1.000f);
-    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.455f, 0.592f, 0.353f, 1.000f);
+//    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.800f, 0.447f, 0.549f, 1.000f);
+//    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.455f, 0.592f, 0.353f, 1.000f);
+    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.796f, 0.267f, 0.357f, 1.0f);
+    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.380f, 0.663f, 0.463f, 1.0f);
 
     public static final Color SCREEN_PERCENTAGE_BOX_TEXT = new Color(0.667f, 0.694f, 0.737f, 1.000f);
 

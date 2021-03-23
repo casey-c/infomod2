@@ -56,12 +56,6 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
                 .withColors(ExtraColors.EVENT_TOOLTIP_BASE, ExtraColors.EVENT_TOOLTIP_TRIM, ExtraColors.EVENT_TOOLTIP_BASE);
     }
 
-//    public void setDetail(EventDetail detail) {
-////        this.detail = detail;
-////        this.titleLabel = new SmartLabel(detail.getName(), ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
-////        updateDetails();
-//    }
-
     private void initializeTooltip() {
         // Floors: x - y
         floorLabel = new SmartLabel("Floor: " + detail.min_floor + " - " + detail.max_floor, ExtraFonts.smallItalicFont(), Color.WHITE);
@@ -123,23 +117,11 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         }
     }
 
-
-//    // TODO: can probably just keep these details around instead of remaking them. We'll see if this needs optimizing
-//    public void updateDetails() {
-//        reqLabels.clear();
-//
-//        // Floors: x - y
-//        reqLabels.add(new SmartLabel(detail.getFloorString(), ExtraFonts.smallItalicFont(), detail.getFloorNumStringTextColor()));
-//
-//
-//    }
-
     // --------------------------------------------------------------------------------
 
     public boolean isFloorNumSatisfied() {
         if (CardCrawlGame.isInARun()) {
             int floor = AbstractDungeon.floorNum + 1;
-            System.out.println("Comparing next floor " + floor + " with min " + detail.min_floor + " and max " + detail.max_floor);
             return floor >= detail.min_floor && floor <= detail.max_floor;
         }
         return false;
@@ -148,17 +130,14 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     // Returns true if this event is possible to see on the next floor
     public boolean computeActive(HashMap<String, Integer> seenEvents) {
         boolean isActive = true;
-        System.out.println("\tComputing active for tip " + detail.name);
 
         // Check if this event passes the floor requirements
         if (isFloorNumSatisfied()) {
             floorLabel.setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS);
-            System.out.println("\tfloor satisfied");
         }
         else {
             floorLabel.setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_FAILED);
             isActive = false;
-            System.out.println("\tfloor NOT satisfied");
         }
 
         // Check if this event passes all other requirements
@@ -169,12 +148,10 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
                 if (x.isRequirementSatisfied()) {
                     reqLabels.get(currentReq).setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS);
-                    System.out.println("\treq satisfied");
                 }
                 else {
                     reqLabels.get(currentReq).setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_FAILED);
                     isActive = false;
-                    System.out.println("\treq NOT satisfied");
                 }
 
                 ++currentReq;
@@ -185,18 +162,13 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
         if (seenEvents.containsKey(detail.id)) {
             int seenFloor = seenEvents.get(detail.id);
             titleLabel.setText(detail.name + " (Seen on floor " + seenFloor + ")");
-            System.out.println("\tSEEN ALREADY!");
 
             isActive = false;
         }
         else {
-            System.out.println("\tNot yet seen...");
             titleLabel.setText(detail.name);
         }
-        System.out.println("Final result: " + isActive);
-        System.out.println("----");
 
-        // TODO: return true if active
         return isActive;
     }
 

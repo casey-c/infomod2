@@ -16,7 +16,7 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     private Collection<EventDetail> details;
 
     // TODO: probably should not make these hardcoded but based on the font instead.
-    private static final float ROW_HEIGHT = 40.0f; // spacing between labels on the Y axis (includes font height)
+    private static final float ROW_HEIGHT = 27.0f; // spacing between labels on the Y axis (includes font height)
 
     private static final float GAP_BETWEEN_WORDS_OF_SAME_LABEL = 4.0f; // spacing between words in the same label on the X axis
     private static final float GAP_BETWEEN_LABELS = 4.0f; // additional spacing between labels on the X axis
@@ -284,18 +284,6 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
             label.update();
     }
 
-//    public int getNumDetails() {
-//        return (details != null) ? details.size() : 0;
-//    }
-//
-//    public int getNumActiveDetails() {
-//        return (details != null) ? (int) details.stream().filter(x -> x.isEventActive()).count() : 0;
-//    }
-
-//    public String getDetailStatusString() {
-//        return "[" + getNumActiveDetails() + " / " + getNumDetails() + "]";
-//    }
-
     // --------------------------------------------------------------------------------
 
     private String numActiveStatusString;
@@ -303,16 +291,10 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
 
     public void computeActive(HashMap<String, Integer> seenEvents) {
         int numActive = 0;
-        System.out.println("HoverableLabelGroup: COMPUTING ACTIVE FOR " + labelConnections.size() + " labelConnections.");
 
         for (MultiHitboxEventLabel connected : labelConnections) {
-            if (connected.computeActive(seenEvents)) {
-                System.out.println("Found active event");
+            if (connected.computeActive(seenEvents))
                 ++numActive;
-            }
-            else {
-                System.out.println("Inactive event");
-            }
         }
 
         this.numActiveStatusString = "[" + numActive + " / " + labelConnections.size() + "]";

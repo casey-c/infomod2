@@ -152,6 +152,29 @@ public class ExtraFonts {
 
         return EVENT_ACTIVE_COUNT;
     }
+
+    private static BitmapFont SMALLER_TIP_BODY;
+    public static BitmapFont smallerTipBody() {
+        if (SMALLER_TIP_BODY == null) {
+            SMALLER_TIP_BODY = prepFont(18.0f,
+                    false,
+                    0.9f,
+                    0,
+                    0,
+                    ExtraColors.TEXT_BORDER_COLOR,
+                    false,
+                    0.0f,
+                    0.9f,
+                    new Color(0f, 0f, 0f, 0.05f),
+                    //new Color(0f, 0f, 0f, 1.00f),
+                    //Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
+                    (int)(3.0f * Settings.scale),
+                    (int)(3.0f * Settings.scale),
+                    "font/Kreon-Regular.ttf");
+        }
+
+        return SMALLER_TIP_BODY;
+    }
 //
 //    public static BitmapFont largeNumberFont() {
 //        if (LARGE_NUMBER_FONT == null) {

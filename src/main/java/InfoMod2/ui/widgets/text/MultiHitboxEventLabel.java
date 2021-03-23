@@ -3,6 +3,7 @@ package InfoMod2.ui.widgets.text;
 import InfoMod2.data.EventDetail;
 import InfoMod2.ui.tips.EventDetailTip;
 import InfoMod2.utils.graphics.ExtraColors;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.HashMap;
@@ -36,18 +37,13 @@ public class MultiHitboxEventLabel {
 
     public boolean computeActive(HashMap<String, Integer> seenEvents) {
         boolean isActive = tip.computeActive(seenEvents);
-        System.out.println("Result from tip.computeActive: " + isActive);
 
-        if (isActive) {
-            for (HoverableEventLabel label : labels) {
-                label.setTextColor(ExtraColors.SCREEN_ACTIVE_EVENT, ExtraColors.SCREEN_ACTIVE_EVENT_HIGHLIGHT);
-            }
-        }
-        else {
-            for (HoverableEventLabel label : labels) {
-                label.setTextColor(ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT, ExtraColors.SCREEN_INACTIVE_EVENT_HIGHLIGHT);
-            }
-        }
+        // TODO: account for inactive in current act / not in current act as originally intended
+        Color base = isActive ? ExtraColors.SCREEN_ACTIVE_EVENT : ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT;
+        Color highlight = isActive ? ExtraColors.SCREEN_ACTIVE_EVENT_HIGHLIGHT : ExtraColors.SCREEN_INACTIVE_EVENT_HIGHLIGHT;
+
+        for (HoverableEventLabel label : labels)
+            label.setTextColor(base, highlight);
 
         return isActive;
     }

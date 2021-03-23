@@ -1,20 +1,17 @@
 package InfoMod2.ui.screens;
 
 import InfoMod2.data.EventDatabase;
-import InfoMod2.utils.graphics.ExtraColors;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 
 public class EventScreen extends TitledScreen<EventScreen> {
-    private EventCard act1;
+    private EventCard act1, act2, act3;
+    private LinkedList<EventCard> cards = new LinkedList<>();
 
     public EventScreen() {
         super(new Texture("InfoMod2/screens/event_background.png"),
@@ -24,28 +21,35 @@ public class EventScreen extends TitledScreen<EventScreen> {
         initialize();
     }
 
+    private static final float SPACING = 60.0f;
+
     // Loads event details from JSON database, constructs the act cards, aligns everything into the proper position, etc.
     // Should be performed one time after game initially boots up
     private void initialize() {
         float act1Top = getMainContentTop();
         act1 = new EventCard(getMainContentLeft(), act1Top, "Act I", EventDatabase.act1_events.values());
+
+        float act2Top = act1Top - act1.getPreferredContentHeight() - SPACING;
+        act2 = new EventCard(getMainContentLeft(), act2Top, "Act II", EventDatabase.act2_events.values());
+
+        float act3Top = act2Top - act2.getPreferredContentHeight() - SPACING;
+        act3 = new EventCard(getMainContentLeft(), act3Top, "Act III", EventDatabase.act3_events.values());
+
+        // Convenience
+        cards.addAll(Arrays.asList(act1, act2, act3));
     }
 
     // Called whenever we need to show this screen (recomputes the active status of all events - based on requirement
     // satisfiability and filtering out events that have been already seen in the current run)
 
-    private HashMap<String, Integer> seenEvents = new HashMap<>();
-
     // Doesn't need to create new labels or move UI elements as they've been built in the initialize(); just needs to
     // update their colors and such
     private void computeActive() {
         // Update the events seen in this current run
-        seenEvents.clear();
-        ArrayList<HashMap> x = CardCrawlGame.metricData.event_choices;
+        final HashMap<String, Integer> seenEvents = new HashMap<>();
 
-        System.out.println("Checking seen events; count is: " + x.size());
-
-        for (HashMap choice : x) {
+        System.out.println("Seen Events: " + CardCrawlGame.metricData.event_choices.size());
+        for (HashMap choice : CardCrawlGame.metricData.event_choices) {
             if (!choice.containsKey("event_name") || !choice.containsKey("floor") )
                 continue;
 
@@ -63,37 +67,28 @@ public class EventScreen extends TitledScreen<EventScreen> {
             else if (unknownType instanceof Integer)
                 floor = (Integer) unknownType;
 
-//            double floor_double = (double)choice.get("floor");
-//            int floor = Math.toIntExact(Math.round(floor_double));
-
-            //int floor = (int) choice.get("floor");
-
             System.out.println("\tEvent: " + name + " (floor " + floor + ")");
 
             if (floor != -1)
                 seenEvents.put(name, floor);
         }
+        System.out.println("-----\n");
 
         // Use the seen events (and reexamine other reqs like current floor, etc.) to update the act cards
-        act1.computeActive(seenEvents);
-
+        for (EventCard card : cards)
+            card.computeActive(seenEvents);
     }
 
     @Override
     protected void renderWidgets(SpriteBatch sb) {
-        act1.render(sb);
-
-//        sb.setColor(ExtraColors.DEBUG_0);
-//        sb.draw(ImageMaster.WHITE_SQUARE_IMG,
-//                getMainContentLeft() * Settings.xScale,
-//                getMainContentBottom() * Settings.yScale,
-//                getMainContentWidth() * Settings.xScale,
-//                getMainContentHeight() * Settings.yScale);
+        for (EventCard card : cards)
+            card.render(sb);
     }
 
     @Override
     protected void renderWidgetToolTips(SpriteBatch sb) {
-        act1.renderHovers(sb);
+        for (EventCard card : cards)
+            card.renderHovers(sb);
     }
 
     @Override
@@ -101,19 +96,22 @@ public class EventScreen extends TitledScreen<EventScreen> {
         // Make sure to figure out which events are possible; update all colors appropriately
         computeActive();
 
-        act1.show();
+        for (EventCard card : cards)
+            card.show();
     }
 
     @Override
     public void hide() {
-        act1.hide();
+        for (EventCard card : cards)
+            card.hide();
     }
 
     @Override
     public void update() {
-        // Right click to close logic
+        // Inherit right click to close logic from screen
         super.update();
 
-        act1.update();
+        for (EventCard card : cards)
+            card.update();
     }
 }

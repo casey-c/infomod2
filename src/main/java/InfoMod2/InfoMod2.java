@@ -7,11 +7,13 @@ import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.RenderSubscriber;
+import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 @SpireInitializer
-public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
+public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, StartGameSubscriber {
     public static void initialize() { new InfoMod2(); }
     public InfoMod2() {
         BaseMod.subscribe(this);
@@ -39,5 +41,13 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber {
     public void receiveRender(SpriteBatch sb) {
         if (ScreenHelper.isScreenUp())
             ScreenHelper.render(sb);
+    }
+
+    @Override
+    public void receiveStartGame() {
+        System.out.println("Starting game. Asc level is: " + AbstractDungeon.ascensionLevel);
+
+        // Recompute layouts
+        eventScreen.initialize();
     }
 }

@@ -16,8 +16,12 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
 
     private float desiredNameWidth;
 
+    private EventChoice choice;
+
     public EventChoiceCard(EventChoice choice, boolean wide) {
-        choiceNameLabel = new SmartLabel(choice.getName(), Color.GRAY);
+        this.choice = choice;
+
+        this.choiceNameLabel = new SmartLabel(choice.getName(), Color.GRAY);
 
         StringBuilder sb = new StringBuilder();
         for (EventEffect effect : choice.getEffects()) {
@@ -26,8 +30,19 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
         }
 
         float lineWidth = wide ? 450.0f : 350.0f;
-        effectsLabel = new SmartLabel(sb.toString(), FontHelper.tipBodyFont, ExtraColors.TEXT_EVENT_DESC, lineWidth, 28.0f);
+        this.effectsLabel = new SmartLabel(sb.toString(), FontHelper.tipBodyFont, ExtraColors.TEXT_EVENT_DESC, lineWidth, 28.0f);
     }
+
+//    // For making sure the ascension scaling values are properly remade
+//    public void refreshChoiceText() {
+//        StringBuilder sb = new StringBuilder();
+//        for (EventEffect effect : choice.getEffects()) {
+//            sb.append(effect.getText());
+//            sb.append(" ");
+//        }
+//
+//        effectsLabel.setText(sb.toString());
+//    }
 
     public float getNameWidth() {
         return choiceNameLabel.getPreferredContentWidth();

@@ -145,6 +145,31 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
     public boolean computeActive(HashMap<String, Integer> seenEvents) {
         boolean isActive = true;
 
+        // Make sure to update the choice card text (since it is determined by ascension_scaling)
+        // TODO: I'm thinking this update may invalidate the layout / sizing of these cards as well since they were
+        //    computed based on something like the width of "Lose X gold." instead of "Lose 75 gold." - in more extreme
+        //    cases, the replacement goes from "X" -> "Some much longer string" which can really, really throw off the
+        //    expected widths and make things start to overlap.
+        // TODO:
+        //    UPDATE - I can confirm this happens :( -> The Ssssserpent event for example goes from X -> 150 and the
+        //    extra spacing required by the wider string means the text goes off the side of the box
+        // TODO:
+        //    thoughts on fixing this issue:
+        //    * either go back to the "throw everything out and rebuild entirely on screen open approach" (which I don't
+        //      like for its potential slow downs on slower PCs)
+        //    * recompute these cards and widths at the start of a run (since you can't change ASC. mid run). probably
+        //      need a separate function probably like computeActive() which will percolate down correctly. will need to
+        //      touch EventChoiceCard and make it have a recompute function. (And probably force a rebuild of the
+        //      EventTip given that the layouts higher up the tree all depend on widths)
+        //    * (best?) idea: rebuild the entire screen layout on the start of a run, rather than start of entire game.
+        //      - easiest to do / think about; basically it's the original approach but the expense is only paid once
+        //        per run instead of once per screen open (but still worse than current once per game boot)
+
+//        for (EventChoiceCard card : choiceCards) {
+//            card.refreshChoiceText();
+//        }
+
+
         // Check if this event passes the floor requirements
         if (isFloorNumSatisfied()) {
             floorLabel.setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS);
@@ -224,7 +249,6 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Figure out the right side of the tool tip
         float realRight = left + tooltipWidth;
-        System.out.println("Real right is: " + realRight);
 
         // Compute the horizontal offset (to make sure tips don't run off the right side of the screen)
         float horizontalOffset = 0.0f;

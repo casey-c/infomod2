@@ -18,14 +18,14 @@ public class EventScreen extends TitledScreen<EventScreen> {
                 "Event Overview",
                 "Right click anywhere to close");
 
-        initialize();
+//        initialize();
     }
 
     private static final float SPACING = 60.0f;
 
     // Loads event details from JSON database, constructs the act cards, aligns everything into the proper position, etc.
-    // Should be performed one time after game initially boots up
-    private void initialize() {
+    // Should be performed one time after game initially boots up --- CORRECTION: one time for each run start
+    public void initialize() {
         float act1Top = getMainContentTop() - 36;
         act1 = new EventCard(getMainContentLeft(), act1Top, "Act I", EventDatabase.act1_events.values());
 
@@ -39,6 +39,7 @@ public class EventScreen extends TitledScreen<EventScreen> {
         shrines = new EventCard(shrinesLeft, act1Top, "Shrines", EventDatabase.shrine_events.values());
 
         // Convenience
+        cards.clear();
         cards.addAll(Arrays.asList(act1, act2, act3, shrines));
     }
 

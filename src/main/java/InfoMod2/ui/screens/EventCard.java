@@ -63,7 +63,9 @@ public class EventCard extends AbstractWidget<EventCard> {
 
     public void computeActive(HashMap<String, Integer> seenEvents) {
         group.computeActive(seenEvents);
+
         numAvailableLabel.setText(group.getDetailStatusString());
+        numAvailableLabel.setFontColor(group.getDetailStatusColor());
     }
 
     // --------------------------------------------------------------------------------

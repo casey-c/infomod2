@@ -3,6 +3,8 @@ package InfoMod2.ui.widgets.text;
 import InfoMod2.data.EventDetail;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
+import InfoMod2.utils.graphics.ExtraColors;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.*;
@@ -289,6 +291,9 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     private String numActiveStatusString;
     public String getDetailStatusString() { return numActiveStatusString; }
 
+    private Color numActiveStringColor;
+    public Color getDetailStatusColor() { return numActiveStringColor; }
+
     public void computeActive(HashMap<String, Integer> seenEvents) {
         int numActive = 0;
 
@@ -298,5 +303,7 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
         }
 
         this.numActiveStatusString = "[" + numActive + " / " + labelConnections.size() + "]";
+        this.numActiveStringColor = (numActive == 0) ? ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT : ExtraColors.SCREEN_ACT_SECTION_TITLE;
+        //this.numActiveStringColor = (numActive == 0) ? ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT : ExtraColors.SCREEN_ACTIVE_EVENT;
     }
 }

@@ -102,15 +102,30 @@ public class ExtraColors {
     public static final Color SCREEN_TITLE_TEXT = new Color(0.686f, 0.753f, 0.855f, 1.000f);
     public static final Color SCREEN_SUBTITLE_TEXT = new Color(0.373f, 0.455f, 0.557f, 1.000f);
 
-    public static final Color SCREEN_ACT_SECTION_TITLE = new Color(0.753f, 0.627f, 0.255f, 1.000f);
-    public static final Color SCREEN_INACTIVE_EVENT_WRONG_ACT = new Color(0.400f, 0.400f, 0.400f, 1.000f);
-    public static final Color SCREEN_INACTIVE_EVENT_CORRECT_ACT = new Color(0.573f, 0.278f, 0.365f, 1.000f);
-    public static final Color SCREEN_ACTIVE_EVENT = new Color(0.714f, 0.729f, 0.800f, 1.000f);
+    //public static final Color SCREEN_INACTIVE_EVENT_CORRECT_ACT = new Color(0.573f, 0.278f, 0.365f, 1.000f);
+
+    // ----------------
+//    public static final Color SCREEN_ACT_SECTION_TITLE = new Color(0.753f, 0.627f, 0.255f, 1.000f);
+    public static final Color SCREEN_ACT_SECTION_TITLE = new Color(0.612f, 0.600f, 0.608f, 1.000f);
+
+    //public static final Color SCREEN_INACTIVE_EVENT_WRONG_ACT = new Color(0.400f, 0.400f, 0.400f, 1.000f);
+    public static final Color SCREEN_INACTIVE_EVENT_WRONG_ACT = new Color(0.212f, 0.259f, 0.286f, 1.000f);
+
+//    public static final Color SCREEN_ACTIVE_EVENT = new Color(0.714f, 0.729f, 0.800f, 1.000f);
+    public static final Color SCREEN_ACTIVE_EVENT = new Color(0.525f, 0.439f, 0.286f, 1.000f);
+
+    // ----------------
 
 //    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.800f, 0.447f, 0.549f, 1.000f);
 //    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.455f, 0.592f, 0.353f, 1.000f);
-    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.796f, 0.267f, 0.357f, 1.0f);
-    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.380f, 0.663f, 0.463f, 1.0f);
+
+    //public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.796f, 0.267f, 0.357f, 1.0f);
+    public static final Color SCREEN_INACTIVE_EVENT_HIGHLIGHT = new Color(0.486f, 0.275f, 0.314f, 1.000f);
+
+//    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.380f, 0.663f, 0.463f, 1.0f);
+    public static final Color SCREEN_ACTIVE_EVENT_HIGHLIGHT = new Color(0.800f, 0.698f, 0.518f, 1.000f);
+
+    // ----------------
 
     public static final Color SCREEN_PERCENTAGE_BOX_TEXT = new Color(0.667f, 0.694f, 0.737f, 1.000f);
 

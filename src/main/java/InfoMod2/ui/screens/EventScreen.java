@@ -26,7 +26,7 @@ public class EventScreen extends TitledScreen<EventScreen> {
     // Loads event details from JSON database, constructs the act cards, aligns everything into the proper position, etc.
     // Should be performed one time after game initially boots up
     private void initialize() {
-        float act1Top = getMainContentTop();
+        float act1Top = getMainContentTop() - 36;
         act1 = new EventCard(getMainContentLeft(), act1Top, "Act I", EventDatabase.act1_events.values());
 
         float act2Top = act1Top - act1.getPreferredContentHeight() - SPACING;

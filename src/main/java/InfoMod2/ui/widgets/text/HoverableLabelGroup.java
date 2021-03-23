@@ -5,10 +5,7 @@ import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     private final float maxWidth;
@@ -66,7 +63,7 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
 
         int id = 0;
         for (EventDetail detail : details) {
-            String full = detail.getName();
+            String full = detail.name;
             if (currIndex++ != totalLabels - 1) {
                 full = full + ",";
             }
@@ -287,15 +284,37 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
             label.update();
     }
 
-    public int getNumDetails() {
-        return (details != null) ? details.size() : 0;
-    }
+//    public int getNumDetails() {
+//        return (details != null) ? details.size() : 0;
+//    }
+//
+//    public int getNumActiveDetails() {
+//        return (details != null) ? (int) details.stream().filter(x -> x.isEventActive()).count() : 0;
+//    }
 
-    public int getNumActiveDetails() {
-        return (details != null) ? (int) details.stream().filter(x -> x.isEventPossible()).count() : 0;
-    }
+//    public String getDetailStatusString() {
+//        return "[" + getNumActiveDetails() + " / " + getNumDetails() + "]";
+//    }
 
-    public String getDetailStatusString() {
-        return getNumActiveDetails() + " / " + getNumDetails();
+    // --------------------------------------------------------------------------------
+
+    private String numActiveStatusString;
+    public String getDetailStatusString() { return numActiveStatusString; }
+
+    public void computeActive(HashMap<String, Integer> seenEvents) {
+        int numActive = 0;
+        System.out.println("HoverableLabelGroup: COMPUTING ACTIVE FOR " + labelConnections.size() + " labelConnections.");
+
+        for (MultiHitboxEventLabel connected : labelConnections) {
+            if (connected.computeActive(seenEvents)) {
+                System.out.println("Found active event");
+                ++numActive;
+            }
+            else {
+                System.out.println("Inactive event");
+            }
+        }
+
+        this.numActiveStatusString = "[" + numActive + " / " + labelConnections.size() + "]";
     }
 }

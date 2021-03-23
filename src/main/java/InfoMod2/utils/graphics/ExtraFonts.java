@@ -68,18 +68,89 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    //new Color(0f, 0f, 0f, 1f),
+                    ExtraColors.SCREEN_SUBTITLE_TEXT,
+                    //ExtraColors.TEXT_BORDER_COLOR,
                     false,
                     0.0f,
-                    0.9f,
-                    //new Color(0f, 0f, 0f, 0f),
-                    Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
+                    1.0f,
+                    new Color(0f, 0f, 0f, 0f),
+                    //Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
                     (int)(3.0f * Settings.scale),
                     (int)(3.0f * Settings.scale),
                     "font/ZillaSlab-RegularItalic.otf");
         }
 
         return SCREEN_SUBTITLE;
+    }
+
+    private static BitmapFont SCREEN_TITLE;
+    public static BitmapFont screenTitle() {
+        if (SCREEN_TITLE == null) {
+            SCREEN_TITLE = prepFont(28.0f,
+                    false,
+                    0.9f,
+                    0,
+                    0,
+                    ExtraColors.TEXT_BORDER_COLOR,
+                    false,
+                    0.0f,
+                    0.9f,
+                    //new Color(0f, 0f, 0f, 0f),
+                    new Color(0f, 0f, 0f, 0.62f),
+                    //Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
+                    (int)(2.0f * Settings.scale),
+                    (int)(2.0f * Settings.scale),
+                    "font/Kreon-Regular.ttf");
+        }
+
+        return SCREEN_TITLE;
+    }
+
+    private static BitmapFont EVENT_ACT_TITLE;
+    public static BitmapFont eventActTitle() {
+        if (EVENT_ACT_TITLE == null) {
+            EVENT_ACT_TITLE = prepFont(30.0f,
+                    false,
+                    0.9f,
+                    0,
+                    0,
+                    ExtraColors.TEXT_BORDER_COLOR,
+                    false,
+                    0.0f,
+                    0.9f,
+                    //new Color(0f, 0f, 0f, 0f),
+                    new Color(0f, 0f, 0f, 1.00f),
+                    //Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
+                    (int)(2.0f * Settings.scale),
+                    (int)(2.0f * Settings.scale),
+                    "font/Kreon-Regular.ttf");
+        }
+
+        return EVENT_ACT_TITLE;
+    }
+
+    private static BitmapFont EVENT_ACTIVE_COUNT;
+    public static BitmapFont eventActiveCount() {
+        if (EVENT_ACTIVE_COUNT == null) {
+            EVENT_ACTIVE_COUNT = prepFont(24.0f,
+                    false,
+                    0.9f,
+                    0,
+                    0,
+                    //new Color(0f, 0f, 0f, 1f),
+                    ExtraColors.TEXT_BORDER_COLOR,
+                    false,
+                    0.0f,
+                    1.0f,
+                    new Color(0f, 0f, 0f, 0f),
+                    //Settings.QUARTER_TRANSPARENT_BLACK_COLOR.cpy(),
+                    (int)(3.0f * Settings.scale),
+                    (int)(3.0f * Settings.scale),
+                    "font/ZillaSlab-RegularItalic.otf");
+        }
+
+        return EVENT_ACTIVE_COUNT;
     }
 //
 //    public static BitmapFont largeNumberFont() {

@@ -1,9 +1,10 @@
 package InfoMod2.patches;
 
+import InfoMod2.InfoMod2;
 import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.GoldTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
-import InfoMod2.ui.screens.EventDetailScreen;
+//import InfoMod2.ui.screens.EventDetailScreen;
 import InfoMod2.utils.RightClickWatcher;
 import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
@@ -88,7 +89,8 @@ public class ToolTipPatches {
             RightClickWatcher.clearAll();
 
             RightClickWatcher.watch(tp.mapHb,  () -> {
-                ScreenHelper.openCustomScreen(new EventDetailScreen());
+                //ScreenHelper.openCustomScreen(new EventDetailScreen());
+                ScreenHelper.openCustomScreen(InfoMod2.eventScreen);
             });
         }
     }

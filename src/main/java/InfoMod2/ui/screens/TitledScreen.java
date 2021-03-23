@@ -5,11 +5,13 @@ import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
+import InfoMod2.utils.graphics.ScreenHelper;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 import java.util.LinkedList;
 
@@ -39,10 +41,10 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
         //setMargins(70.0f, 0.0f);
 
         // Title and subtitle creation/alignment
-        this.titleLabel = new SmartLabel(title, FontHelper.tipBodyFont, ExtraColors.SCREEN_TITLE_TEXT);
+        this.titleLabel = new SmartLabel(title, ExtraFonts.screenTitle(), ExtraColors.SCREEN_TITLE_TEXT);
         this.subtitleLabel = new SmartLabel(subtitle, ExtraFonts.screenSubtitle(), ExtraColors.SCREEN_SUBTITLE_TEXT);
 
-        float titleTop = getContentTop() - 39;
+        float titleTop = getContentTop() - 45;
         float subTitleTop = titleTop - 33;
 
         titleLabel.anchoredAt(getMainContentLeft() - 10, titleTop, AnchorPosition.LEFT_TOP);
@@ -87,5 +89,18 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
         renderTitles(sb);
         renderWidgets(sb);
         renderWidgetToolTips(sb);
+    }
+
+    private boolean rightClickStarted = false;
+
+    @Override
+    public void update() {
+        // Let this screen close itself
+        if (InputHelper.isMouseDown_R) {
+            rightClickStarted = true;
+        } else if (rightClickStarted) {
+            rightClickStarted = false;
+            ScreenHelper.closeAllCustomScreens();
+        }
     }
 }

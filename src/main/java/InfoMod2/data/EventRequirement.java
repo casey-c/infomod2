@@ -213,9 +213,9 @@ public class EventRequirement {
 
     // --------------------------------------------------------------------------------
 
-    public Color getTextColor() {
-        return (isRequirementSatisfied()) ? ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS : ExtraColors.EVENT_TOOLTIP_REQ_FAILED;
-    }
+//    public Color getTextColor() {
+//        return (isRequirementSatisfied()) ? ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS : ExtraColors.EVENT_TOOLTIP_REQ_FAILED;
+//    }
 
     private String getAnyText() {
         if (children != null) {

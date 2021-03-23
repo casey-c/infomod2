@@ -96,7 +96,7 @@ public class ExtraColors {
     // New screen stuff
     // --------------------------------------------------------------------------------
 
-    public static final Color SCREEN_DIM_V3 = new Color(0.000f, 0.000f, 0.000f, 0.400f);
+    public static final Color SCREEN_DIM_V3 = new Color(0.000f, 0.000f, 0.000f, 0.700f);
     public static final Color SCREEN_OPACITY = new Color(1.000f, 1.000f, 1.000f, 0.950f);
 
     public static final Color SCREEN_TITLE_TEXT = new Color(0.686f, 0.753f, 0.855f, 1.000f);

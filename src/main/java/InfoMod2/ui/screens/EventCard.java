@@ -6,9 +6,11 @@ import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.HoverableLabelGroup;
 import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 public class EventCard extends AbstractWidget<EventCard> {
     private SmartLabel groupTitleLabel;
@@ -24,7 +26,7 @@ public class EventCard extends AbstractWidget<EventCard> {
     public EventCard(float left, float top, String titleText, Collection<EventDetail> items) {
         System.out.println("Creating act card: " + titleText);
         for (EventDetail detail : items) {
-            String name = detail.getName();
+            String name = detail.name;
             System.out.println("\t" + name);
         }
 
@@ -34,7 +36,7 @@ public class EventCard extends AbstractWidget<EventCard> {
         // edge - the 28.0f should probably not be hardcoded but based on the font but whatever
         this.titleBottom = top - 28.0f;
 
-        this.groupTitleLabel = new SmartLabel(titleText, ExtraColors.EVENT_SCREEN_CARD_TITLE)
+        this.groupTitleLabel = new SmartLabel(titleText, ExtraFonts.eventActTitle(), ExtraColors.SCREEN_ACT_SECTION_TITLE)
                 .anchoredAt(left, titleBottom, AnchorPosition.LEFT_BOTTOM);
 
 
@@ -46,7 +48,9 @@ public class EventCard extends AbstractWidget<EventCard> {
 
         // Number of available events e.g. [10 / 11] (TODO: WIP)
         float labelRight = left + prefGroupWidth;
-        this.numAvailableLabel = new SmartLabel(group.getDetailStatusString(), ExtraColors.EVENT_SCREEN_CARD_NUM)
+        this.numAvailableLabel = new SmartLabel("[???]",//group.getDetailStatusString(),
+                ExtraFonts.eventActiveCount(),
+                ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT)
                 .anchoredAt(labelRight, titleBottom, AnchorPosition.RIGHT_BOTTOM);
 
     }
@@ -54,6 +58,15 @@ public class EventCard extends AbstractWidget<EventCard> {
     // TODO
     @Override public float getPreferredContentWidth() { return 520.0f; }
     @Override public float getPreferredContentHeight() { return numAvailableLabel.getPreferredContentHeight() + titleGroupSpacing + group.getPreferredContentHeight(); }
+
+    // --------------------------------------------------------------------------------
+
+    public void computeActive(HashMap<String, Integer> seenEvents) {
+        group.computeActive(seenEvents);
+        numAvailableLabel.setText(group.getDetailStatusString());
+    }
+
+    // --------------------------------------------------------------------------------
 
     @Override
     public void render(SpriteBatch sb) {
@@ -63,6 +76,8 @@ public class EventCard extends AbstractWidget<EventCard> {
     }
 
     public void renderHovers(SpriteBatch sb) { group.renderHovers(sb); }
+
+    // --------------------------------------------------------------------------------
 
     @Override public void update() { group.update(); }
     @Override public void show() { group.show(); }

@@ -1,6 +1,7 @@
 package InfoMod2.utils.graphics;
 
 import InfoMod2.ui.screens.IScreen;
+import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.utils.SoundHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -10,13 +11,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 // ScreenPatches in place
 public class ScreenHelper {
     private static boolean screenUp;
-    private static IScreen currentScreen;
+    private static AbstractWidget currentScreen;
 
     public static boolean isScreenUp() {
         return screenUp;
     }
 
-    public static void openCustomScreen(IScreen screen) {
+    public static void openCustomScreen(AbstractWidget screen) {
         // TODO: smarter logic to close existing screens / allow multiple up at once? idk - something better than this
         if (screenUp) currentScreen.hide();
         else SoundHelper.screenOpenSound();

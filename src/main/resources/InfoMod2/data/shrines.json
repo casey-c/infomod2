@@ -2,33 +2,166 @@
   "type": "SHRINES",
   "events": [
     {
-      "name": "Falling",
-      "id": "Falling",
-      "min_floor": 36,
-      "max_floor": 48,
-      "notes": "You must lose a card to proceed out of this event - options are only available if you have cards of that particular type. With no cards in your deck (yes, this is possible), you can [Land] for free.",
+      "name": "A Note For Yourself",
+      "id": "NoteForYourself",
+      "shrine_acts": "ANY",
+      "requirements": [
+        {
+          "type": "SPECIAL_NOTE_FOR_YOURSELF"
+        }
+      ],
+
       "choices": [
         {
-          "name": "Land",
+          "name": "Take and Give",
           "effects": [
             {
-              "text": "Lose the chosen skill card."
+              "text": "Remove a card from your deck."
+            },
+            {
+              "text": "Obtain the last card removed with this event."
             }
           ]
         },
         {
-          "name": "Channel",
+          "name": "Ignore",
           "effects": [
             {
-              "text": "Lose the chosen power card."
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bonfire Spirits",
+      "id": "Bonfire Elementals",
+      "shrine_acts": "ANY",
+      "notes": "Common or Special: Heal 5 HP. Uncommon: Heal to max HP. Rare: Gain 10 max HP and full heal. Curse: Obtain Spirit Poop (relic). Basic / Starter: Nothing happens.",
+      "choices": [
+        {
+          "name": "Offer",
+          "effects": [
+            {
+              "text": "Remove a card from your deck. Gain a reward based on the rarity of the card offered."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Designer In-Spire",
+      "id": "Designer",
+      "shrine_acts": "ACT2_AND_ACT3",
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_GOLD",
+          "val": "75"
+        }
+      ],
+      "notes": "Adjustments and Clean Up will choose between each of their possibilities at random. Adjustments requires at least one unupgraded card. Clean Up requires 1(2) removable cards. Full Service requires a removable card.",
+      "choices": [
+        {
+          "name": "Adjustments",
+          "effects": [
+            {
+              "text": "Lose X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "40"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "50"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Upgrade a card [OR] Upgrade 2 random cards in your deck."
             }
           ]
         },
         {
-          "name": "Strike",
+          "name": "Clean Up",
           "effects": [
             {
-              "text": "Lose the chosen attack card."
+              "text": "Lose X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "60"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "75"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Remove a card in your deck [OR] Transform 2 cards in your deck."
+            }
+          ]
+        },
+        {
+          "name": "Full Service",
+          "effects": [
+            {
+              "text": "Lose X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "90"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "110"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Remove a card."
+            },
+            {
+              "text": "Upgrade a random card."
+            }
+          ]
+        },
+        {
+          "name": "Punch",
+          "effects": [
+            {
+              "text": "Lose X HP.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "3"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "5"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
@@ -16,23 +17,26 @@ public class EventRequirement {
     //   and most of these are literally unused/overengineered anyway RIP. (only use gold, relic, leq%HP, and cards i think?
     //   maybe 1 or two more but i forget)
     private enum RequirementType {
-        AT_LEAST_X_GOLD, AT_LEAST_X_CURR_HP, LEQ_X_PERCENT_HP, AT_LEAST_X_MAX_HP, AT_LEAST_X_CARDS, HAS_RELIC, AT_LEAST_X_PERCENT_HP, ANY, NONE;
+        AT_LEAST_X_GOLD,
+        AT_LEAST_X_CURR_HP,
+        LEQ_X_PERCENT_HP,
+        AT_LEAST_X_MAX_HP,
+        AT_LEAST_X_CARDS,
+        HAS_RELIC,
+        AT_LEAST_X_PERCENT_HP,
+        SPECIAL_NOTE_FOR_YOURSELF,
+        ANY,
+        NONE;
 
         private boolean isIntegerRequirement() {
             return this == AT_LEAST_X_GOLD || this == AT_LEAST_X_CURR_HP || this == AT_LEAST_X_MAX_HP || this == AT_LEAST_X_CARDS;
         }
 
-        private boolean isFloatRequirement() {
-            return this == AT_LEAST_X_PERCENT_HP || this == LEQ_X_PERCENT_HP;
-        }
+        private boolean isFloatRequirement() { return this == AT_LEAST_X_PERCENT_HP || this == LEQ_X_PERCENT_HP; }
+        private boolean isAnyRequirement() { return this == ANY; }
+        private boolean isNoneRequirement() { return this == NONE; }
 
-        private boolean isAnyRequirement() {
-            return this == ANY;
-        }
-
-        private boolean isNoneRequirement() {
-            return this == NONE;
-        }
+        private boolean isSpecialNoteForYourself() { return this == SPECIAL_NOTE_FOR_YOURSELF; }
     }
 
 
@@ -111,6 +115,8 @@ public class EventRequirement {
             return noChildSatisfied();
         else if (type == RequirementType.LEQ_X_PERCENT_HP)
             return leqXPercentHPSatisfied();
+        else if (type == RequirementType.SPECIAL_NOTE_FOR_YOURSELF)
+            return specialNoteForYourselfSatisfied();
         else
             return false;
     }
@@ -211,11 +217,34 @@ public class EventRequirement {
         return true;
     }
 
-    // --------------------------------------------------------------------------------
+    private boolean specialNoteForYourselfSatisfied() {
+        if (CardCrawlGame.isInARun()) {
+            if (AbstractDungeon.player != null) {
+                int ascensionLevel = AbstractDungeon.ascensionLevel;
 
-//    public Color getTextColor() {
-//        return (isRequirementSatisfied()) ? ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS : ExtraColors.EVENT_TOOLTIP_REQ_FAILED;
-//    }
+                // disabled due to daily run
+                if (Settings.isDailyRun) {
+                    return false;
+                }
+                // disabled beyond a15
+                if (ascensionLevel >= 15) {
+                    return false;
+                }
+                // enabled on no asc
+                if (ascensionLevel == 0) {
+                    return true;
+                }
+                // enabled as it's less than highest unlocked asc
+                if (ascensionLevel < AbstractDungeon.player.getPrefs().getInteger("ASCENSION_LEVEL")) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // --------------------------------------------------------------------------------
 
     private String getAnyText() {
         if (children != null) {
@@ -265,6 +294,8 @@ public class EventRequirement {
                 return getAnyText();
             case NONE:
                 return getNoneText();
+            case SPECIAL_NOTE_FOR_YOURSELF:
+                return "Note for Yourself Enabled. ";
             default:
                 return "ERROR: not a valid requirement. Please inform ojb!";
         }

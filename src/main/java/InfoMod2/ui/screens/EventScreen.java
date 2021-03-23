@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class EventScreen extends TitledScreen<EventScreen> {
-    private EventCard act1, act2, act3;
+    private EventCard act1, act2, act3, shrines;
     private LinkedList<EventCard> cards = new LinkedList<>();
 
     public EventScreen() {
@@ -35,8 +35,11 @@ public class EventScreen extends TitledScreen<EventScreen> {
         float act3Top = act2Top - act2.getPreferredContentHeight() - SPACING;
         act3 = new EventCard(getMainContentLeft(), act3Top, "Act III", EventDatabase.act3_events.values());
 
+        float shrinesLeft = getMainContentLeft() + 661;
+        shrines = new EventCard(shrinesLeft, act1Top, "Shrines", EventDatabase.shrine_events.values());
+
         // Convenience
-        cards.addAll(Arrays.asList(act1, act2, act3));
+        cards.addAll(Arrays.asList(act1, act2, act3, shrines));
     }
 
     // Called whenever we need to show this screen (recomputes the active status of all events - based on requirement

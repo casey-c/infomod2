@@ -30,6 +30,9 @@ public class EventDetail {
     @SerializedName("wide") @Expose
     public boolean wide;
 
+    @SerializedName("shrine_acts") @Expose
+    public ActiveDuringAct activeDuringAct = null;
+
     // These are probably not necessary though originally intended to avoid null crashes
     public boolean hasNotes() {
         return !(notes == null || notes.equals(""));
@@ -37,4 +40,7 @@ public class EventDetail {
     public boolean hasRequirements() {
         return requirements != null;
     }
+
+    // Whether shrine_acts is set instead of min_floor/max_floor in the JSON data
+    public boolean shouldHandleUsingActsInsteadOfFloors() { return activeDuringAct != null; }
 }

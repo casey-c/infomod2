@@ -58,7 +58,13 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     private void initializeTooltip() {
         // Floors: x - y
-        floorLabel = new SmartLabel("Floor: " + detail.min_floor + " - " + detail.max_floor, ExtraFonts.smallItalicFont(), Color.WHITE);
+        if (detail.shouldHandleUsingActsInsteadOfFloors()) {
+            floorLabel = new SmartLabel("Act: " + detail.activeDuringAct.toString(), ExtraFonts.smallItalicFont(), Color.WHITE);
+        }
+        else {
+            floorLabel = new SmartLabel("Floor: " + detail.min_floor + " - " + detail.max_floor, ExtraFonts.smallItalicFont(), Color.WHITE);
+        }
+
         reqLabels.add(floorLabel);
 
         // Other requirements (e.g. requires 35 gold)
@@ -119,10 +125,18 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     // --------------------------------------------------------------------------------
 
+    // TODO: fake the floor number by a floor or so on the boss chest floor (to show upcoming act information)
+    //    e.g. on floor 17 you can see act 2 but technically still in act 1 on the chest
     public boolean isFloorNumSatisfied() {
         if (CardCrawlGame.isInARun()) {
             int floor = AbstractDungeon.floorNum + 1;
-            return floor >= detail.min_floor && floor <= detail.max_floor;
+
+            if (detail.shouldHandleUsingActsInsteadOfFloors()) {
+                return detail.activeDuringAct.isFloorActive(floor);
+            }
+            else {
+                return floor >= detail.min_floor && floor <= detail.max_floor;
+            }
         }
         return false;
     }

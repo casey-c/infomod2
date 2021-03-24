@@ -10,7 +10,6 @@ import basemod.interfaces.RenderSubscriber;
 import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 @SpireInitializer
 public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, StartGameSubscriber {

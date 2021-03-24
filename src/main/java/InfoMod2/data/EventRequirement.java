@@ -22,17 +22,20 @@ public class EventRequirement {
         LEQ_X_PERCENT_HP,
         AT_LEAST_X_MAX_HP,
         AT_LEAST_X_CARDS,
+        AT_LEAST_X_RELICS,
         HAS_RELIC,
         AT_LEAST_X_PERCENT_HP,
         SPECIAL_NOTE_FOR_YOURSELF,
+        HAS_REMOVABLE_CURSE,
+        PLAYTIME_OVER_X,
         ANY,
         NONE;
 
         private boolean isIntegerRequirement() {
-            return this == AT_LEAST_X_GOLD || this == AT_LEAST_X_CURR_HP || this == AT_LEAST_X_MAX_HP || this == AT_LEAST_X_CARDS;
+            return this == AT_LEAST_X_GOLD || this == AT_LEAST_X_CURR_HP || this == AT_LEAST_X_MAX_HP || this == AT_LEAST_X_CARDS || this == AT_LEAST_X_RELICS;
         }
 
-        private boolean isFloatRequirement() { return this == AT_LEAST_X_PERCENT_HP || this == LEQ_X_PERCENT_HP; }
+        private boolean isFloatRequirement() { return this == AT_LEAST_X_PERCENT_HP || this == LEQ_X_PERCENT_HP || this == PLAYTIME_OVER_X;}
         private boolean isAnyRequirement() { return this == ANY; }
         private boolean isNoneRequirement() { return this == NONE; }
 
@@ -94,6 +97,21 @@ public class EventRequirement {
         }
     }
 
+    private String asPlaytimeString() {
+        if (type.isFloatRequirement()) {
+            float totalSeconds = asFloat();
+            float minutes = totalSeconds / 60.0f;
+
+            int minutesInteger = (int) minutes;
+            int secondsInteger = (int)totalSeconds - (minutesInteger * 60);
+
+            return String.format("%d minutes %d seconds", minutesInteger, secondsInteger);
+        }
+        else {
+            return "0 seconds";
+        }
+    }
+
     // --------------------------------------------------------------------------------
 
     public boolean isRequirementSatisfied() {
@@ -105,6 +123,8 @@ public class EventRequirement {
             return atLeastXMaxHPSatisfied();
         else if (type == RequirementType.AT_LEAST_X_CARDS)
             return atLeastXCardsSatisfied();
+        else if (type == RequirementType.AT_LEAST_X_RELICS)
+            return atLeastXRelicsSatisfied();
         else if (type == RequirementType.AT_LEAST_X_PERCENT_HP)
             return atLeastXPercentHPSatisfied();
         else if (type == RequirementType.HAS_RELIC)
@@ -117,11 +137,32 @@ public class EventRequirement {
             return leqXPercentHPSatisfied();
         else if (type == RequirementType.SPECIAL_NOTE_FOR_YOURSELF)
             return specialNoteForYourselfSatisfied();
+        else if (type == RequirementType.HAS_REMOVABLE_CURSE)
+            return hasRemovableCurse();
+        else if (type == RequirementType.PLAYTIME_OVER_X)
+            return playtimeOverX();
         else
             return false;
     }
 
     // --------------------------------------------------------------------------------
+
+    private boolean hasRemovableCurse() {
+        if (CardCrawlGame.isInARun()) {
+            if (AbstractDungeon.player != null) {
+                return AbstractDungeon.player.isCursed();
+            }
+        }
+
+        return false;
+    }
+
+    private boolean playtimeOverX() {
+        if (CardCrawlGame.isInARun()) {
+            return CardCrawlGame.playtime >= asFloat();
+        }
+        return false;
+    }
 
     private boolean atLeastXGoldSatisfied() {
         if (CardCrawlGame.isInARun()) {
@@ -154,6 +195,15 @@ public class EventRequirement {
         if (CardCrawlGame.isInARun()) {
             if (AbstractDungeon.player != null && AbstractDungeon.player.masterDeck != null) {
                 return AbstractDungeon.player.masterDeck.size() >= asInteger();
+            }
+        }
+        return false;
+    }
+
+    private boolean atLeastXRelicsSatisfied() {
+        if (CardCrawlGame.isInARun()) {
+            if (AbstractDungeon.player != null && AbstractDungeon.player.relics != null) {
+                return AbstractDungeon.player.relics.size() >= asInteger();
             }
         }
         return false;
@@ -286,6 +336,8 @@ public class EventRequirement {
                 return "Requires " + val + " max HP. ";
             case AT_LEAST_X_CARDS:
                 return "Requires at least " + val + " cards. ";
+            case AT_LEAST_X_RELICS:
+                return "Requires at least " + val + " relics. ";
             case HAS_RELIC:
                 return "Has relic: " + val + ". ";
             case AT_LEAST_X_PERCENT_HP:
@@ -296,6 +348,10 @@ public class EventRequirement {
                 return getNoneText();
             case SPECIAL_NOTE_FOR_YOURSELF:
                 return "Note for Yourself Enabled. ";
+            case HAS_REMOVABLE_CURSE:
+                return "Has removable Curse. ";
+            case PLAYTIME_OVER_X:
+                return "Requires at least " + asPlaytimeString() + " of playtime. ";
             default:
                 return "ERROR: not a valid requirement. Please inform ojb!";
         }

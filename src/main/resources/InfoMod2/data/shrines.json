@@ -10,6 +10,7 @@
           "type": "SPECIAL_NOTE_FOR_YOURSELF"
         }
       ],
+      "notes": "This shrine is only in the pool under certain conditions. You can see it if ascension mode is disabled (Asc. 0), or if you are playing a lower level ascension than your highest unlocked level, up to and including ascension level 14. I.e. if you're playing on your highest available ascension level where a victory would unlock the next ascension, you will NOT be able to see this event (you have to go down to an 'easier' difficulty level first). At A15 and above, this event is disabled entirely. This shrine is also not available during daily runs.",
 
       "choices": [
         {
@@ -162,6 +163,642 @@
                   ]
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Duplicator",
+      "id": "Duplicator",
+      "shrine_acts": "ANY",
+      "choices": [
+        {
+          "name": "Pray",
+          "effects": [
+            {
+              "text": "Duplicate a card in your deck."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Face Trader",
+      "id": "FaceTrader",
+      "shrine_acts": "ACT1_AND_ACT2",
+      "notes": "All mask relics are equally likely: Cultist Headpiece (neutral), Face of Cleric (positive), Gremlin Visage (negative), N'Loth's Hungry Face (negative), Ssserpent Head (positive).",
+      "choices": [
+        {
+          "name": "Touch",
+          "effects": [
+            {
+              "text": "Take 10% of max HP as damage."
+            },
+            {
+              "text": "Gain X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "75"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "50"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Trade",
+          "effects": [
+            {
+              "text": "Obtain a random mask."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Golden Shrine",
+      "id": "Golden Shrine",
+      "shrine_acts": "ANY",
+      "notes": "",
+      "choices": [
+        {
+          "name": "Pray",
+          "effects": [
+            {
+              "text": "Gain X gold.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "100"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "50"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Desecrate",
+          "effects": [
+            {
+              "text": "Gain 275 gold."
+            },
+            {
+              "text": "Become Cursed: Regret."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lab",
+      "id": "Lab",
+      "shrine_acts": "ANY",
+      "choices": [
+        {
+          "name": "Find Some Potions!",
+          "effects": [
+            {
+              "text": "Obtain X random potions.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "3"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Match and Keep!",
+      "id": "Match and Keep!",
+      "shrine_acts": "ANY",
+      "notes": "Selects cards from the following pools: Bash/Neutralize/Zap/Eruption, random common, random uncommon, random rare, random uncommon colorless, random curse. At A15+, random uncommon colorless is replaced with a random curse.",
+      "choices": [
+        {
+          "name": "Play",
+          "effects": [
+            {
+              "text": "Play the matching game (5 attempts). Matching a card adds it to your deck."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ominous Forge",
+      "id": "Accursed Blacksmith",
+      "shrine_acts": "ANY",
+      "notes": "Forge requires an upgradeable card.",
+      "choices": [
+        {
+          "name": "Forge",
+          "effects": [
+            {
+              "text": "Upgrade a card."
+            }
+          ]
+        },
+        {
+          "name": "Rummage",
+          "effects": [
+            {
+              "text": "Become Cursed: Pain"
+            },
+            {
+              "text": "Obtain Warped Tongs (relic)."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Purifier",
+      "id": "Purifier",
+      "shrine_acts": "ANY",
+      "choices": [
+        {
+          "name": "Pray",
+          "effects": [
+            {
+              "text": "Remove a card."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Divine Fountain",
+      "id": "Fountain of Cleansing",
+      "shrine_acts": "ANY",
+      "requirements": [
+        {
+          "type": "HAS_REMOVABLE_CURSE"
+        }
+      ],
+      "choices": [
+        {
+          "name": "Drink",
+          "effects": [
+            {
+              "text": "Remove all Curses from your deck."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Woman in Blue",
+      "id": "The Woman in Blue",
+      "shrine_acts": "ANY",
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_GOLD",
+          "val": "50"
+        }
+      ],
+      "choices": [
+        {
+          "name": "Buy 1 Potion",
+          "effects": [
+            {
+              "text": "Lose 20 gold."
+            },
+            {
+              "text": "Choose 1 random potion."
+            }
+          ]
+        },
+        {
+          "name": "Buy 2 Potion",
+          "effects": [
+            {
+              "text": "Lose 30 gold."
+            },
+            {
+              "text": "Choose 2 random potions."
+            }
+          ]
+        },
+        {
+          "name": "Buy 3 Potion",
+          "effects": [
+            {
+              "text": "Lose 40 gold."
+            },
+            {
+              "text": "Choose 3 random potions."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens.X",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": ""
+                    },
+                    {
+                      "asc": 15,
+                      "text": " Take 5% of max HP as damage."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Transmogrifier",
+      "id": "Transmorgrifier",
+      "shrine_acts": "ANY",
+      "choices": [
+        {
+          "name": "Pray",
+          "effects": [
+            {
+              "text": "Transform a card."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Upgrade Shrine",
+      "id": "Upgrade Shrine",
+      "shrine_acts": "ANY",
+      "notes": "Pray requires an upgradeable card.",
+      "choices": [
+        {
+          "name": "Pray",
+          "effects": [
+            {
+              "text": "Upgrade a card."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "We Meet Again",
+      "id": "WeMeetAgain",
+      "shrine_acts": "ANY",
+      "notes": "Options are only available if you can actually afford the trade. The gold price X is randomly chosen between 50 and your current gold amount, with a minimum of 50. The random card will not be a basic/starter card or a curse.",
+      "choices": [
+        {
+          "name": "Give Potion",
+          "effects": [
+            {
+              "text": "Lose the chosen potion."
+            },
+            {
+              "text": "Obtain a random relic."
+            }
+          ]
+        },
+        {
+          "name": "Give Gold",
+          "effects": [
+            {
+              "text": "Lose X gold."
+            },
+            {
+              "text": "Obtain a random relic."
+            }
+          ]
+        },
+        {
+          "name": "Give Card",
+          "effects": [
+            {
+              "text": "Remove the chosen card."
+            },
+            {
+              "text": "Obtain a random relic."
+            }
+          ]
+        },
+        {
+          "name": "Attack",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wheel of Change",
+      "id": "Wheel of Change",
+      "shrine_acts": "ANY",
+      "notes": "Gold reward X is scaled based on the current act: 100 for Exordium, 200 for The City, and 300 for the Beyond. The shiv can kill you.",
+      "choices": [
+        {
+          "name": "Spin the wheel!",
+          "effects": [
+            {
+              "text": "Randomly obtain one of the following prizes: "
+            },
+            {
+              "text": "Gain X gold."
+            },
+            {
+              "text": "Gain a random relic."
+            },
+            {
+              "text": "Heal to full HP."
+            },
+            {
+              "text": "Become Cursed: Decay."
+            },
+            {
+              "text": "Remove a card."
+            },
+            {
+              "text": "Take X% of max HP as damage.",
+              "asc_scaling": [
+                {
+                  "replaces": "X",
+                  "values": [
+                    {
+                      "asc": 0,
+                      "text": "10"
+                    },
+                    {
+                      "asc": 15,
+                      "text": "15"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Knowing Skull",
+      "id": "Knowing Skull",
+      "shrine_acts": "ACT2",
+      "notes": "Each time an option is chosen, the HP cost X increases by 1 (starts at 6 HP).",
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_CURR_HP",
+          "val": "13"
+        }
+      ],
+      "choices": [
+        {
+          "name": "Success?",
+          "effects": [
+            {
+              "text": "Lose X HP."
+            },
+            {
+              "text": "Obtain a random uncommon colorless card."
+            }
+          ]
+        },
+        {
+          "name": "A Pick Me Up?",
+          "effects": [
+            {
+              "text": "Lose X HP."
+            },
+            {
+              "text": "Obtain a random potion."
+            }
+          ]
+        },
+        {
+          "name": "Riches?",
+          "effects": [
+            {
+              "text": "Lose X HP."
+            },
+            {
+              "text": "Gain 90 gold."
+            }
+          ]
+        },
+        {
+          "name": "How do I leave?",
+          "effects": [
+            {
+              "text": "Lose 6 HP."
+            },
+            {
+              "text": "Ends the event."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "N'loth",
+      "id": "N'loth",
+      "shrine_acts": "ACT2",
+      "notes": "The relics are randomly chosen from your relic bar.",
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_RELICS",
+          "val": "2"
+        }
+      ],
+      "choices": [
+        {
+          "name": "Offer Relic",
+          "effects": [
+            {
+              "text": "Lose the chosen relic."
+            },
+            {
+              "text": "Gain N'loth's Gift (relic)."
+            }
+          ]
+        },
+        {
+          "name": "Offer Relic",
+          "effects": [
+            {
+              "text": "Lose the chosen relic."
+            },
+            {
+              "text": "Gain N'loth's Gift (relic)."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Joust",
+      "id": "The Joust",
+      "shrine_acts": "ACT2",
+      "requirements": [
+        {
+          "type": "AT_LEAST_X_GOLD",
+          "val": "50"
+        }
+      ],
+      "choices": [
+        {
+          "name": "Bet on Murderer",
+          "effects": [
+            {
+              "text": "Lose 50 gold."
+            },
+            {
+              "text": "70% Chance to gain 100 gold."
+            }
+          ]
+        },
+        {
+          "name": "Bet on Owner",
+          "effects": [
+            {
+              "text": "Lose 50 gold."
+            },
+            {
+              "text": "30% Chance to gain 250 gold."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Secret Portal",
+      "id": "SecretPortal",
+      "shrine_acts": "ACT3",
+      "requirements": [
+        {
+          "type": "PLAYTIME_OVER_X",
+          "val": "800"
+        }
+      ],
+      "notes": "You will not be able to collect any missed keys.",
+      "choices": [
+        {
+          "name": "Enter the Portal",
+          "effects": [
+            {
+              "text": "Immediately travel to the boss."
+            }
+          ]
+        },
+        {
+          "name": "Leave",
+          "effects": [
+            {
+              "text": "Nothing happens."
             }
           ]
         }

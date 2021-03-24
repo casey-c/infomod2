@@ -134,6 +134,14 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
                 return detail.activeDuringAct.isFloorActive(floor);
             }
             else {
+                // Special case: previewing next act map from boss chest floors
+                // NOTE: most certainly not the proper way to do this. (Only doing this way because the JSON data
+                // shows the accurate floor numbers - i.e. they reflect the idea that you are guaranteed a fight at the
+                // start of acts, and events are further up. I'd rather not lose that information there, so the
+                // hackyness needs to come somewhere, so why not here)
+                if (floor == 18 || floor == 35)
+                    ++floor;
+
                 return floor >= detail.min_floor && floor <= detail.max_floor;
             }
         }

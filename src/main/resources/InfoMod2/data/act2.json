@@ -328,7 +328,7 @@
     {
       "name": "The Colosseum",
       "id": "Colosseum",
-      "min_floor": 19,
+      "min_floor": 27,
       "max_floor": 31,
       "notes": "The first fight is mandatory, and [COWARDICE] and [VICTORY] become available on winning. Relics that affect elite fights will work in the Taskmaster / Nob fight (except Black Star).",
       "choices": [

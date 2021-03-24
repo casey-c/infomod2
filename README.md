@@ -59,7 +59,7 @@ To install:
 * You may want to start a fresh game save first - as the boss indicator won't update correctly
 * This is not a cheat mod! Using this mod doesn't give you any practical advantage in optimal play - none of the data displayed is unable to be calculated manually without the mod. It's just tedious to do in normal games!
 * This mod is under construction - expect bugs!
-* This mod is designed for 1080p (1920x1080) resolution first, but a decent amount of effort was put in to make it compatible with alternate resolutions (including ultrawide). As I don't have anything other than a 1080p screen personally, please let me know if anything looks wonky or unreadable over on the [Issues Page](https://github.com/casey-c/infomod2/issues) here on Github.
+* This mod is designed for 1080p (1920x1080) resolution first, but a decent amount of effort was put in to make it compatible with alternate resolutions (including ultrawide). It should work, but it'll be a bit less pretty. As I don't have anything other than a 1080p screen personally, please let me know if anything looks too wonky or unreadable over on the [Issues Page](https://github.com/casey-c/infomod2/issues) here on Github.
 
 ### Feedback
 

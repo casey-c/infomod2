@@ -104,7 +104,7 @@ public class EventPercentageBoxWidget extends AbstractWidget<EventPercentageBoxW
     public void render(SpriteBatch sb) {
         // Render background
         sb.setColor(Color.WHITE);
-        sb.draw(TEX_BG, texLeft, texBottom, TEX_BG.getWidth() * Settings.xScale, TEX_BG.getHeight() * Settings.yScale);
+        sb.draw(TEX_BG, texLeft * Settings.xScale, texBottom * Settings.yScale, TEX_BG.getWidth() * Settings.xScale, TEX_BG.getHeight() * Settings.yScale);
 
         for (SmartLabel label : labels)
             label.render(sb);

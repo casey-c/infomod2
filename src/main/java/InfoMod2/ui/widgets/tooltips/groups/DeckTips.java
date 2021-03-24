@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class DeckTips {
     private static CardDropsTip cardDropsTip;
+    public static boolean SHOULD_RENDER = false;
 
 //    private static final float CARD_TIPS_LEFT = 1552; //1575;
     private static final float CARD_TIPS_RIGHT = 1920 - 52;

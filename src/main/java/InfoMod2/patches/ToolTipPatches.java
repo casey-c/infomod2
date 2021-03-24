@@ -4,7 +4,6 @@ import InfoMod2.InfoMod2;
 import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.GoldTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
-//import InfoMod2.ui.screens.EventDetailScreen;
 import InfoMod2.utils.RightClickWatcher;
 import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
@@ -16,7 +15,6 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
@@ -56,12 +54,20 @@ public class ToolTipPatches {
 
             // Show my custom map tool tip
             if (!mapButtonDisabled && instance.mapHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                MapTips.renderCustomMapTips(sb);
+                //MapTips.renderCustomMapTips(sb);
+                MapTips.SHOULD_RENDER = true;
+            }
+            else {
+                MapTips.SHOULD_RENDER = false;
             }
 
             // Show my custom deck tool tip
             if (!deckButtonDisabled && instance.deckHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MASTER_DECK_VIEW) {
-                DeckTips.renderCustomDeckTips(sb);
+                //DeckTips.renderCustomDeckTips(sb);
+                DeckTips.SHOULD_RENDER = true;
+            }
+            else {
+                DeckTips.SHOULD_RENDER = false;
             }
         }
 

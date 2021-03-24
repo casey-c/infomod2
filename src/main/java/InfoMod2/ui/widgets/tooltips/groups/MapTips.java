@@ -21,6 +21,8 @@ public class MapTips {
 
     private static final float MAP_TIPS_RIGHT = 1920 - 52;
 
+    public static boolean SHOULD_RENDER = false;
+
     private static void ensureExists() {
         if (eventChanceToolTip == null)
             eventChanceToolTip = new EventChanceToolTip().anchoredAt(MAP_TIPS_RIGHT, 1080.0f - 89.0f, AnchorPosition.RIGHT_TOP);

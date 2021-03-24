@@ -13,6 +13,8 @@ public class EventScreen extends TitledScreen<EventScreen> {
     private EventCard act1, act2, act3, shrines;
     private LinkedList<EventCard> cards = new LinkedList<>();
 
+    private EventPercentageBoxWidget percentageBoxWidget;
+
     public EventScreen() {
         super(new Texture("InfoMod2/screens/event_background.png"),
                 "Event Overview",
@@ -39,6 +41,8 @@ public class EventScreen extends TitledScreen<EventScreen> {
         // Convenience
         cards.clear();
         cards.addAll(Arrays.asList(act1, act2, act3, shrines));
+
+        percentageBoxWidget = new EventPercentageBoxWidget(getMainContentLeft() + 744.0f, getMainContentBottom() + 360.0f);
     }
 
     // Called whenever we need to show this screen (recomputes the active status of all events - based on requirement
@@ -79,12 +83,17 @@ public class EventScreen extends TitledScreen<EventScreen> {
         // Use the seen events (and reexamine other reqs like current floor, etc.) to update the act cards
         for (EventCard card : cards)
             card.computeActive(seenEvents);
+
+        // Update the percentage box
+        percentageBoxWidget.updateProbabilities();
     }
 
     @Override
     protected void renderWidgets(SpriteBatch sb) {
         for (EventCard card : cards)
             card.render(sb);
+
+        percentageBoxWidget.render(sb);
     }
 
     @Override
@@ -100,12 +109,16 @@ public class EventScreen extends TitledScreen<EventScreen> {
 
         for (EventCard card : cards)
             card.show();
+
+        percentageBoxWidget.show();
     }
 
     @Override
     public void hide() {
         for (EventCard card : cards)
             card.hide();
+
+        percentageBoxWidget.hide();
     }
 
     @Override
@@ -115,5 +128,7 @@ public class EventScreen extends TitledScreen<EventScreen> {
 
         for (EventCard card : cards)
             card.update();
+
+        percentageBoxWidget.update();
     }
 }

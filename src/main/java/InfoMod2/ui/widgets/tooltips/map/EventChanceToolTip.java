@@ -23,7 +23,8 @@ public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
     private Color getTreasureColor() { return ExtraColors.QUAL_GREEN; }
 
     // TODO: write update functions etc.
-    EventChanceHelper helper = new EventChanceHelper();
+    private EventChanceHelper helper = new EventChanceHelper();
+    public EventChanceHelper getHelper() { return helper; }
 
     public void updateHelper() {
         helper.update();

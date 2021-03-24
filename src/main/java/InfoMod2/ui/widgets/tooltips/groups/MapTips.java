@@ -3,6 +3,7 @@ package InfoMod2.ui.widgets.tooltips.groups;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.tooltips.map.BossToolTip;
 import InfoMod2.ui.widgets.tooltips.map.EventChanceToolTip;
+import InfoMod2.utils.math.EventChanceHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Json;
 import com.google.gson.JsonElement;
@@ -59,6 +60,11 @@ public class MapTips {
     public static void print() {
         ensureExists();
         System.out.println(bossToolTip);
+    }
+
+    public static EventChanceHelper getEventChanceHelper() {
+        ensureExists();
+        return eventChanceToolTip.getHelper();
     }
 
     // --------------------------------------------------------------------------------

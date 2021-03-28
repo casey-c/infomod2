@@ -4,24 +4,29 @@ import InfoMod2.ui.widgets.tooltips.TitledToolTip;
 import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Json;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
     private String cardPlaysTurn, cardPlaysCombat, cardPlaysRun;
     private String avgCardPlaysCombat, avgCardPlaysRun;
 
-    private int numCardsTurn = 0;
-    private int numCardsCombat = 0;
-    private int numCardsRun = 0;
-
-    private int numTurnsCombat = 0;
-    private int numTurnsRun = 0;
+    private int numCardsTurn, numCardsCombat, numCardsRun;
+    private int numTurnsCombat, numTurnsRun;
 
     private static final float SPACING = 37;
 
     public MiscStatsTip() {
         super(431, 264, "Misc. Stats", "Current Turn: 0");
+
+        reset();
         updateCardPlaysText();
     }
 
@@ -55,14 +60,18 @@ public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
     }
 
     public void startRun() {
+        reset();
+
+        updateCardPlaysText();
+    }
+
+    private void reset() {
         numCardsCombat = 0;
         numCardsTurn = 0;
         numCardsRun = 0;
 
         numTurnsCombat = 0;
         numTurnsRun = 0;
-
-        updateCardPlaysText();
     }
 
     // --------------------------------------------------------------------------------
@@ -109,5 +118,78 @@ public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Avg. Cards Per Turn:", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, avgCardPlaysCombat, combatLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_BLUE);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, avgCardPlaysRun, runLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_YELLOW);
+    }
+
+
+    // --------------------------------------------------------------------------------
+    // TODO: probably should've used Gson here/automated it, but whatever
+
+    public JsonObject serialize() {
+        JsonObject obj = new JsonObject();
+
+        boolean isCurrentlyFighting = false; //TODO
+
+        AbstractRoom room = AbstractDungeon.getCurrRoom();
+        if (room != null && room.phase == AbstractRoom.RoomPhase.COMBAT)
+            isCurrentlyFighting = true;
+
+        // Need to subtract out the current combat stats, since saving/loading will restart the fight
+        if (isCurrentlyFighting) {
+            obj.add("numCardsRun", new JsonPrimitive(numCardsRun - numCardsCombat));
+            obj.add("numTurnsRun", new JsonPrimitive(numTurnsRun - numTurnsCombat));
+        }
+        // We shouldn't subtract out the current combat stuff, since the Run totals will be fixed
+        else {
+            obj.add("numCardsRun", new JsonPrimitive(numCardsRun));
+            obj.add("numTurnsRun", new JsonPrimitive(numTurnsRun));
+        }
+
+        System.out.println("\n******************");
+        System.out.println("SERIALIZING MISC STATS TIP: ");
+        System.out.println(obj.toString());
+        System.out.println("******************");
+        System.out.println("Current status: " + toString());
+        System.out.println("******************\n");
+
+        return obj;
+    }
+
+    public void deserialize(JsonObject obj) {
+        System.out.println("Deserializing (PRE reset): " + toString());
+        reset();
+        System.out.println("Deserializing (POST reset): " + toString());
+
+//        if (obj.has("numCardsTurn"))
+//            this.numCardsTurn = obj.get("numCardsTurn").getAsInt();
+//        if (obj.has("numCardsCombat"))
+//            this.numCardsCombat = obj.get("numCardsCombat").getAsInt();
+        if (obj.has("numCardsRun"))
+            this.numCardsRun = obj.get("numCardsRun").getAsInt();
+
+//        if (obj.has("numTurnsCombat"))
+//            this.numTurnsCombat = obj.get("numTurnsCombat").getAsInt();
+        if (obj.has("numTurnsRun"))
+            this.numTurnsRun = obj.get("numTurnsRun").getAsInt();
+
+        updateCardPlaysText();
+    }
+
+    // --------------------------------------------------------------------------------
+    // DEBUG
+
+    @Override
+    public String toString() {
+        return "MiscStatsTip{" +
+                "cardPlaysTurn='" + cardPlaysTurn + '\'' +
+                ", cardPlaysCombat='" + cardPlaysCombat + '\'' +
+                ", cardPlaysRun='" + cardPlaysRun + '\'' +
+                ", avgCardPlaysCombat='" + avgCardPlaysCombat + '\'' +
+                ", avgCardPlaysRun='" + avgCardPlaysRun + '\'' +
+                ", numCardsTurn=" + numCardsTurn +
+                ", numCardsCombat=" + numCardsCombat +
+                ", numCardsRun=" + numCardsRun +
+                ", numTurnsCombat=" + numTurnsCombat +
+                ", numTurnsRun=" + numTurnsRun +
+                '}';
     }
 }

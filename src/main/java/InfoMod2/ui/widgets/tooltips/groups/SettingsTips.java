@@ -3,6 +3,8 @@ package InfoMod2.ui.widgets.tooltips.groups;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.tooltips.settings.MiscStatsTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.google.gson.JsonObject;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 public class SettingsTips {
     private static MiscStatsTip miscStatsTip;
@@ -46,10 +48,20 @@ public class SettingsTips {
 
     // --------------------------------------------------------------------------------
 
-    // TODO: update on turn start, combat start, etc.
+    public static JsonObject serialize() {
+        System.out.println("SettingsTips: serialize");
 
-//    public static void updateCardDrops() {
-//        ensureExists();
-//        miscStatsTip.(AbstractDungeon.cardBlizzRandomizer);
-//    }
+        if (miscStatsTip == null || !CardCrawlGame.isInARun())
+            return new JsonObject();
+        else {
+            return miscStatsTip.serialize();
+        }
+    }
+
+    public static void deserialize(JsonObject obj) {
+        System.out.println("SettingsTips: deserialize");
+
+        ensureExists();
+        miscStatsTip.deserialize(obj);
+    }
 }

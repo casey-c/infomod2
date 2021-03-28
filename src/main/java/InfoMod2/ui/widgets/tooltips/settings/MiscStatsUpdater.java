@@ -26,7 +26,8 @@ public class MiscStatsUpdater implements OnCardUseSubscriber, StartGameSubscribe
 
     @Override
     public void receiveStartGame() {
-        SettingsTips.startRun();
+        //SettingsTips.startRun();
+        System.out.println("RECV START GAME");
     }
 
     @Override

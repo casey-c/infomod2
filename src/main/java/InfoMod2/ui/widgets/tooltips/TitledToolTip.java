@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 public class TitledToolTip<T extends TitledToolTip<T>> extends ExtendedToolTip<T> {
     private boolean hasSubtitle = false;
-    private String title;
-    private String subtitle;
+    protected String title;
+    protected String subtitle;
 
     private static final float DIVIDER_X_INSET = 6;
 

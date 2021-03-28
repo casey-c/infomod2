@@ -5,6 +5,7 @@ import InfoMod2.top.PotionPanelItem;
 import InfoMod2.ui.screens.EventScreen;
 import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
+import InfoMod2.ui.widgets.tooltips.groups.SettingsTips;
 import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
@@ -48,6 +49,9 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, Sta
 
             if (DeckTips.SHOULD_RENDER)
                 DeckTips.renderCustomDeckTips(sb);
+
+            if (SettingsTips.SHOULD_RENDER)
+                SettingsTips.renderCustomTips(sb);
         }
     }
 

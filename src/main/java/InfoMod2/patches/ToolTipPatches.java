@@ -4,6 +4,7 @@ import InfoMod2.InfoMod2;
 import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.GoldTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
+import InfoMod2.ui.widgets.tooltips.groups.SettingsTips;
 import InfoMod2.utils.RightClickWatcher;
 import InfoMod2.utils.graphics.ScreenHelper;
 import basemod.BaseMod;
@@ -47,9 +48,13 @@ public class ToolTipPatches {
             boolean mapButtonDisabled = ReflectionHacks.getPrivate(instance, TopPanel.class, "mapButtonDisabled");
             boolean deckButtonDisabled = ReflectionHacks.getPrivate(instance, TopPanel.class, "deckButtonDisabled");
 
-
+            // Show my custom settings tool tip
             if (!settingsButtonDisabled && instance.settingsHb.hovered && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.SETTINGS && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.INPUT_SETTINGS) {
-                TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, TopPanel.LABEL[0] + " (" + InputActionSet.cancel.getKeyString() + ")", TopPanel.MSG[0]);
+                //TipHelper.renderGenericTip(TOP_RIGHT_TIP_X, TIP_Y, TopPanel.LABEL[0] + " (" + InputActionSet.cancel.getKeyString() + ")", TopPanel.MSG[0]);
+                SettingsTips.SHOULD_RENDER = true;
+            }
+            else {
+                SettingsTips.SHOULD_RENDER = false;
             }
 
             // Show my custom map tool tip

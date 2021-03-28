@@ -17,16 +17,11 @@ public class MiscStatsSaveable implements CustomSavableRaw {
 
     @Override
     public JsonElement onSaveRaw() {
-        System.out.println("MiscStatsSaveable: onSaveRaw");
-
         return SettingsTips.serialize();
     }
 
     @Override
     public void onLoadRaw(JsonElement jsonElement) {
-        System.out.println("MiscStatsSaveable: onLoadRaw");
-        System.out.println("jsonElement: " + jsonElement);
-
         if (jsonElement != null && jsonElement.isJsonObject())
             SettingsTips.deserialize(jsonElement.getAsJsonObject());
     }

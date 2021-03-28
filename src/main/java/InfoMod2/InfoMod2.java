@@ -13,6 +13,7 @@ import basemod.interfaces.RenderSubscriber;
 import basemod.interfaces.StartGameSubscriber;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 
 @SpireInitializer
 public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, StartGameSubscriber {
@@ -44,6 +45,13 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, Sta
         if (ScreenHelper.isScreenUp())
             ScreenHelper.render(sb);
         else {
+            // Bugfix: you can mouse over the top right icons while saving and quitting and still have the tool tips
+            // render
+            // TODO: should probably handle this better (maybe force the SHOULD_RENDER bools to be unset?)
+            if (!CardCrawlGame.isInARun())
+                return;
+
+            // Render all the extra tips (doing it here so they render on TOP of just about everything but the mouse)
             if (MapTips.SHOULD_RENDER)
                 MapTips.renderCustomMapTips(sb);
 

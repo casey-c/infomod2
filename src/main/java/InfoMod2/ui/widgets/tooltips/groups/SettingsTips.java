@@ -11,7 +11,6 @@ public class SettingsTips {
 
     public static boolean SHOULD_RENDER = false;
 
-    //    private static final float CARD_TIPS_LEFT = 1552; //1575;
     private static final float CARD_TIPS_RIGHT = 1920 - 52;
 
     private static void ensureExists() {
@@ -49,8 +48,6 @@ public class SettingsTips {
     // --------------------------------------------------------------------------------
 
     public static JsonObject serialize() {
-        System.out.println("SettingsTips: serialize");
-
         if (miscStatsTip == null || !CardCrawlGame.isInARun())
             return new JsonObject();
         else {
@@ -59,8 +56,6 @@ public class SettingsTips {
     }
 
     public static void deserialize(JsonObject obj) {
-        System.out.println("SettingsTips: deserialize");
-
         ensureExists();
         miscStatsTip.deserialize(obj);
     }

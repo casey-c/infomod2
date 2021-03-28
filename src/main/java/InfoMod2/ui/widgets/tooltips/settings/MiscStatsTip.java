@@ -4,9 +4,6 @@ import InfoMod2.ui.widgets.tooltips.TitledToolTip;
 import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Json;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.megacrit.cardcrawl.core.Settings;
@@ -122,7 +119,9 @@ public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
 
 
     // --------------------------------------------------------------------------------
-    // TODO: probably should've used Gson here/automated it, but whatever
+    // TODO: should the combat stats (currently persistent between floors while in game, but intentionally lost between
+    //    saves/loads) actually be this way? originally: i intended the combat stats to stick around after battles
+    //    (resets only on the start of the next battle) so you'll be able to check it
 
     public JsonObject serialize() {
         JsonObject obj = new JsonObject();
@@ -159,15 +158,9 @@ public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
         reset();
         System.out.println("Deserializing (POST reset): " + toString());
 
-//        if (obj.has("numCardsTurn"))
-//            this.numCardsTurn = obj.get("numCardsTurn").getAsInt();
-//        if (obj.has("numCardsCombat"))
-//            this.numCardsCombat = obj.get("numCardsCombat").getAsInt();
         if (obj.has("numCardsRun"))
             this.numCardsRun = obj.get("numCardsRun").getAsInt();
 
-//        if (obj.has("numTurnsCombat"))
-//            this.numTurnsCombat = obj.get("numTurnsCombat").getAsInt();
         if (obj.has("numTurnsRun"))
             this.numTurnsRun = obj.get("numTurnsRun").getAsInt();
 

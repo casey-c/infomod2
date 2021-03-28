@@ -33,6 +33,16 @@ Elite combat rewards are more likely to have a rare card than normal combats - a
 
 ![Card drop tracking](github/cards.png)
 
+### Card Play Stats
+
+The Settings tool tip has been revamped with some simple data collection. It has a turn counter (especially useful when combined with [Bestiary!](https://github.com/casey-c/bestiary)) and will keep track of the number of cards you play each turn, combat, and over the entire run.
+
+Although averages aren't really the best mathematical tool for assisting decision making, the average cards played per turn should hopefully enable you to make slightly more informed decisions regarding the general playstyle of your deck - especially when considering the impacts of relics such as *Pocketwatch* or *Velvet Choker*.
+
+The cards per combat / last turn data sticks around until the start of your next combat, letting you have access to this information on intermediate floors if you forget to check it during a fight!
+
+![Card play stats](github/stats.png)
+
 ### Shop Prices
 
 The Gold tool tip has been improved to show the prices you can expect in the next shop. The values are color coded to easily tell whether you can afford a certain rarity of item with your current amount of gold. These prices and colors will properly adjust with your current relics and whenever you gain / lose gold. There's also a card removal price tracker as well!

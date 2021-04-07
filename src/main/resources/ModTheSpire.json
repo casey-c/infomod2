@@ -3,7 +3,7 @@
   "name": "InfoMod",
   "author_list": ["ojb"],
   "description": "An extended UI mod to track potion drop chances, card drop probabilities, and other tedious calculations using intuitive tool tips and overlays.",
-  "version": "0.1.0",
+  "version": "0.0.6",
   "sts_version": "12-22-2020",
   "mts_version": "3.18.2",
   "dependencies": ["basemod"]

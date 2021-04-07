@@ -7,13 +7,18 @@ import InfoMod2.ui.widgets.tooltips.groups.DeckTips;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
 import InfoMod2.ui.widgets.tooltips.groups.SettingsTips;
 import InfoMod2.utils.graphics.ScreenHelper;
+import InfoMod2.utils.integration.SlayTheRelicsIntegration;
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.RenderSubscriber;
 import basemod.interfaces.StartGameSubscriber;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+
+import java.util.ArrayList;
 
 @SpireInitializer
 public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, StartGameSubscriber {
@@ -22,8 +27,7 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, Sta
         BaseMod.subscribe(this);
     }
 
-    private PotionPanelItem potionPanelItem;
-
+    private static PotionPanelItem potionPanelItem;
     public static EventScreen eventScreen;
 
     @Override
@@ -38,6 +42,8 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, Sta
         EventDatabase.load("/InfoMod2/data/shrines.json");
 
         eventScreen = new EventScreen();
+
+        BaseMod.registerModBadge(new Texture("InfoMod2/badge.png"),  "InfoMod",  "ojb",  "Adds additional information to tool tips.", null);
     }
 
     @Override
@@ -67,5 +73,10 @@ public class InfoMod2 implements PostInitializeSubscriber, RenderSubscriber, Sta
     public void receiveStartGame() {
         // Recompute layouts
         eventScreen.initialize();
+    }
+
+    // Messy messy messy spaghetti trying to backfit this in
+    public static void updateSlayTheRelicsPotionTips(ArrayList<PowerTip> tips) {
+        SlayTheRelicsIntegration.update("potionTips", potionPanelItem.getHitbox(), tips);
     }
 }

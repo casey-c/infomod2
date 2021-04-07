@@ -17,6 +17,8 @@ import java.util.HashMap;
 import static com.megacrit.cardcrawl.ui.panels.ExhaustPanel.fontScale;
 
 public class ExtraFonts {
+    private static final Color TEXT_BORDER_COLOR = new Color(0.0f, 0.0f, 0.0f, 0.2f);
+
     private static BitmapFont SMALL_ITALIC_FONT;
 
     public static BitmapFont smallItalicFont() {
@@ -26,7 +28,7 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    TEXT_BORDER_COLOR,
                     false,
                     1.0f,
                     0.9f,
@@ -47,7 +49,7 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    TEXT_BORDER_COLOR,
                     false,
                     1.0f,
                     0.9f,
@@ -68,9 +70,10 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    //new Color(0f, 0f, 0f, 1f),
-                    ExtraColors.SCREEN_SUBTITLE_TEXT,
-                    //ExtraColors.TEXT_BORDER_COLOR,
+                    new Color(1f, 1f, 1f, 0.2f),
+//                    //new Color(0f, 0f, 0f, 1f),
+//                    ExtraColors.SCREEN_SUBTITLE_TEXT,
+//                    //ExtraColors.TEXT_BORDER_COLOR,
                     false,
                     0.0f,
                     1.0f,
@@ -92,7 +95,7 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    TEXT_BORDER_COLOR,
                     false,
                     0.0f,
                     0.9f,
@@ -115,7 +118,7 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    TEXT_BORDER_COLOR,
                     false,
                     0.0f,
                     0.9f,
@@ -139,7 +142,7 @@ public class ExtraFonts {
                     0,
                     0,
                     //new Color(0f, 0f, 0f, 1f),
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    TEXT_BORDER_COLOR,
                     false,
                     0.0f,
                     1.0f,
@@ -161,7 +164,7 @@ public class ExtraFonts {
                     0.9f,
                     0,
                     0,
-                    ExtraColors.TEXT_BORDER_COLOR,
+                    TEXT_BORDER_COLOR,
                     false,
                     0.0f,
                     0.9f,

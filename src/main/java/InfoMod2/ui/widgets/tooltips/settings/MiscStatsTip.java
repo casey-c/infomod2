@@ -1,7 +1,7 @@
 package InfoMod2.ui.widgets.tooltips.settings;
 
 import InfoMod2.ui.widgets.tooltips.TitledToolTip;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.google.gson.JsonObject;
@@ -97,24 +97,24 @@ public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
         float currY = top - 30;
 
         // Headers
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Turn", turnLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Combat", combatLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Run", runLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Turn", turnLeft * Settings.xScale, currY * Settings.yScale, ColorManager.LIGHT_GRAY());
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Combat", combatLeft * Settings.xScale, currY * Settings.yScale, ColorManager.LIGHT_GRAY());
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Run", runLeft * Settings.xScale, currY * Settings.yScale, ColorManager.LIGHT_GRAY());
 
         currY -= SPACING;
 
         // Card Plays
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Cards Played:", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, cardPlaysTurn, turnLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_GREEN);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, cardPlaysCombat, combatLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_BLUE);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, cardPlaysRun, runLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_YELLOW);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Cards Played:", left * Settings.xScale, currY * Settings.yScale, ColorManager.LIGHT_GRAY());
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, cardPlaysTurn, turnLeft * Settings.xScale, currY * Settings.yScale, ColorManager.QUAL_GREEN());
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, cardPlaysCombat, combatLeft * Settings.xScale, currY * Settings.yScale, ColorManager.QUAL_BLUE());
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, cardPlaysRun, runLeft * Settings.xScale, currY * Settings.yScale, ColorManager.QUAL_YELLOW());
 
         currY -= SPACING;
 
         // Avg Card Per Turn
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Avg. Cards Per Turn:", left * Settings.xScale, currY * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, avgCardPlaysCombat, combatLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_BLUE);
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, avgCardPlaysRun, runLeft * Settings.xScale, currY * Settings.yScale, ExtraColors.QUAL_YELLOW);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Avg. Cards Per Turn:", left * Settings.xScale, currY * Settings.yScale, ColorManager.LIGHT_GRAY());
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, avgCardPlaysCombat, combatLeft * Settings.xScale, currY * Settings.yScale, ColorManager.QUAL_BLUE());
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, avgCardPlaysRun, runLeft * Settings.xScale, currY * Settings.yScale, ColorManager.QUAL_YELLOW());
     }
 
 

@@ -1,7 +1,8 @@
 package InfoMod2.top;
 
 import InfoMod2.ui.widgets.tooltips.groups.PotionTips;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
+import InfoMod2.utils.integration.SlayTheRelicsIntegration;
 import basemod.TopPanelItem;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -44,7 +45,7 @@ public class PotionPanelItem extends TopPanelItem {
         float textBottom = y + 21 * Settings.scale;
 
         // TODO: config option?
-        Color textColor = text.equals("80%") ? ExtraColors.rainbowColor() : Settings.CREAM_COLOR;
+        Color textColor = text.equals("80%") ? ColorManager.rainbowColor() : Settings.CREAM_COLOR;
 
         FontHelper.renderFontLeftDownAligned(sb,
                 FontHelper.topPanelAmountFont,
@@ -78,6 +79,8 @@ public class PotionPanelItem extends TopPanelItem {
     @Override
     protected void onClick() {
         CardCrawlGame.sound.play("DECK_OPEN");
+
+        SlayTheRelicsIntegration.print();
 
 //        System.out.println("********** System Information **********");
 //        System.out.println("Settings.WIDTH: " + Settings.WIDTH);

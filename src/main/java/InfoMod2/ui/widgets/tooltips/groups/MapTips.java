@@ -3,6 +3,7 @@ package InfoMod2.ui.widgets.tooltips.groups;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.tooltips.map.BossToolTip;
 import InfoMod2.ui.widgets.tooltips.map.EventChanceToolTip;
+import InfoMod2.utils.integration.SlayTheRelicsIntegration;
 import InfoMod2.utils.math.EventChanceHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Json;
@@ -10,6 +11,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -57,6 +60,8 @@ public class MapTips {
     public static void updateEventChanceTip() {
         ensureExists();
         eventChanceToolTip.updateHelper();
+
+        updateSlayTheRelics();
     }
 
     public static void print() {
@@ -67,6 +72,57 @@ public class MapTips {
     public static EventChanceHelper getEventChanceHelper() {
         ensureExists();
         return eventChanceToolTip.getHelper();
+    }
+
+    // --------------------------------------------------------------------------------
+
+    // Slay the Relics integration
+    private static ArrayList<PowerTip> slayTheRelicsTips = new ArrayList<>();
+    private static PowerTip mainTip;
+    private static Hitbox slayTheRelicsHitbox;
+    // TODO boss tip also
+
+    public static void initializeSlayTheRelics() {
+        mainTip = new PowerTip("Next [?] Floor (InfoMod)", "");
+
+        slayTheRelicsTips.clear();
+        slayTheRelicsTips.add(mainTip);
+
+        // TODO: pretty sure hitboxes are centered or something weird (probably need to shift left and down half size)
+        //   (can't remember right now)
+        slayTheRelicsHitbox = new Hitbox(1687, 1015, 85, 65);
+    }
+
+    public static void updateSlayTheRelics() {
+        if (mainTip == null)
+            initializeSlayTheRelics();
+
+        EventChanceHelper helper = eventChanceToolTip.getHelper();
+
+        // Event tip
+        StringBuilder sb = new StringBuilder("Event: ");
+        sb.append(helper.getEventChance());
+        sb.append(" NL ");
+
+        sb.append("Shrine: ");
+        sb.append(helper.getShrineChance());
+        sb.append(" NL ");
+
+        sb.append("Fight: ");
+        sb.append(helper.getFightChance());
+        sb.append(" NL ");
+
+        sb.append("Shop: ");
+        sb.append(helper.getShopChance());
+        sb.append(" NL ");
+
+        sb.append("Treasure: ");
+        sb.append(helper.getTreasureChance());
+
+        mainTip.body = sb.toString();
+
+        // Update the integration
+        SlayTheRelicsIntegration.update("eventChances", slayTheRelicsHitbox, slayTheRelicsTips);
     }
 
     // --------------------------------------------------------------------------------

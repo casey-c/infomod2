@@ -1,9 +1,9 @@
 {
   "modid": "ojb_infomod2",
-  "name": "ojb's Info Mod: The sequel",
+  "name": "InfoMod",
   "author_list": ["ojb"],
-  "description": "Displays helpful information",
-  "version": "0.0.5",
+  "description": "An extended UI mod to track potion drop chances, card drop probabilities, and other tedious calculations using intuitive tool tips and overlays.",
+  "version": "0.1.0",
   "sts_version": "12-22-2020",
   "mts_version": "3.18.2",
   "dependencies": ["basemod"]

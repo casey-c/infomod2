@@ -1,6 +1,7 @@
 package InfoMod2.ui.screens;
 
 import InfoMod2.data.EventDatabase;
+import InfoMod2.utils.graphics.color.ColorManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -18,7 +19,10 @@ public class EventScreen extends TitledScreen<EventScreen> {
     public EventScreen() {
         super(new Texture("InfoMod2/screens/event_background.png"),
                 "Event Overview",
-                "Right click anywhere to close");
+                "Right click anywhere to close",
+                ColorManager.EVENT_SCREEN_TITLE(),
+                ColorManager.EVENT_SCREEN_SUBTITLE()
+                );
     }
 
     private static final float SPACING = 60.0f;

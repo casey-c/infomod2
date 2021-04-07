@@ -1,10 +1,9 @@
 package InfoMod2.ui.widgets.tooltips.map;
 
 import InfoMod2.ui.widgets.AnchorPosition;
-//import InfoMod2.ui.widgets.text.SimpleLabel;
 import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.ui.widgets.tooltips.ExtendedToolTip;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.google.gson.JsonArray;
@@ -45,20 +44,20 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
         // TODO: this was very lazy and is bad code and needs refactoring badly but whatever
         if (hasA20SecondBoss && AbstractDungeon.floorNum == 51) {
             for (String name : bossNames)
-                bossLabels.add( new SmartLabel(name, ExtraColors.TOOLTIP_TEXT_GRAY) );
+                bossLabels.add( new SmartLabel(name, ColorManager.LIGHT_GRAY()) );
 
-            bossLabels.add( new SmartLabel(a20SecondBossName, ExtraColors.QUAL_PURPLE) );
+            bossLabels.add( new SmartLabel(a20SecondBossName, ColorManager.QUAL_PURPLE()) );
         }
         else if (hasA20SecondBoss && AbstractDungeon.floorNum > 51) {
             for (int i = 0; i < bossNames.size() - 1; ++i)
-                bossLabels.add( new SmartLabel(bossNames.get(i), ExtraColors.TOOLTIP_TEXT_GRAY) );
+                bossLabels.add( new SmartLabel(bossNames.get(i), ColorManager.LIGHT_GRAY()) );
 
-            bossLabels.add( new SmartLabel(a20SecondBossName, ExtraColors.TOOLTIP_TEXT_GRAY) );
-            bossLabels.add( new SmartLabel(bossNames.get(bossNames.size() - 1), ExtraColors.QUAL_PURPLE) );
+            bossLabels.add( new SmartLabel(a20SecondBossName, ColorManager.LIGHT_GRAY()) );
+            bossLabels.add( new SmartLabel(bossNames.get(bossNames.size() - 1), ColorManager.QUAL_PURPLE()) );
         }
         else {
             for (int i = 0; i < bossNames.size(); ++i) {
-                Color labelColor = (i == bossNames.size() - 1) ? ExtraColors.QUAL_PURPLE : ExtraColors.TOOLTIP_TEXT_GRAY;
+                Color labelColor = (i == bossNames.size() - 1) ? ColorManager.QUAL_PURPLE() : ColorManager.LIGHT_GRAY();
                 bossLabels.add( new SmartLabel(bossNames.get(i), labelColor) );
             }
         }

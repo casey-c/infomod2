@@ -1,6 +1,6 @@
 package InfoMod2.ui.widgets.tooltips;
 
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
@@ -32,12 +32,12 @@ public class TitledToolTip<T extends TitledToolTip<T>> extends ExtendedToolTip<T
 
 
     protected float renderTitle(SpriteBatch sb, float left, float top) {
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, title, left * Settings.xScale, top * Settings.yScale, ExtraColors.TOOLTIP_TEXT_CREAM);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, title, left * Settings.xScale, top * Settings.yScale, ColorManager.CREAM());
         return top - 34;
     }
 
     protected float renderSubtitle(SpriteBatch sb, float left, float top) {
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), subtitle, left * Settings.xScale, top * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), subtitle, left * Settings.xScale, top * Settings.yScale, ColorManager.LIGHT_GRAY());
         return top - 34; // TODO: technically font dependent
     }
 
@@ -45,7 +45,7 @@ public class TitledToolTip<T extends TitledToolTip<T>> extends ExtendedToolTip<T
         float left = getContentLeft() + DIVIDER_X_INSET;
         float width = getPreferredContentWidth() - (2 * DIVIDER_X_INSET);
 
-        sb.setColor(ExtraColors.TOOLTIP_OUTER);
+        sb.setColor(ColorManager.UI_DIVIDER());
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, left * Settings.xScale, top * Settings.yScale, width * Settings.xScale, 2);
 
         return top - 4;

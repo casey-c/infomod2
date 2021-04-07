@@ -3,7 +3,7 @@ package InfoMod2.ui.widgets.text;
 import InfoMod2.data.EventDetail;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -291,7 +291,7 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
     private String numActiveStatusString;
     public String getDetailStatusString() { return numActiveStatusString; }
 
-    private Color numActiveStringColor;
+    private Color numActiveStringColor = ColorManager.EVENT_SCREEN_INACTIVE_EVENT();
     public Color getDetailStatusColor() { return numActiveStringColor; }
 
     public void computeActive(HashMap<String, Integer> seenEvents) {
@@ -303,7 +303,29 @@ public class HoverableLabelGroup extends AbstractWidget<HoverableLabelGroup> {
         }
 
         this.numActiveStatusString = "[" + numActive + " / " + labelConnections.size() + "]";
-        this.numActiveStringColor = (numActive == 0) ? ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT : ExtraColors.SCREEN_ACT_SECTION_TITLE;
+
+        System.out.println("Updating numActiveStringColor from " + numActiveStringColor + " (numActive = " + numActive + ")");
+        this.numActiveStringColor = (numActive == 0) ?
+                ColorManager.EVENT_SCREEN_INACTIVE_EVENT() : ColorManager.EVENT_SCREEN_ACT_SECTION_TITLE();
+        System.out.println("... to " + numActiveStringColor);
+
+        System.out.println("EVENT_SCREEN_INACTIVE EVENT: " + ColorManager.EVENT_SCREEN_INACTIVE_EVENT());
+        System.out.println("EVENT_SCREEN_ACTIVE EVENT: " + ColorManager.EVENT_SCREEN_ACTIVE_EVENT());
+        System.out.println();
+
         //this.numActiveStringColor = (numActive == 0) ? ExtraColors.SCREEN_INACTIVE_EVENT_WRONG_ACT : ExtraColors.SCREEN_ACTIVE_EVENT;
+    }
+
+    @Override
+    public String toString() {
+        return "HoverableLabelGroup{" +
+                "maxWidth=" + maxWidth +
+                ", labelHeight=" + labelHeight +
+                ", labels=" + labels +
+                ", labelConnections=" + labelConnections +
+                ", details=" + details +
+                ", numActiveStatusString='" + numActiveStatusString + '\'' +
+                ", numActiveStringColor=" + numActiveStringColor +
+                '}';
     }
 }

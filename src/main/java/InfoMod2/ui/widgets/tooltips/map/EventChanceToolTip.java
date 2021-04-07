@@ -1,7 +1,7 @@
 package InfoMod2.ui.widgets.tooltips.map;
 
 import InfoMod2.ui.widgets.tooltips.TitledToolTip;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.math.EventChanceHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,11 +16,11 @@ public class EventChanceToolTip extends TitledToolTip<EventChanceToolTip> {
     }
 
     // TODO: use config settings to enable/disable qualitative color scheme
-    private Color getEventColor() { return ExtraColors.QUAL_TEAL; }
-    private Color getShrineColor() { return ExtraColors.QUAL_BLUE; }
-    private Color getFightColor() { return ExtraColors.QUAL_RED; }
-    private Color getShopColor() { return ExtraColors.QUAL_YELLOW; }
-    private Color getTreasureColor() { return ExtraColors.QUAL_GREEN; }
+    private Color getEventColor() { return ColorManager.QUAL_TEAL(); }
+    private Color getShrineColor() { return ColorManager.QUAL_BLUE(); }
+    private Color getFightColor() { return ColorManager.QUAL_RED(); }
+    private Color getShopColor() { return ColorManager.QUAL_YELLOW(); }
+    private Color getTreasureColor() { return ColorManager.QUAL_GREEN(); }
 
     // TODO: write update functions etc.
     private EventChanceHelper helper = new EventChanceHelper();

@@ -4,7 +4,7 @@ import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.SmartLabel;
 import InfoMod2.ui.widgets.tooltips.groups.MapTips;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.math.EventChanceHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,10 +15,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class EventPercentageBoxWidget extends AbstractWidget<EventPercentageBoxWidget> {
-    private SmartLabel eventTextLabel, shrineTextLabel, fightTextLabel, shopTextLabel, treasureTextLabel;
-    private SmartLabel eventPercentLabel, shrinePercentLabel, fightPercentLabel, shopPercentLabel, treasurePercentLabel;
+    private final SmartLabel eventPercentLabel, shrinePercentLabel, fightPercentLabel, shopPercentLabel, treasurePercentLabel;
 
-    private static final Texture TEX_BG = new Texture("InfoMod2/screens/event_percentage_box.png");
+    private static final Texture TEX_BG = new Texture("InfoMod2/screens/event_percentage_box_v2.png");
 
     private LinkedList<SmartLabel> labels = new LinkedList<>();
 
@@ -36,24 +35,32 @@ public class EventPercentageBoxWidget extends AbstractWidget<EventPercentageBoxW
 
         float currY = top - 60;
 
-        eventTextLabel = new SmartLabel("Event", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
-        eventPercentLabel = new SmartLabel("???", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
+        //Color color = ColorManager.EVENT_SCREEN_PERCENTAGE_BOX_TEXT();
+        // Testing out using the actual qualitative colors here instead of just off-white for all
+        Color eventColor = ColorManager.QUAL_TEAL();
+        Color shrineColor = ColorManager.QUAL_BLUE();
+        Color fightColor = ColorManager.QUAL_RED();
+        Color shopColor = ColorManager.QUAL_YELLOW();
+        Color treasureColor = ColorManager.QUAL_GREEN();
+
+        SmartLabel eventTextLabel = new SmartLabel("Event", eventColor).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
+        eventPercentLabel = new SmartLabel("???", eventColor).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
         currY -= SPACING;
 
-        shrineTextLabel = new SmartLabel("Shrine", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
-        shrinePercentLabel = new SmartLabel("???", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
+        SmartLabel shrineTextLabel = new SmartLabel("Shrine", shrineColor).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
+        shrinePercentLabel = new SmartLabel("???", shrineColor).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
         currY -= SPACING;
 
-        fightTextLabel = new SmartLabel("Fight", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
-        fightPercentLabel = new SmartLabel("???", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
+        SmartLabel fightTextLabel = new SmartLabel("Fight", fightColor).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
+        fightPercentLabel = new SmartLabel("???", fightColor).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
         currY -= SPACING;
 
-        shopTextLabel = new SmartLabel("Shop", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
-        shopPercentLabel = new SmartLabel("???", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
+        SmartLabel shopTextLabel = new SmartLabel("Shop", shopColor).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
+        shopPercentLabel = new SmartLabel("???", shopColor).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
         currY -= SPACING;
 
-        treasureTextLabel = new SmartLabel("Treasure", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
-        treasurePercentLabel = new SmartLabel("???", ExtraColors.SCREEN_PERCENTAGE_BOX_TEXT).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
+        SmartLabel treasureTextLabel = new SmartLabel("Treasure", treasureColor).anchoredAt(left, currY, AnchorPosition.LEFT_TOP);
+        treasurePercentLabel = new SmartLabel("???", treasureColor).anchoredAt(percentLeft, currY, AnchorPosition.LEFT_TOP);
 
         // Convenience
         labels.addAll(Arrays.asList(

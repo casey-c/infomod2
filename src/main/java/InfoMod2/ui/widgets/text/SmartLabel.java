@@ -1,6 +1,7 @@
 package InfoMod2.ui.widgets.text;
 
 import InfoMod2.ui.widgets.AbstractWidget;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,7 +27,7 @@ public class SmartLabel extends AbstractWidget<SmartLabel> {
     public SmartLabel(String text) {
         this(text,
                 FontHelper.tipBodyFont,
-                Settings.CREAM_COLOR,
+                ColorManager.CREAM(),
                 10000.0f,
                 32.0f);
     }

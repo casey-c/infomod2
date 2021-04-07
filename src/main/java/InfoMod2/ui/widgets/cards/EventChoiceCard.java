@@ -5,7 +5,7 @@ import InfoMod2.data.EventEffect;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.SmartLabel;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -27,7 +27,11 @@ public class EventChoiceCard extends AbstractWidget<EventChoiceCard> {
         }
 
         float lineWidth = wide ? 450.0f : 350.0f;
-        this.effectsLabel = new SmartLabel(sb.toString(), FontHelper.tipBodyFont, ExtraColors.TEXT_EVENT_DESC, lineWidth, 28.0f);
+        this.effectsLabel = new SmartLabel(sb.toString(),
+                FontHelper.tipBodyFont,
+                ColorManager.EVENT_DETAIL_TOOLTIP_DESC(),
+                lineWidth,
+                28.0f);
     }
 
     public float getNameWidth() {

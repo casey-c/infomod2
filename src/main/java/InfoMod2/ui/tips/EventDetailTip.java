@@ -7,8 +7,8 @@ import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.cards.EventChoiceCard;
 import InfoMod2.ui.widgets.text.SmartLabel;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.graphics.DynamicTextureBox;
-import InfoMod2.utils.graphics.ExtraColors;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -47,12 +47,12 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
     public EventDetailTip(EventDetail detail) {
         this.detail = detail;
-        this.titleLabel = new SmartLabel(detail.name, ExtraColors.EVENT_TOOLTIP_TITLE_TEXT);
+        this.titleLabel = new SmartLabel(detail.name, ColorManager.EVENT_DETAIL_TOOLTIP_TITLE());
 
         initializeTooltip();
 
         textureBox = new DynamicTextureBox("InfoMod2/dtb/eventToolTip.atlas")
-                .withColors(ExtraColors.EVENT_TOOLTIP_BASE, ExtraColors.EVENT_TOOLTIP_TRIM, ExtraColors.EVENT_TOOLTIP_BASE);
+                .withColors(ColorManager.EVENT_DETAIL_TOOLTIP_DTB_BASE(), ColorManager.EVENT_DETAIL_TOOLTIP_DTB_TRIM(), ColorManager.EVENT_DETAIL_TOOLTIP_DTB_BASE());
     }
 
     private void initializeTooltip() {
@@ -154,10 +154,10 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Check if this event passes the floor requirements
         if (isFloorNumSatisfied()) {
-            floorLabel.setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS);
+            floorLabel.setFontColor(ColorManager.EVENT_DETAIL_TOOLTIP_REQ_SUCCESS());
         }
         else {
-            floorLabel.setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_FAILED);
+            floorLabel.setFontColor(ColorManager.EVENT_DETAIL_TOOLTIP_REQ_FAILED());
             isActive = false;
         }
 
@@ -168,10 +168,10 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
                 assert currentReq < reqLabels.size();
 
                 if (x.isRequirementSatisfied()) {
-                    reqLabels.get(currentReq).setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_SUCCESS);
+                    reqLabels.get(currentReq).setFontColor(ColorManager.EVENT_DETAIL_TOOLTIP_REQ_SUCCESS());
                 }
                 else {
-                    reqLabels.get(currentReq).setFontColor(ExtraColors.EVENT_TOOLTIP_REQ_FAILED);
+                    reqLabels.get(currentReq).setFontColor(ColorManager.EVENT_DETAIL_TOOLTIP_REQ_FAILED());
                     isActive = false;
                 }
 
@@ -256,7 +256,7 @@ public class EventDetailTip extends AbstractWidget<EventDetailTip> {
 
         // Render the divider line
         final float DIVIDER_OFFSET = 23.0f;
-        sb.setColor(ExtraColors.DIVIDER_COLOR);
+        sb.setColor(ColorManager.UI_DIVIDER());
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, (left + horizontalOffset + DIVIDER_OFFSET) * Settings.xScale, (dividerBottom + verticalOffset) * Settings.yScale, (w - (2 * DIVIDER_OFFSET)) * Settings.xScale, 3.0f);
 
         // Choice cards

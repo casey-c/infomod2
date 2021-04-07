@@ -1,7 +1,7 @@
 package InfoMod2.ui.widgets.tooltips.gold;
 
 import InfoMod2.ui.widgets.tooltips.TitledToolTip;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.graphics.ExtraFonts;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -62,7 +62,7 @@ public class ShopPriceToolTip extends TitledToolTip<ShopPriceToolTip> {
         if (AbstractDungeon.player != null && AbstractDungeon.player.gold >= MathUtils.round(price))
             return ifAffordable;
         else
-            return ExtraColors.DISABLED_GRAY;
+            return ColorManager.DARK_GRAY();
     }
 
     // --------------------------------------------------------------------------------
@@ -108,17 +108,17 @@ public class ShopPriceToolTip extends TitledToolTip<ShopPriceToolTip> {
         this.cardRemovalText = String.format("Card Removal: %d", MathUtils.round(purgeCost));
 
         // Update colors
-        commonRelicColor = setAffordabilityColor(commonRelicCost, relicAdjust, additionalPriceAdjust, ExtraColors.QUAL_YELLOW);
-        uncRelicColor = setAffordabilityColor(uncommonRelicCost, relicAdjust, additionalPriceAdjust, ExtraColors.QUAL_YELLOW);
-        rareRelicColor = setAffordabilityColor(rareRelicCost, relicAdjust, additionalPriceAdjust, ExtraColors.QUAL_YELLOW);
+        commonRelicColor = setAffordabilityColor(commonRelicCost, relicAdjust, additionalPriceAdjust, ColorManager.QUAL_YELLOW());
+        uncRelicColor = setAffordabilityColor(uncommonRelicCost, relicAdjust, additionalPriceAdjust, ColorManager.QUAL_YELLOW());
+        rareRelicColor = setAffordabilityColor(rareRelicCost, relicAdjust, additionalPriceAdjust, ColorManager.QUAL_YELLOW());
 
-        commonCardColor = setAffordabilityColor(commonCardCost, cardAdjust, additionalPriceAdjust, ExtraColors.QUAL_GREEN);
-        uncCardColor = setAffordabilityColor(uncommonCardCost, cardAdjust, additionalPriceAdjust, ExtraColors.QUAL_GREEN);
-        rareCardColor = setAffordabilityColor(rareCardCost, cardAdjust, additionalPriceAdjust, ExtraColors.QUAL_GREEN);
+        commonCardColor = setAffordabilityColor(commonCardCost, cardAdjust, additionalPriceAdjust, ColorManager.QUAL_GREEN());
+        uncCardColor = setAffordabilityColor(uncommonCardCost, cardAdjust, additionalPriceAdjust, ColorManager.QUAL_GREEN());
+        rareCardColor = setAffordabilityColor(rareCardCost, cardAdjust, additionalPriceAdjust, ColorManager.QUAL_GREEN());
 
-        commonPotionColor = setAffordabilityColor(commonPotionCost, potionAdjust, additionalPriceAdjust, ExtraColors.QUAL_BLUE);
-        uncPotionColor = setAffordabilityColor(uncommonPotionCost, potionAdjust, additionalPriceAdjust, ExtraColors.QUAL_BLUE);
-        rarePotionColor = setAffordabilityColor(rarePotionCost, potionAdjust, additionalPriceAdjust, ExtraColors.QUAL_BLUE);
+        commonPotionColor = setAffordabilityColor(commonPotionCost, potionAdjust, additionalPriceAdjust, ColorManager.QUAL_BLUE());
+        uncPotionColor = setAffordabilityColor(uncommonPotionCost, potionAdjust, additionalPriceAdjust, ColorManager.QUAL_BLUE());
+        rarePotionColor = setAffordabilityColor(rarePotionCost, potionAdjust, additionalPriceAdjust, ColorManager.QUAL_BLUE());
     }
 
 
@@ -131,7 +131,7 @@ public class ShopPriceToolTip extends TitledToolTip<ShopPriceToolTip> {
                 cardRemovalText,
                 cardRemovalLeft * Settings.xScale,
                 (top - 5.0f) * Settings.yScale,
-                ExtraColors.QUAL_RED);
+                ColorManager.QUAL_RED());
 
         return super.renderTitle(sb, left, top);
     }
@@ -151,24 +151,24 @@ public class ShopPriceToolTip extends TitledToolTip<ShopPriceToolTip> {
         final float potionTop = cardTop - VERTICAL_GAP;
 
         // Top Header
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Common / Shop", commonLeft * Settings.xScale, descTop * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Uncommon", uncommonLeft * Settings.xScale, descTop * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
-        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Rare", rareLeft * Settings.xScale, descTop * Settings.yScale, ExtraColors.TOOLTIP_TEXT_GRAY);
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Common / Shop", commonLeft * Settings.xScale, descTop * Settings.yScale, ColorManager.LIGHT_GRAY());
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Uncommon", uncommonLeft * Settings.xScale, descTop * Settings.yScale, ColorManager.LIGHT_GRAY());
+        FontHelper.renderFontLeftTopAligned(sb, ExtraFonts.smallItalicFont(), "Rare", rareLeft * Settings.xScale, descTop * Settings.yScale, ColorManager.LIGHT_GRAY());
 
         // Relics row
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Relics:", left * Settings.xScale, relicTop * Settings.yScale, ExtraColors.QUAL_YELLOW);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Relics:", left * Settings.xScale, relicTop * Settings.yScale, ColorManager.QUAL_YELLOW());
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, commonRelicText, commonLeft * Settings.xScale, relicTop * Settings.yScale, commonRelicColor);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, uncRelicText, uncommonLeft * Settings.xScale, relicTop * Settings.yScale, uncRelicColor);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, rareRelicText, rareLeft * Settings.xScale, relicTop * Settings.yScale, rareRelicColor);
 
         // Cards row
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Cards:", left * Settings.xScale, cardTop * Settings.yScale, ExtraColors.QUAL_GREEN);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Cards:", left * Settings.xScale, cardTop * Settings.yScale, ColorManager.QUAL_GREEN());
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, commonCardText, commonLeft * Settings.xScale, cardTop * Settings.yScale, commonCardColor);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, uncCardText, uncommonLeft * Settings.xScale, cardTop * Settings.yScale, uncCardColor);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, rareCardText, rareLeft * Settings.xScale, cardTop * Settings.yScale, rareCardColor);
 
         // Potions row
-        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Potions:", left * Settings.xScale, potionTop * Settings.yScale, ExtraColors.QUAL_BLUE);
+        FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, "Potions:", left * Settings.xScale, potionTop * Settings.yScale, ColorManager.QUAL_BLUE());
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, commonPotionText, commonLeft * Settings.xScale, potionTop * Settings.yScale, commonPotionColor);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, uncPotionText, uncommonLeft * Settings.xScale, potionTop * Settings.yScale, uncPotionColor);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.tipBodyFont, rarePotionText, rareLeft * Settings.xScale, potionTop * Settings.yScale, rarePotionColor);

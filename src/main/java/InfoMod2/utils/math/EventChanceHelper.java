@@ -1,8 +1,11 @@
 package InfoMod2.utils.math;
 
+import InfoMod2.utils.integration.SlayTheRelicsIntegration;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.EventHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 
 import java.util.ArrayList;
 import java.util.Vector;

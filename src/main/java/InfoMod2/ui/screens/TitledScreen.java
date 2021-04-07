@@ -3,46 +3,33 @@ package InfoMod2.ui.screens;
 import InfoMod2.ui.widgets.AbstractWidget;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.text.SmartLabel;
-import InfoMod2.utils.graphics.ExtraColors;
+import InfoMod2.utils.graphics.color.ColorManager;
 import InfoMod2.utils.graphics.ExtraFonts;
 import InfoMod2.utils.graphics.ScreenHelper;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
-import java.util.LinkedList;
-
-// v2
 public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
     private Texture TEX_BG;
     private float texWidth, texHeight;
 
-    private LinkedList<AbstractWidget> widgets = new LinkedList<>();
-
     private SmartLabel titleLabel, subtitleLabel;
 
-    // Useful for
-//    protected final float mainContentLeft;
-//    protected final float mainContentBottom;
-//    protected final float mainContentWidth;
-//    protected final float mainContentHeight;
-
-    public TitledScreen(Texture texBG, String title, String subtitle) {
+    public TitledScreen(Texture texBG, String title, String subtitle, Color titleColor, Color subtitleColor) {
         this.TEX_BG = texBG;
 
         this.texWidth = texBG.getWidth();
         this.texHeight = texBG.getHeight();
 
         this.anchorCenteredOnScreen();
-            //.withMargins(70.0f, 70.0f, 40.0f, 140.0f);
-        //setMargins(70.0f, 0.0f);
 
         // Title and subtitle creation/alignment
-        this.titleLabel = new SmartLabel(title, ExtraFonts.screenTitle(), ExtraColors.SCREEN_TITLE_TEXT);
-        this.subtitleLabel = new SmartLabel(subtitle, ExtraFonts.screenSubtitle(), ExtraColors.SCREEN_SUBTITLE_TEXT);
+        this.titleLabel = new SmartLabel(title, ExtraFonts.screenTitle(), titleColor);
+        this.subtitleLabel = new SmartLabel(subtitle, ExtraFonts.screenSubtitle(), subtitleColor);
 
         float titleTop = getContentTop() - 45;
         float subTitleTop = titleTop - 33;
@@ -64,10 +51,10 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
     @Override public float getPreferredContentHeight() { return texHeight; }
 
     protected void renderBackground(SpriteBatch sb) {
-        sb.setColor(ExtraColors.SCREEN_DIM_V3);
+        sb.setColor(ColorManager.SCREEN_BACKGROUND_DIM());
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
 
-        sb.setColor(ExtraColors.SCREEN_OPACITY);
+        sb.setColor(ColorManager.SCREEN_OPACITY());
         sb.draw(TEX_BG,
                 getContentLeft() * Settings.xScale,
                 getContentBottom() * Settings.yScale,

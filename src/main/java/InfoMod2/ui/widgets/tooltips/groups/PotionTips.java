@@ -1,8 +1,12 @@
 package InfoMod2.ui.widgets.tooltips.groups;
 
+import InfoMod2.InfoMod2;
 import InfoMod2.ui.widgets.AnchorPosition;
 import InfoMod2.ui.widgets.tooltips.potions.PotionChanceTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+
+import java.util.ArrayList;
 
 public class PotionTips {
     private static PotionChanceTip potionChanceTip;
@@ -22,6 +26,8 @@ public class PotionTips {
     public static void updatePotionChance(int chance) {
         ensureExists();
         potionChanceTip.updatePotionChance(chance);
+
+        InfoMod2.updateSlayTheRelicsPotionTips(potionChanceTip.getSlayTheRelicsTips());
     }
 
     public static String getMainPotionChance() {

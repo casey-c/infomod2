@@ -82,6 +82,27 @@ public class BossToolTip extends ExtendedToolTip<BossToolTip> {
         bossNames.clear();
     }
 
+    public String labelsToFormattedSlayTheRelicsString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < bossLabels.size(); ++i) {
+            SmartLabel bossLabel = bossLabels.get(i);
+            String name = bossLabel.getText();
+
+            // Special color the last one
+            if (i == bossLabels.size() - 1)
+                sb.append("#p");
+
+            sb.append(name);
+
+            // Newlines between
+            if (i != bossLabels.size() - 1)
+                sb.append(" NL ");
+        }
+
+        return sb.toString();
+    }
+
     // --------------------------------------------------------------------------------
     // TODO: probably should've used Gson here/automated it, but whatever
 

@@ -71,6 +71,8 @@ public class SmartLabel extends AbstractWidget<SmartLabel> {
         this.fontColor = newColor;
     }
 
+    public String getText() { return text; }
+
     // --------------------------------------------------------------------------------
 
     @Override public float getPreferredContentWidth() { return textBlockWidth; }

@@ -55,6 +55,8 @@ public class MapTips {
     public static void refreshBossTip() {
         ensureExists();
         bossToolTip.updateLabels();
+
+        updateSlayTheRelics();
     }
 
     public static void updateEventChanceTip() {
@@ -79,17 +81,21 @@ public class MapTips {
     // Slay the Relics integration
     private static ArrayList<PowerTip> slayTheRelicsTips = new ArrayList<>();
     private static PowerTip mainTip;
+    private static PowerTip bossTip;
     private static Hitbox slayTheRelicsHitbox;
     // TODO boss tip also
 
     public static void initializeSlayTheRelics() {
         mainTip = new PowerTip("Next [?] Floor (InfoMod)", "");
+        bossTip = new PowerTip("Upcoming Bosses (InfoMod)", "");
 
         slayTheRelicsTips.clear();
         slayTheRelicsTips.add(mainTip);
+        slayTheRelicsTips.add(bossTip);
 
         // TODO: pretty sure hitboxes are centered or something weird (probably need to shift left and down half size)
         //   (can't remember right now)
+        // update: they seem to be working on at least 1 stream (1080p works, idk about other resolutions)
         slayTheRelicsHitbox = new Hitbox(1687, 1015, 85, 65);
     }
 
@@ -120,6 +126,9 @@ public class MapTips {
         sb.append(helper.getTreasureChance());
 
         mainTip.body = sb.toString();
+
+        // Boss tip
+        bossTip.body = bossToolTip.labelsToFormattedSlayTheRelicsString();
 
         // Update the integration
         SlayTheRelicsIntegration.update("eventChances", slayTheRelicsHitbox, slayTheRelicsTips);

@@ -86,6 +86,29 @@ public class MiscStatsTip extends TitledToolTip<MiscStatsTip> {
         this.avgCardPlaysRun = String.format("%.2f", avgRun);
     }
 
+    public String getSlayTheRelicsFormattedString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Cards played: NL ");
+        sb.append(" Turn: ");
+        sb.append(cardPlaysTurn);
+        sb.append(" NL ");
+        sb.append(" Combat: ");
+        sb.append(cardPlaysCombat);
+        sb.append(" NL ");
+        sb.append(" Run: ");
+        sb.append(cardPlaysRun);
+        sb.append(" NL NL ");
+        sb.append("Avg Cards / Turn: NL ");
+        sb.append(" Combat: ");
+        sb.append(avgCardPlaysCombat);
+        sb.append(" NL ");
+        sb.append(" Run: ");
+        sb.append(avgCardPlaysRun);
+
+        return sb.toString();
+    }
+
     // --------------------------------------------------------------------------------
 
     @Override

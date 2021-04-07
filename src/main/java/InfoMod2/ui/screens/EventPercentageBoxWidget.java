@@ -17,13 +17,13 @@ import java.util.LinkedList;
 public class EventPercentageBoxWidget extends AbstractWidget<EventPercentageBoxWidget> {
     private final SmartLabel eventPercentLabel, shrinePercentLabel, fightPercentLabel, shopPercentLabel, treasurePercentLabel;
 
-    private static final Texture TEX_BG = new Texture("InfoMod2/screens/event_percentage_box_v2.png");
+    private static final Texture TEX_BG = new Texture("InfoMod2/screens/event_percentage_box_v3.png");
 
-    private LinkedList<SmartLabel> labels = new LinkedList<>();
+    private final LinkedList<SmartLabel> labels = new LinkedList<>();
 
     private static final float SPACING = 40.0f;
 
-    private float texLeft, texBottom;
+    private final float texLeft, texBottom;
 
     public EventPercentageBoxWidget(float left, float top) {
         this.texLeft = left;

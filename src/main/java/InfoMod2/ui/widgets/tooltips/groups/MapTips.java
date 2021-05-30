@@ -6,17 +6,12 @@ import InfoMod2.ui.widgets.tooltips.map.EventChanceToolTip;
 import InfoMod2.utils.integration.SlayTheRelicsIntegration;
 import InfoMod2.utils.math.EventChanceHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Json;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MapTips {
     private static EventChanceToolTip eventChanceToolTip;

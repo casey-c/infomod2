@@ -49,8 +49,11 @@ public class ColorScheme {
     // UI: Event screen colors
     // --------------------------------------------------------------------------------
 
-    protected Color EVENT_SCREEN_TITLE = new Color(0.686f, 0.753f, 0.855f, 1.000f);
-    protected Color EVENT_SCREEN_SUBTITLE = new Color(0.373f, 0.455f, 0.557f, 1.000f);
+//    protected Color EVENT_SCREEN_TITLE = new Color(0.686f, 0.753f, 0.855f, 1.000f);
+//    protected Color EVENT_SCREEN_SUBTITLE = new Color(0.373f, 0.455f, 0.557f, 1.000f);
+
+    protected Color EVENT_SCREEN_TITLE = Color.valueOf("b0aaa8ff");
+    protected Color EVENT_SCREEN_SUBTITLE = Color.valueOf("6c6e70ff");
 
     protected Color EVENT_SCREEN_ACT_SECTION_TITLE = new Color(0.612f, 0.600f, 0.608f, 1.000f);
 

@@ -17,7 +17,7 @@ import java.util.LinkedList;
 public class EventPercentageBoxWidget extends AbstractWidget<EventPercentageBoxWidget> {
     private final SmartLabel eventPercentLabel, shrinePercentLabel, fightPercentLabel, shopPercentLabel, treasurePercentLabel;
 
-    private static final Texture TEX_BG = new Texture("InfoMod2/screens/event_percentage_box_v3.png");
+    private static final Texture TEX_BG = new Texture("InfoMod2/screens/event_percentage_box_v4.png");
 
     private final LinkedList<SmartLabel> labels = new LinkedList<>();
 

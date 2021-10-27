@@ -17,7 +17,7 @@ public class EventScreen extends TitledScreen<EventScreen> {
     private EventPercentageBoxWidget percentageBoxWidget;
 
     public EventScreen() {
-        super(new Texture("InfoMod2/screens/event_background.png"),
+        super(new Texture("InfoMod2/screens/event_background_v2.png"),
                 "Event Overview",
                 "Right click anywhere to close",
                 ColorManager.EVENT_SCREEN_TITLE(),

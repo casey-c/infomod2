@@ -9,7 +9,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.shop.ShopScreen;
+
+import java.util.ArrayList;
 
 public class GoldTrackerPatches {
     public static void updateShopPrices() {
@@ -28,6 +31,17 @@ public class GoldTrackerPatches {
     // Initialize on loading a save
     @SpirePatch( clz = AbstractDungeon.class, method = "loadSave" )
     public static class AbstractDungeonLoadSavePatch {
+        @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
+    }
+
+    //public AbstractDungeon(String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
+    @SpirePatch( clz = AbstractDungeon.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {String.class, String.class, AbstractPlayer.class, ArrayList.class})
+    public static class AbstractDungeonConstructorPatch {
+        @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
+    }
+
+    @SpirePatch( clz = AbstractDungeon.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {String.class, AbstractPlayer.class, SaveFile.class})
+    public static class AbstractDungeonConstructorLoadPatch {
         @SpirePostfixPatch public static void Postfix() { updateShopPrices(); }
     }
 

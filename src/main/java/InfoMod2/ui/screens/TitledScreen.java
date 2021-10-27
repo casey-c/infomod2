@@ -31,7 +31,7 @@ public class TitledScreen<T extends TitledScreen<T>> extends AbstractWidget<T> {
         this.titleLabel = new SmartLabel(title, ExtraFonts.screenTitle(), titleColor);
         this.subtitleLabel = new SmartLabel(subtitle, ExtraFonts.screenSubtitle(), subtitleColor);
 
-        float titleTop = getContentTop() - 45;
+        float titleTop = getContentTop() - 45 + 4;
         float subTitleTop = titleTop - 33;
 
         titleLabel.anchoredAt(getMainContentLeft() - 10, titleTop, AnchorPosition.LEFT_TOP);

@@ -15,24 +15,57 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 public class PotionPanelItem extends TopPanelItem {
     private boolean currentlyHovering = false;
 
-    private static final Texture tex = new Texture("InfoMod2/panel.png");
+//    private static final Texture tex = new Texture("InfoMod2/panel.png");
+//    private static final Texture tex = new Texture("InfoMod2/panel.png");
+    private static final Texture TEX_NULL = new Texture("InfoMod2/panel/null.png");
+    private static final Texture TEX_REGULAR = new Texture("InfoMod2/panel/regular.png");
+    private static final Texture TEX_HOVER = new Texture("InfoMod2/panel/hover.png");
 
     public PotionPanelItem() {
-        super(tex, "ojb_InfoMod2_panel");
+        super(TEX_NULL, "ojb_InfoMod2_panel");
 
         // Basically ignore the constructor above and just set the ClickableUIElement (parent of TopPanelItem) details for real
         //   since the TopPanelItem constructor is garbo
 
-        this.hb_w = tex.getWidth() * Settings.scale;
-        this.hb_h = tex.getHeight() * Settings.scale;
+        this.hb_w = TEX_NULL.getWidth() * Settings.scale;
+        this.hb_h = TEX_NULL.getHeight() * Settings.scale;
 
-        this.image = tex;
+        this.image = TEX_NULL;
         this.hitbox = new Hitbox(this.x, this.y, this.hb_w, this.hb_h);
     }
 
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
+
+        // Render the actual texture here instead since the super.render() i decided to just ignore by drawing a null in there
+        float halfWidth = (float)this.image.getWidth() / 2.0F;
+        float halfHeight = (float)this.image.getHeight() / 2.0F;
+
+        Texture tex = currentlyHovering ? TEX_HOVER : TEX_REGULAR;
+
+        sb.setColor(Color.WHITE);
+        sb.draw(tex,
+                this.x - halfWidth + halfWidth * Settings.scale,
+                this.y - halfHeight + halfHeight * Settings.scale,
+                halfWidth,
+                halfHeight,
+                (float)this.image.getWidth(),
+                (float)this.image.getHeight(),
+                Settings.scale,
+                Settings.scale,
+                this.angle,
+                0,
+                0,
+                this.image.getWidth(),
+                this.image.getHeight(),
+                false,
+                false);
+
+//        if (currentlyHovering)
+//            sb.draw(TEX_HOVER, x * Settings.xScale, y * Settings.yScale, hb_w, hb_h);
+//        else
+//            sb.draw(TEX_REGULAR, x * Settings.xScale, y * Settings.yScale, hb_w, hb_h);
 
         String text = PotionTips.getMainPotionChance();
 
@@ -80,7 +113,7 @@ public class PotionPanelItem extends TopPanelItem {
     protected void onClick() {
         CardCrawlGame.sound.play("DECK_OPEN");
 
-        SlayTheRelicsIntegration.print();
+//        SlayTheRelicsIntegration.print();
 
 //        System.out.println("********** System Information **********");
 //        System.out.println("Settings.WIDTH: " + Settings.WIDTH);
